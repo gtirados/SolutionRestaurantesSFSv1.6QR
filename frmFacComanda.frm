@@ -909,6 +909,7 @@ With oCmdEjec
             .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@CIAPEDIDO", adChar, adParamInput, 2, LK_CODCIA)
             .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblicbper.Caption)) = 0, 0, Me.lblicbper.Caption))
+            .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@MaxNumOper", adInteger, adParamOutput, , 0)
             .Parameters.Append .CreateParameter("@AUTONUMFAC", adInteger, adParamOutput, , 0)
         
@@ -1080,11 +1081,11 @@ Private Sub cmdSunat_Click()
 
     On Error GoTo cCruc
 
-    Dim p          As Object
+    Dim P          As Object
 
-    Dim Texto      As String, xTOk As String
+    Dim TEXTO      As String, xTOk As String
 
-    Dim cadena     As String, xvRUC As String
+    Dim CADENA     As String, xvRUC As String
 
     Dim sInputJson As String, xEsRuc As Boolean
 
@@ -1111,19 +1112,19 @@ Private Sub cmdSunat_Click()
     xTOk = Leer_Ini(App.Path & "\config.ini", "TOKEN", "")
     
     If xEsRuc Then
-        cadena = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
     Else
-        cadena = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
     End If
     
-    httpURL.Open "GET", cadena
+    httpURL.Open "GET", CADENA
     httpURL.Send
     
-    Texto = httpURL.ResponseText
+    TEXTO = httpURL.ResponseText
 
     'sInputJson = "{items:" & Texto & "}"
 
-    Set p = JSON.parse(Texto)
+    Set P = JSON.parse(TEXTO)
 
     '    Me.lblRUC.Caption = p.Item("ruc")
     '    Me.lblRazonSocial.Caption = p.Item("razonSocial")
@@ -1135,7 +1136,7 @@ Private Sub cmdSunat_Click()
     If Len(Trim(Me.txtRuc.Text)) = 0 Then
         If IsNumeric(Me.txtRS.Text) Then
             If Len(Trim(Me.txtRS.Text)) = 11 Or Len(Trim(Me.txtRS.Text)) = 8 Then
-                If Texto = "[]" Then
+                If TEXTO = "[]" Then
                     MousePointer = vbDefault
                     MsgBox ("No se obtuvo resultados")
                     Me.txtRuc.Text = ""
@@ -1146,7 +1147,7 @@ Private Sub cmdSunat_Click()
 
                 End If
 
-                If Len(Trim(Texto)) = 0 Then
+                If Len(Trim(TEXTO)) = 0 Then
                     MousePointer = vbDefault
                     MsgBox ("No se obtuvo resultados")
                     Me.txtRuc.Text = ""
@@ -1158,15 +1159,15 @@ Private Sub cmdSunat_Click()
                 End If
 
                 If xEsRuc Then
-                    Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
-                    Me.txtRS.Text = p.Item("razonSocial")
-                    Me.txtRuc.Text = p.Item("ruc")
+                    Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
+                    Me.txtRS.Text = P.Item("razonSocial")
+                    Me.txtRuc.Text = P.Item("ruc")
                     Me.txtDni.Text = ""
                 Else
                     Me.txtRuc.Text = ""
                     Me.txtDireccion.Text = ""
-                    Me.txtDni.Text = p.Item("dni")
-                    Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
+                    Me.txtDni.Text = P.Item("dni")
+                    Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
                 End If
     
                 LimpiaParametros oCmdEjec
@@ -1193,7 +1194,7 @@ Private Sub cmdSunat_Click()
 
     Else
 
-        If Texto = "[]" Then
+        If TEXTO = "[]" Then
             MousePointer = vbDefault
             MsgBox ("No se obtuvo resultados")
             Me.txtRuc.Text = ""
@@ -1204,7 +1205,7 @@ Private Sub cmdSunat_Click()
 
         End If
 
-        If Len(Trim(Texto)) = 0 Then
+        If Len(Trim(TEXTO)) = 0 Then
             MousePointer = vbDefault
             MsgBox ("No se obtuvo resultados")
             Me.txtRuc.Text = ""
@@ -1218,14 +1219,14 @@ Private Sub cmdSunat_Click()
         If xEsRuc Then
             Me.txtDni.Text = ""
             'Me.txtDireccion.Text = p.Item("direccion")
-            Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
-            Me.txtRS.Text = p.Item("razonSocial")
-            Me.txtRuc.Text = p.Item("ruc")
+            Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
+            Me.txtRS.Text = P.Item("razonSocial")
+            Me.txtRuc.Text = P.Item("ruc")
         Else
             Me.txtRuc.Text = ""
             Me.txtDireccion.Text = ""
-            Me.txtDni.Text = p.Item("dni")
-            Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
+            Me.txtDni.Text = P.Item("dni")
+            Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
         End If
     
         LimpiaParametros oCmdEjec
