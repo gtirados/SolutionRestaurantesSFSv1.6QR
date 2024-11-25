@@ -82,6 +82,7 @@ Begin VB.Form frmFacComanda
          Left            =   6480
          TabIndex        =   41
          Top             =   240
+         Visible         =   0   'False
          Width           =   2295
       End
       Begin MSDataListLib.DataCombo DatEmpresas 
@@ -493,7 +494,24 @@ Public gDESCUENTO As Double 'VARIABLE PARA ALMACENAR EL DESCUENTO PARA LAS COMAN
 Public gPAGO As Double 'VARIABLE PARA ALMACENAR EL PAGO PARA LAS COMANDAS
 Private ORStd As ADODB.Recordset 'VARIABLE PARA SABER SI EL TIPO DE DOCUMENTO ES EDITABLE
 
+Private Function VerificaPassPrecios(vUSUARIO As String, vClave As String, ByRef vMSN As String) As Boolean
+Dim orsPass As ADODB.Recordset
+Dim vtpass As String, vPasa As Boolean
+LimpiaParametros oCmdEjec
+oCmdEjec.CommandText = "SpDevuelveClaveprecios"
+oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@USUARIO", adVarChar, adParamInput, 10, vUSUARIO)
+oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CLAVE", adVarChar, adParamInput, 10, vClave)
+oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@MSN", adVarChar, adParamOutput, 200, 1)
+oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PASA", adBoolean, adParamOutput, , 1)
+oCmdEjec.Execute
 
+'If Not orsPass.EOF Then vtpass = Trim(orsPass!Clave)
+vtpass = oCmdEjec.Parameters("@MSN").Value
+vPasa = oCmdEjec.Parameters("@PASA").Value
+vMSN = vtpass
+
+    VerificaPassPrecios = vPasa
+End Function
 Private Sub ConfigurarLVDetalle()
 With Me.lvDetalle
     .ColumnHeaders.Add , , "NumFac", 0
@@ -602,17 +620,18 @@ Private Sub chkGratuito_Click()
     
             Dim vS As String
     
-            If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
+           ' If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
+            If VerificaPassPrecios(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
                Me.lblvvta.Caption = "0.00"
-               Me.lblIgv.Caption = "0.00"
+               Me.lblIGV.Caption = "0.00"
                Me.lblImporte.Caption = "0.00"
-                Me.cmdformaspago.Enabled = False
+                Me.cmdFormasPago.Enabled = False
             Else
                 MsgBox "Clave incorrecta", vbCritical, NombreProyecto
             End If
         End If
 Else
-Me.cmdformaspago.Enabled = True
+Me.cmdFormasPago.Enabled = True
 CalcularImporte
     End If
 
@@ -630,7 +649,7 @@ If Me.DatTiposDoctos.BoundText = "" Then ' .ListIndex = -1 Then
 
 End If
 
-If Me.cmdformaspago.Enabled And oRSfp.RecordCount = 0 Then
+If Me.cmdFormasPago.Enabled And oRSfp.RecordCount = 0 Then
     MsgBox "Debe ingresar pagos", vbCritical, Pub_Titulo
 
     Exit Sub
@@ -665,7 +684,7 @@ Do While Not oRSfp.EOF
     oRSfp.MoveNext
 Loop
     
-If Me.cmdformaspago.Enabled And xPAGOS < val(Me.lblImporte.Caption) Then
+If Me.cmdFormasPago.Enabled And xPAGOS < val(Me.lblImporte.Caption) Then
     MsgBox "Falta importe por pagar", vbCritical, Pub_Titulo
 
     Exit Sub
@@ -905,10 +924,11 @@ With oCmdEjec
             .Parameters.Append .CreateParameter("@VUELTO", adDouble, adParamInput, , xVUELTO)
                 
             .Parameters.Append .CreateParameter("@VALORVTA", adDouble, adParamInput, , Me.lblvvta.Caption)
-            .Parameters.Append .CreateParameter("@VIGV", adDouble, adParamInput, , Me.lblIgv.Caption)
+            .Parameters.Append .CreateParameter("@VIGV", adDouble, adParamInput, , Me.lblIGV.Caption)
             .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@CIAPEDIDO", adChar, adParamInput, 2, LK_CODCIA)
-            .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblicbper.Caption)) = 0, 0, Me.lblicbper.Caption))
+            .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption))
+            .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@MaxNumOper", adInteger, adParamOutput, , 0)
             .Parameters.Append .CreateParameter("@AUTONUMFAC", adInteger, adParamOutput, , 0)
         
@@ -926,9 +946,9 @@ With oCmdEjec
 'MsgBox "Datos Almacenados correctamente", vbInformation, Pub_Titulo
 
 'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
-                CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIgv.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
+                CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
                 If xARCENCONTRADO Then
-                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIgv.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblicbper.Caption)) = 0, 0, Me.lblicbper.Caption), Me.chkprom.Value
+                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value
                 End If
                     
 'If Me.DatTiposDoctos.BoundText = "01" Or Me.DatTiposDoctos.BoundText = "03" Then
@@ -1080,11 +1100,11 @@ Private Sub cmdSunat_Click()
 
     On Error GoTo cCruc
 
-    Dim p          As Object
+    Dim P          As Object
 
-    Dim Texto      As String, xTOk As String
+    Dim TEXTO      As String, xTOk As String
 
-    Dim cadena     As String, xvRUC As String
+    Dim CADENA     As String, xvRUC As String
 
     Dim sInputJson As String, xEsRuc As Boolean
 
@@ -1111,19 +1131,19 @@ Private Sub cmdSunat_Click()
     xTOk = Leer_Ini(App.Path & "\config.ini", "TOKEN", "")
     
     If xEsRuc Then
-        cadena = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
     Else
-        cadena = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
     End If
     
-    httpURL.Open "GET", cadena
+    httpURL.Open "GET", CADENA
     httpURL.Send
     
-    Texto = httpURL.ResponseText
+    TEXTO = httpURL.ResponseText
 
     'sInputJson = "{items:" & Texto & "}"
 
-    Set p = JSON.parse(Texto)
+    Set P = JSON.parse(TEXTO)
 
     '    Me.lblRUC.Caption = p.Item("ruc")
     '    Me.lblRazonSocial.Caption = p.Item("razonSocial")
@@ -1135,7 +1155,7 @@ Private Sub cmdSunat_Click()
     If Len(Trim(Me.txtRuc.Text)) = 0 Then
         If IsNumeric(Me.txtRS.Text) Then
             If Len(Trim(Me.txtRS.Text)) = 11 Or Len(Trim(Me.txtRS.Text)) = 8 Then
-                If Texto = "[]" Then
+                If TEXTO = "[]" Then
                     MousePointer = vbDefault
                     MsgBox ("No se obtuvo resultados")
                     Me.txtRuc.Text = ""
@@ -1146,7 +1166,7 @@ Private Sub cmdSunat_Click()
 
                 End If
 
-                If Len(Trim(Texto)) = 0 Then
+                If Len(Trim(TEXTO)) = 0 Then
                     MousePointer = vbDefault
                     MsgBox ("No se obtuvo resultados")
                     Me.txtRuc.Text = ""
@@ -1158,15 +1178,15 @@ Private Sub cmdSunat_Click()
                 End If
 
                 If xEsRuc Then
-                    Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
-                    Me.txtRS.Text = p.Item("razonSocial")
-                    Me.txtRuc.Text = p.Item("ruc")
+                    Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
+                    Me.txtRS.Text = P.Item("razonSocial")
+                    Me.txtRuc.Text = P.Item("ruc")
                     Me.txtDni.Text = ""
                 Else
                     Me.txtRuc.Text = ""
                     Me.txtDireccion.Text = ""
-                    Me.txtDni.Text = p.Item("dni")
-                    Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
+                    Me.txtDni.Text = P.Item("dni")
+                    Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
                 End If
     
                 LimpiaParametros oCmdEjec
@@ -1193,7 +1213,7 @@ Private Sub cmdSunat_Click()
 
     Else
 
-        If Texto = "[]" Then
+        If TEXTO = "[]" Then
             MousePointer = vbDefault
             MsgBox ("No se obtuvo resultados")
             Me.txtRuc.Text = ""
@@ -1204,7 +1224,7 @@ Private Sub cmdSunat_Click()
 
         End If
 
-        If Len(Trim(Texto)) = 0 Then
+        If Len(Trim(TEXTO)) = 0 Then
             MousePointer = vbDefault
             MsgBox ("No se obtuvo resultados")
             Me.txtRuc.Text = ""
@@ -1218,14 +1238,14 @@ Private Sub cmdSunat_Click()
         If xEsRuc Then
             Me.txtDni.Text = ""
             'Me.txtDireccion.Text = p.Item("direccion")
-            Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
-            Me.txtRS.Text = p.Item("razonSocial")
-            Me.txtRuc.Text = p.Item("ruc")
+            Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
+            Me.txtRS.Text = P.Item("razonSocial")
+            Me.txtRuc.Text = P.Item("ruc")
         Else
             Me.txtRuc.Text = ""
             Me.txtDireccion.Text = ""
-            Me.txtDni.Text = p.Item("dni")
-            Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
+            Me.txtDni.Text = P.Item("dni")
+            Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
         End If
     
         LimpiaParametros oCmdEjec
@@ -1482,7 +1502,7 @@ Private Sub Form_Load()
     
 
    
-    Me.lblVuelto.Caption = "0.00"
+    Me.lblvuelto.Caption = "0.00"
     Me.chkConsumo.Value = 0
 
     If LK_CODUSU = "MOZOB" Then
@@ -1914,11 +1934,11 @@ If LK_MONEDA = "D" Then
 End If
 
 vp1 = vp1 - val(Me.lblDscto.Caption)
-Me.lblicbper.Caption = FormatNumber(icbper, 2)
+Me.lblICBPER.Caption = FormatNumber(icbper, 2)
 
 'If Me.txtMoney1.Text <> 0 Then
     Me.lblImporte.Caption = vp1
-    Me.lblVuelto.Caption = val(Me.lblImporte.Caption) - vp1
+    Me.lblvuelto.Caption = val(Me.lblImporte.Caption) - vp1
 'End If
 
 End Sub
@@ -1992,8 +2012,8 @@ Dim vIgv As Integer
 
     'Me.lblImporte.Caption = Format(vimp, "########0.#0") 'FormatNumber(vimp, 2)
      Me.lblvvta.Caption = Round(vimp / ((vIgv / 100) + 1), 2)
-        Me.lblIgv.Caption = vimp - Me.lblvvta.Caption
-        Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblicbper.Caption), "########0.#0")
+        Me.lblIGV.Caption = vimp - Me.lblvvta.Caption
+        Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblICBPER.Caption), "########0.#0")
         
 
     
