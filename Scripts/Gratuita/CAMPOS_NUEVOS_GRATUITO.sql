@@ -1,0 +1,1 @@
+alter table allog add ALL_GRATUITO BIT DEFAULT 0

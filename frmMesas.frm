@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDatLst.Ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmMesas 
    BackColor       =   &H8000000C&
    BorderStyle     =   1  'Fixed Single
@@ -70,7 +70,7 @@ Begin VB.Form frmMesas
       Width           =   7485
       _ExtentX        =   13203
       _ExtentY        =   635
-      ButtonWidth     =   2328
+      ButtonWidth     =   2037
       ButtonHeight    =   582
       Appearance      =   1
       Style           =   1
@@ -111,39 +111,35 @@ Begin VB.Form frmMesas
       _ExtentY        =   5530
       _Version        =   393216
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BackColor       =   -2147483636
       TabCaption(0)   =   "Mesa"
       TabPicture(0)   =   "frmMesas.frx":262D
-      Tab(0).ControlEnabled=   -1  'True
-      Tab(0).Control(0)=   "Label2"
-      Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Label3"
-      Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Label1"
-      Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Label4"
-      Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "txtDenominacion"
-      Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "txtCodigo"
-      Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "dcboZona"
-      Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "txtComensales"
-      Tab(0).Control(7).Enabled=   0   'False
+      Tab(0).ControlEnabled=   0   'False
+      Tab(0).Control(0)=   "txtComensales"
+      Tab(0).Control(1)=   "dcboZona"
+      Tab(0).Control(2)=   "txtCodigo"
+      Tab(0).Control(3)=   "txtDenominacion"
+      Tab(0).Control(4)=   "Label4"
+      Tab(0).Control(5)=   "Label1"
+      Tab(0).Control(6)=   "Label3"
+      Tab(0).Control(7)=   "Label2"
       Tab(0).ControlCount=   8
       TabCaption(1)   =   "Listado"
       TabPicture(1)   =   "frmMesas.frx":2649
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "lvMesas"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "Label5"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtBusMesa"
-      Tab(1).Control(2)=   "Label5"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "lvMesas"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).ControlCount=   3
       Begin VB.TextBox txtComensales 
          Height          =   285
-         Left            =   3000
+         Left            =   -72000
          MaxLength       =   40
          TabIndex        =   2
          Tag             =   "X"
@@ -152,7 +148,7 @@ Begin VB.Form frmMesas
       End
       Begin MSDataListLib.DataCombo dcboZona 
          Height          =   315
-         Left            =   3000
+         Left            =   -72000
          TabIndex        =   3
          Top             =   2160
          Width           =   2295
@@ -164,7 +160,7 @@ Begin VB.Form frmMesas
       End
       Begin VB.TextBox txtCodigo 
          Height          =   285
-         Left            =   3000
+         Left            =   -72000
          MaxLength       =   10
          TabIndex        =   0
          Tag             =   "X"
@@ -173,7 +169,7 @@ Begin VB.Form frmMesas
       End
       Begin MSComctlLib.ListView lvMesas 
          Height          =   2175
-         Left            =   -74880
+         Left            =   120
          TabIndex        =   6
          Top             =   840
          Width           =   6975
@@ -190,7 +186,7 @@ Begin VB.Form frmMesas
       End
       Begin VB.TextBox txtDenominacion 
          Height          =   285
-         Left            =   3000
+         Left            =   -72000
          MaxLength       =   40
          TabIndex        =   1
          Tag             =   "X"
@@ -199,7 +195,7 @@ Begin VB.Form frmMesas
       End
       Begin VB.TextBox txtBusMesa 
          Height          =   285
-         Left            =   -74160
+         Left            =   840
          TabIndex        =   5
          Top             =   480
          Width           =   6255
@@ -209,7 +205,7 @@ Begin VB.Form frmMesas
          BackStyle       =   0  'Transparent
          Caption         =   "Comensales:"
          Height          =   195
-         Left            =   1680
+         Left            =   -73320
          TabIndex        =   12
          Top             =   1725
          Width           =   1125
@@ -218,7 +214,7 @@ Begin VB.Form frmMesas
          AutoSize        =   -1  'True
          Caption         =   "Código:"
          Height          =   195
-         Left            =   2250
+         Left            =   -72750
          TabIndex        =   11
          Top             =   765
          Width           =   675
@@ -227,7 +223,7 @@ Begin VB.Form frmMesas
          AutoSize        =   -1  'True
          Caption         =   "Mesa:"
          Height          =   195
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   10
          Top             =   480
          Width           =   510
@@ -236,7 +232,7 @@ Begin VB.Form frmMesas
          AutoSize        =   -1  'True
          Caption         =   "Zona:"
          Height          =   195
-         Left            =   2415
+         Left            =   -72585
          TabIndex        =   9
          Top             =   2205
          Width           =   510
@@ -245,7 +241,7 @@ Begin VB.Form frmMesas
          AutoSize        =   -1  'True
          Caption         =   "Denominación:"
          Height          =   195
-         Left            =   1635
+         Left            =   -73365
          TabIndex        =   8
          Top             =   1245
          Width           =   1290
@@ -369,7 +365,7 @@ End Sub
 
 Private Sub tbMesa_ButtonClick(ByVal Button As MSComctlLib.Button)
 
-    Select Case Button.index
+    Select Case Button.Index
 
         Case 1 'NUEVO
             ActivarControles Me
@@ -473,7 +469,7 @@ grabar:
                 LimpiarControles Me
                 Me.dcboZona.BoundText = ""
                 Me.lvMesas.Enabled = True
-                Me.lvMesas.ListItems.Remove Me.lvMesas.SelectedItem.index
+                Me.lvMesas.ListItems.Remove Me.lvMesas.SelectedItem.Index
                 Me.txtBusMesa.Enabled = True
                 Estado_Botones Eliminar
 

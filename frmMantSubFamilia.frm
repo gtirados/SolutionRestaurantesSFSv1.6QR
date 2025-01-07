@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
 Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmMantSubFamilia 
    BorderStyle     =   1  'Fixed Single
@@ -48,25 +48,31 @@ Begin VB.Form frmMantSubFamilia
       Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Label1"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "txtDenominacion"
+      Tab(0).Control(4)=   "Label7"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "DatFamilia"
+      Tab(0).Control(5)=   "txtDenominacion"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).ControlCount=   6
+      Tab(0).Control(6)=   "DatFamilia"
+      Tab(0).Control(6).Enabled=   0   'False
+      Tab(0).Control(7)=   "txtdscto"
+      Tab(0).Control(7).Enabled=   0   'False
+      Tab(0).ControlCount=   8
       TabCaption(1)   =   "Listado"
       TabPicture(1)   =   "frmMantSubFamilia.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "datFamiliasearch"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtSearch"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "lvSubFamilia"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Label5"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).Control(4)=   "Label4"
-      Tab(1).Control(4).Enabled=   0   'False
       Tab(1).ControlCount=   5
+      Begin VB.TextBox txtdscto 
+         Height          =   285
+         Left            =   2760
+         TabIndex        =   14
+         Top             =   2880
+         Width           =   855
+      End
       Begin MSDataListLib.DataCombo datFamiliasearch 
          Height          =   315
          Left            =   -73560
@@ -124,6 +130,15 @@ Begin VB.Form frmMantSubFamilia
          BorderStyle     =   1
          Appearance      =   1
          NumItems        =   0
+      End
+      Begin VB.Label Label7 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Descuento %:"
+         Height          =   255
+         Left            =   1200
+         TabIndex        =   15
+         Top             =   2880
+         Width           =   1335
       End
       Begin VB.Label Label5 
          AutoSize        =   -1  'True
@@ -242,7 +257,7 @@ Begin VB.Form frmMantSubFamilia
       Width           =   8430
       _ExtentX        =   14870
       _ExtentY        =   635
-      ButtonWidth     =   1931
+      ButtonWidth     =   1826
       ButtonHeight    =   582
       AllowCustomize  =   0   'False
       Appearance      =   1
@@ -318,6 +333,7 @@ With Me.lvSubFamilia
     .ColumnHeaders.Add , , "Familia", 3000
     .ColumnHeaders.Add , , "Sub Familia", 3000
     .ColumnHeaders.Add , , "IDEFamilia", 0
+    .ColumnHeaders.Add , , "Descuento", 100
     
     
 End With
@@ -382,6 +398,7 @@ Private Sub RealizarBusqueda(Optional vSearch As String = "")
             .Tag = Trim(ORSf!IDE)
             .SubItems(1) = Trim(ORSf!Familia)
             .SubItems(2) = ORSf!IDEFAMILIA
+            .SubItems(3) = ORSf!descuento
         
         End With
    
@@ -428,6 +445,7 @@ Private Sub tbFamilia_ButtonClick(ByVal Button As MSComctlLib.Button)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DENOMINACION", adVarChar, adParamInput, 50, Trim(Me.txtDenominacion.Text))
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDFAMILIA", adBigInt, adParamInput, , Me.DatFamilia.BoundText)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DSCTO", adDouble, adParamInput, , Me.txtdscto.Text)
 
                 If VNuevo Then
                     oCmdEjec.CommandText = "SP_SUBFAMILIA_REGISTRAR"
@@ -523,6 +541,7 @@ Sub Mandar_Datos()
         'Me.txtDenominacion.Text = Trim(.SelectedItem.SubItems(1))
         'Me.txtZona.Text = Trim(.SelectedItem.SubItems(2))
         Me.DatFamilia.BoundText = .SelectedItem.SubItems(2)
+        Me.txtdscto.Text = .SelectedItem.SubItems(3)
         Me.tbFamilia.Buttons(5).Enabled = False
         Estado_Botones AntesDeActualizar
     End With

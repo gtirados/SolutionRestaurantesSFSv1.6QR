@@ -3,10 +3,10 @@ Begin VB.Form frmComandaDescuentos
    BackColor       =   &H8000000C&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Elija Descuentos"
-   ClientHeight    =   1110
+   ClientHeight    =   1155
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   8655
+   ClientWidth     =   9330
    BeginProperty Font 
       Name            =   "Verdana"
       Size            =   8.25
@@ -20,13 +20,23 @@ Begin VB.Form frmComandaDescuentos
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1110
-   ScaleWidth      =   8655
+   ScaleHeight     =   1155
+   ScaleWidth      =   9330
    StartUpPosition =   2  'CenterScreen
+   Begin VB.OptionButton optsubfamilia 
+      BackColor       =   &H8000000C&
+      Caption         =   "Por Subfamilia"
+      ForeColor       =   &H8000000E&
+      Height          =   255
+      Left            =   3720
+      TabIndex        =   6
+      Top             =   240
+      Width           =   1695
+   End
    Begin VB.CommandButton cmdCancelar 
       Caption         =   "&Cancelar"
       Height          =   720
-      Left            =   6480
+      Left            =   7440
       TabIndex        =   5
       Top             =   240
       Width           =   1815
@@ -34,7 +44,7 @@ Begin VB.Form frmComandaDescuentos
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
       Height          =   720
-      Left            =   4680
+      Left            =   5640
       TabIndex        =   4
       Top             =   240
       Width           =   1815
@@ -51,7 +61,7 @@ Begin VB.Form frmComandaDescuentos
       Caption         =   "Por Familia"
       ForeColor       =   &H8000000E&
       Height          =   255
-      Left            =   2640
+      Left            =   2280
       TabIndex        =   2
       TabStop         =   0   'False
       Top             =   240
@@ -62,7 +72,7 @@ Begin VB.Form frmComandaDescuentos
       Caption         =   "Total"
       ForeColor       =   &H8000000E&
       Height          =   255
-      Left            =   1680
+      Left            =   1440
       TabIndex        =   1
       TabStop         =   0   'False
       Top             =   240
@@ -104,8 +114,10 @@ Private Sub cmdAceptar_Click()
             gTIPO = 3 '"F"
         ElseIf Me.optPorcentual.Value Then
             gTIPO = 2 '"P"
-        Else
+        ElseIf Me.opttotal Then
             gTIPO = 1 '"T"
+        ElseIf Me.optsubfamilia Then
+            gTIPO = 4  '"S"
         End If
 
         gDSCTO = IIf(Len(Trim(Me.txtDescuento.Text)) = 0, 0, Me.txtDescuento.Text)
@@ -141,6 +153,13 @@ Private Sub optPorcentual_Click()
         Me.txtDescuento.SetFocus
     End If
 
+End Sub
+
+Private Sub optsubfamilia_Click()
+If Me.optsubfamilia.Value Then
+        Me.txtDescuento.Text = ""
+        Me.txtDescuento.Visible = False
+    End If
 End Sub
 
 Private Sub opttotal_Click()

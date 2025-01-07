@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
 Begin VB.Form frmMantFamilia 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Mantenimiento de Familia"
@@ -33,30 +33,43 @@ Begin VB.Form frmMantFamilia
       _ExtentY        =   7858
       _Version        =   393216
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Familia"
       TabPicture(0)   =   "frmMantFamilia.frx":0000
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label1"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label3"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "Label2"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Label4"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "lblCodigo"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Label5"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "Label7"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "Label8"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "txtDenominacion"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "txtImpresora"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "txtGrupo"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "txtDscto"
+      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "ComVisible"
+      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "txtImpresora2"
+      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).ControlCount=   14
       TabCaption(1)   =   "Listado"
       TabPicture(1)   =   "frmMantFamilia.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label6"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "txtSearch"
@@ -66,7 +79,7 @@ Begin VB.Form frmMantFamilia
       Tab(1).ControlCount=   3
       Begin VB.TextBox txtImpresora2 
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          TabIndex        =   17
          Top             =   2160
          Width           =   3375
@@ -74,7 +87,7 @@ Begin VB.Form frmMantFamilia
       Begin VB.ComboBox ComVisible 
          Height          =   315
          ItemData        =   "frmMantFamilia.frx":0038
-         Left            =   -72240
+         Left            =   2760
          List            =   "frmMantFamilia.frx":0042
          Style           =   2  'Dropdown List
          TabIndex        =   14
@@ -83,7 +96,7 @@ Begin VB.Form frmMantFamilia
       End
       Begin VB.TextBox txtDscto 
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          TabIndex        =   13
          Tag             =   "X"
          Top             =   3120
@@ -91,7 +104,7 @@ Begin VB.Form frmMantFamilia
       End
       Begin MSComctlLib.ListView lvFamilias 
          Height          =   3495
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   12
          Top             =   840
          Width           =   7935
@@ -110,14 +123,14 @@ Begin VB.Form frmMantFamilia
       End
       Begin VB.TextBox txtSearch 
          Height          =   285
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   11
          Top             =   480
          Width           =   7095
       End
       Begin VB.TextBox txtGrupo 
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          MaxLength       =   1
          TabIndex        =   9
          Tag             =   "X"
@@ -126,7 +139,7 @@ Begin VB.Form frmMantFamilia
       End
       Begin VB.TextBox txtImpresora 
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          TabIndex        =   7
          Tag             =   "X"
          Top             =   1680
@@ -134,7 +147,7 @@ Begin VB.Form frmMantFamilia
       End
       Begin VB.TextBox txtDenominacion 
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          TabIndex        =   6
          Tag             =   "X"
          Top             =   1200
@@ -145,7 +158,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Impresora2:"
          Height          =   195
-         Left            =   -73485
+         Left            =   1515
          TabIndex        =   18
          Top             =   2160
          Width           =   1080
@@ -155,7 +168,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Visible:"
          Height          =   195
-         Left            =   -73035
+         Left            =   1965
          TabIndex        =   16
          Top             =   3660
          Width           =   630
@@ -165,7 +178,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "% Dscto:"
          Height          =   195
-         Left            =   -73200
+         Left            =   1800
          TabIndex        =   15
          Top             =   3165
          Width           =   795
@@ -175,7 +188,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Familia:"
          Height          =   195
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   10
          Top             =   480
          Width           =   675
@@ -187,7 +200,7 @@ Begin VB.Form frmMantFamilia
          BorderStyle     =   1  'Fixed Single
          ForeColor       =   &H80000008&
          Height          =   285
-         Left            =   -72240
+         Left            =   2760
          TabIndex        =   8
          Tag             =   "X"
          Top             =   720
@@ -198,7 +211,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Grupo:"
          Height          =   195
-         Left            =   -73005
+         Left            =   1995
          TabIndex        =   5
          Top             =   2640
          Width           =   600
@@ -208,7 +221,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Denominación:"
          Height          =   195
-         Left            =   -73695
+         Left            =   1305
          TabIndex        =   4
          Top             =   1200
          Width           =   1290
@@ -218,7 +231,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Impresora:"
          Height          =   195
-         Left            =   -73380
+         Left            =   1620
          TabIndex        =   3
          Top             =   1680
          Width           =   975
@@ -228,7 +241,7 @@ Begin VB.Form frmMantFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Código:"
          Height          =   195
-         Left            =   -73080
+         Left            =   1920
          TabIndex        =   2
          Top             =   720
          Width           =   675

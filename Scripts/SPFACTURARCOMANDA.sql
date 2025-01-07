@@ -1,4 +1,4 @@
-alter PROC [dbo].[SPFACTURARCOMANDA]
+ALTER PROC [dbo].[SPFACTURARCOMANDA]
     @codcia CHAR(2) ,
     @fecha DATETIME ,
     @usuario VARCHAR(20) ,
@@ -25,8 +25,10 @@ alter PROC [dbo].[SPFACTURARCOMANDA]
     @GRATUITO BIT,
     @CIAPEDIDO CHAR(2),
     @ALL_ICBPER DECIMAL(8,2),
+    @ALL_GRATUITO BIT =0,
     @MaxNumOper INT OUT ,
     @AutoNumFac INT OUT
+
 AS
     SET nocount ON
     
@@ -304,7 +306,7 @@ SET  @ALL_CODSUNAT = @CODIGODOCTO
             WHILE ( @@Fetch_Status = 0 )
                 BEGIN
         
-                    SELECT  @ALL_AUTOCON = RTRIM(LTRIM(sut_descripcion)) ,
+                 SELECT  @ALL_AUTOCON = RTRIM(LTRIM(sut_descripcion)) ,
                             @ALL_SIGNO_CAR = sut_signo_car ,
                             @ALL_SIGNO_CAJA = sut_signo_caja ,
    @ALL_TIPDOC = sut_tipdoc ,
@@ -391,12 +393,13 @@ ALL_IMPG1 ,
                               ALL_FECHA_PRO ,
                               ALL_FECHA_CAN ,
                               ALL_SERIE_REC ,
-                              ALL_NUM_RECIBO ,
+      ALL_NUM_RECIBO ,
                               ALL_RUC ,
                             ALL_MESA,
     ALL_PAGACON,
                               ALL_VUELTO
                               ,ALL_ICBPER
+                              ,ALL_GRATUITO
 	                        )
                     VALUES  ( @CodCia ,
                         @Fecha ,
@@ -474,6 +477,7 @@ ALL_IMPG1 ,
                             
                     @CodMesa,
   @PAGACON,@VUELTO,@ALL_ICBPER
+  ,@ALL_GRATUITO
                            )
                     FETCH cPagos INTO @idfp, @fp, @mon, @monto, @ref, @dcre
                 END
@@ -570,6 +574,7 @@ ALL_IMPG1 ,
                       ALL_NUM_RECIBO ,
                       ALL_RUC ,
                       ALL_MESA,ALL_PAGACON,ALL_VUELTO,ALL_ICBPER
+                      ,ALL_GRATUITO
 	                )
             VALUES  ( @CodCia ,
                       @Fecha ,
@@ -591,7 +596,7 @@ ALL_IMPG1 ,
                       @ALL_TIPDOC ,
                       @ALL_CANTIDAD ,
                       @ALL_NUMGUIA ,
-                      @ALL_CODBAN ,
+          @ALL_CODBAN ,
                       'CREDITO' ,
                       @ALL_CHENUM ,
                 @ALL_CHESEC ,
@@ -641,8 +646,7 @@ ALL_IMPG1 ,
                       @ALL_NUM_RECIBO ,
                       @ALL_RUC ,
                       @CodMesa,@PAGACON,@VUELTO,@ALL_ICBPER
-
-                            
+                      ,@ALL_GRATUITO
                     )
                           
         END
@@ -850,7 +854,7 @@ ALL_IMPG1 ,
                       far_fecha_pro ,
                       far_fecha_can ,
                       far_fecha_control ,
-                      far_ruc ,
+                far_ruc ,
                       far_flag_so ,
                       FAR_NUMOPER2 ,
         FAR_OC ,
@@ -1049,7 +1053,7 @@ ALL_IMPG1 ,
                                       FAR_ORDEN_UNIDADEs ,
                    FAR_SUBTOTAL ,
                                       far_turno ,
-                                      far_concepto ,
+                      far_concepto ,
                               far_codusu ,
                                       FAR_HORA ,
                                       FAR_NUM_LOTE ,
@@ -1126,7 +1130,7 @@ ALL_IMPG1 ,
                                             0 ,
                                             @ALL_CONCEPTO ,
                                             @Usuario ,
-                                            @hora ,
+                    @hora ,
                                    @ALL_SECUENCIA ,
                                             0 ,
                                             0 ,
@@ -1342,7 +1346,7 @@ AND ped_estado = 'N'
                                       CAR_NUM_REN ,
                                       CAR_CODART ,
                                       CAR_IMP_INI ,
-                                      CAR_SITUACION ,
+  CAR_SITUACION ,
                             CAR_NUMSER ,
                                       CAR_NUMFAC ,
                                       CAR_PRECIO ,
@@ -1418,7 +1422,7 @@ AND ped_estado = 'N'
                                       @fecha ,--CAR_FECHA_CONTROL,
                                       NULL ,--CAR_FECHA_ENTREGA,
                                       NULL ,--CAR_FECHA_DEVO,
-                                      NULL--cAR_CODUNIBKO
+          NULL--cAR_CODUNIBKO
 
                                     )
 
@@ -1593,7 +1597,7 @@ AND ped_estado = 'N'
                       CAR_FLAG_SO ,
                       CAR_NUMOPER ,
   CAR_FECHA_CONTROL ,
-                      CAR_FECHA_ENTREGA ,
+  CAR_FECHA_ENTREGA ,
                       CAR_FECHA_DEVO ,
                       cAR_CODUNIBKO
                             
@@ -1708,7 +1712,7 @@ AND ped_estado = 'N'
                       @CODCIA ,
     @ALL_TIPDOC ,
                       @fecha ,
-                      @MaxNumOper ,--CAA_NUM_OPER,
+      @MaxNumOper ,--CAA_NUM_OPER,
                           @serdoc ,--@serie , ,--CAA_SERDOC,
                       @NroDoc ,--CAA_NUMDOC,
                       @totalfac ,--CAA_IMPORTE,
@@ -1776,4 +1780,3 @@ end
     ROLLBACK TRAN
 
     RETURN
-

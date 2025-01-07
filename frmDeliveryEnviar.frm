@@ -24,12 +24,21 @@ Begin VB.Form frmDeliveryEnviar
    ScaleWidth      =   6840
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkgratuito 
+      Caption         =   "Gratuito"
+      Height          =   195
+      Left            =   5400
+      TabIndex        =   38
+      Top             =   5040
+      Visible         =   0   'False
+      Width           =   975
+   End
    Begin VB.CheckBox chkprom 
       Caption         =   "Imprime Promocion"
       Height          =   255
       Left            =   5400
       TabIndex        =   37
-      Top             =   5280
+      Top             =   5400
       Visible         =   0   'False
       Width           =   1215
    End
@@ -579,18 +588,18 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set oRSdet = oRS.NextRecordset
    
     sCadena = ""
-    Dim c As Integer
-    c = 1
+    Dim C As Integer
+    C = 1
 
     If LK_CODTRA = 2412 Then
 
         Do While Not oRSdet.EOF
          
             sCadena = sCadena & oRSdet!CODUNIDADMEDIDA & "|" & oRSdet!CTDUNIDADITEM & "|" & oRSdet!CODPRODUCTO & "|" & oRSdet!CODPRODUCTOSUNAT & "|" & oRSdet!DESITEM & "|" & oRSdet!MTOVALORUNITARIO & "|" & oRSdet!MTOIGVITEM & "|" & oRSdet!CODTIPTRIBUTOIGV & "|" & oRSdet!MTOIGVITEM1 & "|" & oRSdet!NOMTRIBITEM & "|" & oRSdet!CODTIPTRIBUTOITEM & "|" & oRSdet!TIPAFEIGV & "|" & FormatNumber(oRSdet!PORCIGV, 2) & "|" & oRSdet!CODISC & "|" & oRSdet!CODOTROITEM & "|" & oRSdet!GRATUITO & "|"
-            If c < oRSdet.RecordCount Then
+            If C < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             c = c + 1
+             C = C + 1
             oRSdet.MoveNext
             
         Loop
@@ -608,10 +617,10 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
            "|" & oRSdet!MONTOTRIBOTO & "|" & oRSdet!BASEIMPONIBLEOTO & "|" & oRSdet!NOMBRETRIBOTO & "|" & oRSdet!TIPSISISC & "|" & oRSdet!PORCOTO & "|" & oRSdet!CODIGOICBPER & _
            "|" & oRSdet!IMPORTEICBPER & "|" & oRSdet!CANTIDADICBPER & "|" & oRSdet!TITULOICBPER & "|" & oRSdet!IDEICBPER & "|" & oRSdet!MONTOICBPER & "|" & _
            oRSdet!PRECIOVTAUNITARIO & "|" & oRSdet!VALORVTAXITEM & "|" & oRSdet!GRATUITO & "|"
-            If c < oRSdet.RecordCount Then
+            If C < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             c = c + 1
+             C = C + 1
             oRSdet.MoveNext
              
         Loop
@@ -630,14 +639,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set orsTri = oRS.NextRecordset
     
     sCadena = ""
-    c = 1
+    C = 1
     'ARCIVO .TRI
     Do While Not orsTri.EOF
     sCadena = sCadena & orsTri!Codigo & "|" & orsTri!Nombre & "|" & orsTri!cod & "|" & orsTri!BASEIMPONIBLE & "|" & orsTri!TRIBUTO & "|"
-    If c < orsTri.RecordCount Then
+    If C < orsTri.RecordCount Then
         sCadena = sCadena & vbCrLf
     End If
-    c = c + 1
+    C = C + 1
         orsTri.MoveNext
     Loop
     
@@ -651,14 +660,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Dim orsLey As ADODB.Recordset
     Set orsLey = oRS.NextRecordset
     
-    c = 1
+    C = 1
     sCadena = ""
     Do While Not orsLey.EOF
         sCadena = sCadena & orsLey!cod & "|" & Trim(CONVER_LETRAS(Me.lblTotal2.Caption, "S")) & "|"
-        If c < orsLey.RecordCount Then
+        If C < orsLey.RecordCount Then
             sCadena = sCadena & vbCrLf
         End If
-        c = c + 1
+        C = C + 1
         orsLey.MoveNext
     Loop
     
@@ -672,15 +681,15 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
             Dim orsPAG As ADODB.Recordset
             Set orsPAG = oRS.NextRecordset
             
-            c = 1
+            C = 1
             sCadena = ""
             Do While Not orsPAG.EOF
                 xFormaPago = orsPAG!formaPAGO
                 sCadena = sCadena & orsPAG!formaPAGO & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
-                If c < orsPAG.RecordCount Then
+                If C < orsPAG.RecordCount Then
                     sCadena = sCadena & vbCrLf
                 End If
-                c = c + 1
+                C = C + 1
                 orsPAG.MoveNext
             Loop
             
@@ -695,14 +704,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
                 Set ArchivoDPA = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOdpa, True)
                
                 
-                c = 1
+                C = 1
                 sCadena = ""
                 Do While Not orsDPA.EOF
                     sCadena = sCadena & orsDPA!cuotapago & "|" & orsDPA!fechavcto & "|" & orsDPA!TIPMONEDA & "|"
-                    If c < orsDPA.RecordCount Then
+                    If C < orsDPA.RecordCount Then
                         sCadena = sCadena & vbCrLf
                     End If
-                    c = c + 1
+                    C = C + 1
                     orsDPA.MoveNext
                 Loop
                 
@@ -1115,7 +1124,7 @@ Private Sub cmdAceptar_Click()
             CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblserie.Caption, Me.txtNumero.Text, LK_FECHA_DIA, xxIgv, Me.lblTotal2.Caption, Me.txtRuc.Text, Me.txtDni.Text
             'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
             If xARCENCONTRADO Then
-                ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNumero.Text, Me.lblTotal2.Caption, 0, 0, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtCliente.Text, Me.txtDni.Text, LK_CODCIA, Me.lblicbper.Caption, Me.chkprom.Value
+                ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNumero.Text, Me.lblTotal2.Caption, 0, 0, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtCliente.Text, Me.txtDni.Text, LK_CODCIA, Me.lblicbper.Caption, Me.chkprom.Value, Me.chkgratuito
             End If
              
            ' If Me.DatTiposDoctos.BoundText = "01" Then
@@ -1140,11 +1149,11 @@ Private Sub cmdSunat_Click()
 
      On Error GoTo cCruc
 
-Dim p          As Object
+Dim P          As Object
 
-Dim Texto      As String, xTOk As String
+Dim TEXTO      As String, xTOk As String
 
-Dim cadena     As String, xvRUC As String
+Dim CADENA     As String, xvRUC As String
 
 Dim sInputJson As String, xEsRuc As Boolean
 
@@ -1173,23 +1182,23 @@ If IsNumeric(Me.txtDni.Text) Then
 xTOk = Leer_Ini(App.Path & "\config.ini", "TOKEN", "")
     
 If xEsRuc Then
-        cadena = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
     Else
-        cadena = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
+        CADENA = "http://dniruc.apisperu.com/api/v1/dni/" & xvRUC & "?token=" & xTOk
     End If
    ' cadena = "http://dniruc.apisperu.com/api/v1/ruc/" & xvRUC & "?token=" & xTOk
 
     
-httpURL.Open "GET", cadena
+httpURL.Open "GET", CADENA
 httpURL.Send
     
-Texto = httpURL.ResponseText
+TEXTO = httpURL.ResponseText
 
 'sInputJson = "{items:" & Texto & "}"
 
-Set p = JSON.parse(Texto)
+Set P = JSON.parse(TEXTO)
     
-If Texto = "[]" Then
+If TEXTO = "[]" Then
     MousePointer = vbDefault
     MsgBox ("No se obtuvo resultados")
     Me.txtRuc.Text = ""
@@ -1200,7 +1209,7 @@ If Texto = "[]" Then
 
 End If
 
-If Len(Trim(Texto)) = 0 Then
+If Len(Trim(TEXTO)) = 0 Then
     MousePointer = vbDefault
     MsgBox ("No se obtuvo resultados")
     Me.txtRuc.Text = ""
@@ -1213,10 +1222,10 @@ End If
 
 
 
-        Me.txtDireccion.Text = p.Item("direccion")
-        Me.txtCliente.Text = p.Item("razonSocial")
-        Me.txtRuc.Text = p.Item("ruc")
-        Me.txtDni.Text = p.Item("dni")
+        Me.txtDireccion.Text = P.Item("direccion")
+        Me.txtCliente.Text = P.Item("razonSocial")
+        Me.txtRuc.Text = P.Item("ruc")
+        Me.txtDni.Text = P.Item("dni")
         Me.lblcodclie.Caption = "0"
        
 MousePointer = vbDefault
