@@ -1,7 +1,7 @@
 Attribute VB_Name = "modImpresion"
 Public Sub ImprimirDocumentoVenta(xCodTipoDocto As String, xTipoDocto, xEsconsumo As Boolean, xSerie As String, xNumero As Double, xTotal As Double, _
 xSubTotal As Double, xIgv As Double, xDireccion As String, xRuc As String, xcliente As String, xdni As String, xCia As String, _
-xICBPER As Double, xEsprom As Boolean)
+xICBPER As Double, xEsprom As Boolean, xGratuita As Double)
 
 
 'RECUPERANDO EL NOMBRE DEL ARCHIVO
@@ -115,6 +115,10 @@ vIgv = Round(vSubTotal * (LK_IGV / 100), 2)
 
             Case "Dni" 'linea nueva
                 crParamDef.AddCurrentValue xdni 'linea nueva
+                
+            Case "gratuita"
+                crParamDef.AddCurrentValue CStr(FormatNumber(xGratuita, 2)) ' CStr(xTotal)
+    
                
 
         End Select

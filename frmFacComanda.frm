@@ -4,7 +4,7 @@ Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmFacComanda 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Facturar Comanda"
-   ClientHeight    =   8445
+   ClientHeight    =   8700
    ClientLeft      =   45
    ClientTop       =   345
    ClientWidth     =   10110
@@ -21,7 +21,7 @@ Begin VB.Form frmFacComanda
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8445
+   ScaleHeight     =   8700
    ScaleWidth      =   10110
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancelar 
@@ -29,7 +29,7 @@ Begin VB.Form frmFacComanda
       Height          =   495
       Left            =   1560
       TabIndex        =   18
-      Top             =   7920
+      Top             =   8160
       Width           =   1335
    End
    Begin MSComctlLib.ListView ListView1 
@@ -307,7 +307,7 @@ Begin VB.Form frmFacComanda
       End
    End
    Begin VB.Frame fraImporte 
-      Height          =   2055
+      Height          =   2295
       Left            =   240
       TabIndex        =   3
       Top             =   5760
@@ -338,12 +338,29 @@ Begin VB.Form frmFacComanda
          Visible         =   0   'False
          Width           =   1095
       End
+      Begin VB.Label Label3 
+         Alignment       =   1  'Right Justify
+         Caption         =   "OPER.GRATUITAS:"
+         Height          =   375
+         Left            =   5760
+         TabIndex        =   43
+         Top             =   480
+         Width           =   1815
+      End
+      Begin VB.Label lblgratuita 
+         BackColor       =   &H8000000C&
+         Height          =   375
+         Left            =   7680
+         TabIndex        =   42
+         Top             =   400
+         Width           =   1695
+      End
       Begin VB.Label lblporcigv 
          Caption         =   "Label3"
          Height          =   255
-         Left            =   6240
+         Left            =   4200
          TabIndex        =   40
-         Top             =   720
+         Top             =   1560
          Width           =   735
       End
       Begin VB.Label lblpICBPER 
@@ -351,9 +368,9 @@ Begin VB.Form frmFacComanda
          BackStyle       =   0  'Transparent
          Caption         =   "Label13"
          Height          =   195
-         Left            =   5160
+         Left            =   5040
          TabIndex        =   39
-         Top             =   240
+         Top             =   1320
          Width           =   660
       End
       Begin VB.Label Label12 
@@ -364,7 +381,7 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6720
          TabIndex        =   38
-         Top             =   1080
+         Top             =   1560
          Width           =   735
       End
       Begin VB.Label lblICBPER 
@@ -372,7 +389,7 @@ Begin VB.Form frmFacComanda
          Height          =   315
          Left            =   7680
          TabIndex        =   37
-         Top             =   1080
+         Top             =   1560
          Width           =   1695
       End
       Begin VB.Label label 
@@ -383,7 +400,7 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6240
          TabIndex        =   32
-         Top             =   720
+         Top             =   1200
          Width           =   1245
       End
       Begin VB.Label Label11 
@@ -393,7 +410,7 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6240
          TabIndex        =   31
-         Top             =   360
+         Top             =   840
          Width           =   1290
       End
       Begin VB.Label lblvvta 
@@ -401,7 +418,7 @@ Begin VB.Form frmFacComanda
          Height          =   315
          Left            =   7680
          TabIndex        =   30
-         Top             =   360
+         Top             =   840
          Width           =   1695
       End
       Begin VB.Label lblIGV 
@@ -409,7 +426,7 @@ Begin VB.Form frmFacComanda
          Height          =   315
          Left            =   7680
          TabIndex        =   29
-         Top             =   720
+         Top             =   1200
          Width           =   1695
       End
       Begin VB.Label lblDscto 
@@ -430,7 +447,7 @@ Begin VB.Form frmFacComanda
          Height          =   285
          Left            =   7680
          TabIndex        =   7
-         Top             =   1440
+         Top             =   1920
          Width           =   1695
       End
       Begin VB.Label lblvuelto 
@@ -460,7 +477,7 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6120
          TabIndex        =   4
-         Top             =   1440
+         Top             =   1920
          Width           =   1470
       End
    End
@@ -469,7 +486,7 @@ Begin VB.Form frmFacComanda
       Height          =   495
       Left            =   240
       TabIndex        =   16
-      Top             =   7920
+      Top             =   8160
       Width           =   1335
    End
 End
@@ -622,9 +639,11 @@ Private Sub chkGratuito_Click()
     
            ' If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
             If VerificaPassPrecios(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
+               Me.lblgratuita.Caption = Me.lblImporte
                Me.lblvvta.Caption = "0.00"
                Me.lblIGV.Caption = "0.00"
                Me.lblImporte.Caption = "0.00"
+               
                 Me.cmdFormasPago.Enabled = False
             Else
                 MsgBox "Clave incorrecta", vbCritical, NombreProyecto
@@ -948,7 +967,7 @@ With oCmdEjec
 'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
                 CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
                 If xARCENCONTRADO Then
-                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value
+                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuito.Value
                 End If
                     
 'If Me.DatTiposDoctos.BoundText = "01" Or Me.DatTiposDoctos.BoundText = "03" Then
