@@ -1,7 +1,7 @@
 Attribute VB_Name = "modImpresion"
 Public Sub ImprimirDocumentoVenta(xCodTipoDocto As String, xTipoDocto, xEsconsumo As Boolean, xSerie As String, xNumero As Double, xTotal As Double, _
 xSubTotal As Double, xIgv As Double, xDireccion As String, xRuc As String, xcliente As String, xdni As String, xCia As String, _
-xICBPER As Double, xEsprom As Boolean, xGratuita As Double)
+xICBPER As Double, xEsprom As Boolean, xGratuita As Double, xNroCopias As Integer)
 
 
 'RECUPERANDO EL NOMBRE DEL ARCHIVO
@@ -56,10 +56,10 @@ xICBPER As Double, xEsprom As Boolean, xGratuita As Double)
 
     
 'vSubTotal = xSubTotal 'Round((xTotal / ((100 + LK_IGV) / 100)), 2)
-vSubTotal = Round(((xTotal - xICBPER) / ((100 + LK_IGV) / 100)), 2)
+'vSubTotal = Round(((xTotal - xICBPER) / ((100 + LK_IGV) / 100)), 2)
 
 'vIgv = xIgv ' xTotal - vSubTotal
-vIgv = Round(vSubTotal * (LK_IGV / 100), 2)
+'vIgv = Round(vSubTotal * (LK_IGV / 100), 2)
 
   
 
@@ -92,10 +92,10 @@ vIgv = Round(vSubTotal * (LK_IGV / 100), 2)
                 crParamDef.AddCurrentValue CStr(FormatNumber(xTotal, 2)) ' CStr(xTotal)
 
             Case "subtotal"
-                crParamDef.AddCurrentValue CStr(FormatNumber(vSubTotal, 2))
+                crParamDef.AddCurrentValue CStr(FormatNumber(xSubTotal, 2))
 
             Case "igv"
-                crParamDef.AddCurrentValue CStr(FormatNumber(vIgv, 2))
+                crParamDef.AddCurrentValue CStr(FormatNumber(xIgv, 2))
 
             Case "SerFac"
                 crParamDef.AddCurrentValue xSerie
@@ -149,14 +149,16 @@ vIgv = Round(vSubTotal * (LK_IGV / 100), 2)
     '        MsgBox Printers(i).DeviceName
     '    Next
     If Not rsd.EOF Then
-
+        If MsgBox("¿Desea imprimir?", vbQuestion + vbYesNo, Pub_Titulo) = vbYes Then
         VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
         'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '
-        VReporte.PrintOut False, 1, , 1, 1
+        
+        VReporte.PrintOut False, xNroCopias, , 1, 1
         frmVisor.cr.ReportSource = VReporte
         'frmVisor.cr.ViewReport
         'frmVisor.Show vbModal
+        Else
+        End If
     
     End If
     

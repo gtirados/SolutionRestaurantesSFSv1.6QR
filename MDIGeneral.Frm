@@ -714,8 +714,6 @@ Begin VB.MDIForm MDIForm1
    End
    Begin VB.Menu menutit5 
       Caption         =   "&Modulo de Deliverys"
-      Enabled         =   0   'False
-      Visible         =   0   'False
       Begin VB.Menu submenutit5 
          Caption         =   "&Mantenimiento de Clientes Delivery"
          Index           =   0
@@ -1155,7 +1153,7 @@ xParametros.CiaRegistro = Trim(LeerIni("SERVER", "CR", App.Path & "\CONFIG.DAT")
 Dim ciades As String * 80
 Dim WUSU_CIAS As String
 Dim WUSU_OTROS As String
-Dim h, a, b, C, D, E As Integer
+Dim h, a, b, c, D, E As Integer
 Dim wBAN As Integer
 Dim WNUM, wPosF, WPosV, cuenta, cade
 Dim WFLAG As String * 1
@@ -1366,7 +1364,7 @@ LEER_TRA_LLAVE
 ProBar.Value = ProBar.Value + 1
 a = 0
 b = 0
-C = 0
+c = 0
 D = 0
 E = 0
 f = 0
@@ -1390,11 +1388,11 @@ Do Until tra_menu.EOF
     MDIForm1.Menucomp(b).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
     b = b + 1
  ElseIf tra_menu(0) >= 8500 And tra_menu(0) < 8699 Then
-    If C > 0 Then
-        Load MDIForm1.menuAlm(C)
+    If c > 0 Then
+        Load MDIForm1.menuAlm(c)
     End If
-    MDIForm1.menuAlm(C).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
-    C = C + 1
+    MDIForm1.menuAlm(c).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
+    c = c + 1
  ElseIf tra_menu(0) >= 8700 And tra_menu(0) < 8899 Then
     If D > 0 Then
         Load MDIForm1.menuMoli(D)
@@ -1907,29 +1905,29 @@ End Sub
 
 Private Sub menuRepoAyuda_Click()
 Dim WL As Object
-Dim VAR As String
+Dim var As String
 'Dim ee As Words
 MsgBox "" & Chr(13) & "Visitenos en www.viarapidaperu.com", vbInformation, "Asesoria y Soporte"
 Exit Sub
 Dim ww As Form
 Dim i
 On Error GoTo OJO
-VAR = Trim(MDIForm1.ActiveForm.Name)
-If UCase(VAR) = "FORMGEN" Then
-  VAR = Trim(MDIForm1.ActiveForm.Name) & "_" & LK_CODTRA
+var = Trim(MDIForm1.ActiveForm.Name)
+If UCase(var) = "FORMGEN" Then
+  var = Trim(MDIForm1.ActiveForm.Name) & "_" & LK_CODTRA
 End If
 On Error GoTo 0
 If WL Is Nothing Then
     Set WL = CreateObject("word.Application")
 End If
-VAR = Left(PUB_RUTA_OTRO, 2) + "\admin\ayudas\" & VAR
+var = Left(PUB_RUTA_OTRO, 2) + "\admin\ayudas\" & var
 On Error GoTo no_existe
 WL.APPLICATION.WindowState = wdWindowStateMaximize
 'wl.Application.ActiveDocument.Windows(1).WindowState = 2
 'ee.Windows(0).WindowState = wdWindowStateMaximize
 'wl.Windows(1).WindowState = wdWindowStateMaximize
 'wl.Documents
-WL.Documents.Open FileName:=VAR
+WL.Documents.Open FileName:=var
 WL.APPLICATION.Visible = True
 Set WL = Nothing
 On Error GoTo 0
@@ -1941,15 +1939,15 @@ OJO:
 If Err.Number <> 91 Then
  MsgBox "Verificar " & Err.Description, 48, Pub_Titulo
 ElseIf Err.Number = 91 Then
-  VAR = "MDIForm1"
+  var = "MDIForm1"
   On Error GoTo 0
   If WL Is Nothing Then
     Set WL = CreateObject("word.Application")
   End If
-  VAR = Left(PUB_RUTA_OTRO, 2) + "\admin\ayudas\" & VAR
+  var = Left(PUB_RUTA_OTRO, 2) + "\admin\ayudas\" & var
   On Error GoTo no_existe2
   WL.APPLICATION.WindowState = wdWindowStateMaximize
-  WL.Documents.Open FileName:=VAR
+  WL.Documents.Open FileName:=var
   WL.APPLICATION.Visible = True
   On Error GoTo 0
 End If
