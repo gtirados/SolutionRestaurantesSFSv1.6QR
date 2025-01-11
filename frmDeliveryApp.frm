@@ -1112,8 +1112,8 @@ Private Sub CambiaPrecio()
         With oCmdEjec
             .CommandText = "SpModificarPreCantPla"
             .Parameters.Append .CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-            .Parameters.Append .CreateParameter("@NumSer", adChar, adParamInput, 4, Trim(Me.lblserie.Caption))
-            .Parameters.Append .CreateParameter("@NumFac", adDouble, adParamInput, , CDbl(Me.lblnumero.Caption))
+            .Parameters.Append .CreateParameter("@NumSer", adChar, adParamInput, 4, Trim(Me.lblSerie.Caption))
+            .Parameters.Append .CreateParameter("@NumFac", adDouble, adParamInput, , CDbl(Me.lblNumero.Caption))
             .Parameters.Append .CreateParameter("@NumSec", adInteger, adParamInput, , CInt(Me.lvPlatos.SelectedItem.SubItems(6)))
             .Parameters.Append .CreateParameter("@CodArt", adDouble, adParamInput, , CDbl(Me.lvPlatos.SelectedItem.Tag))
             .Parameters.Append .CreateParameter("@Pre", adDouble, adParamInput, , CDbl(Me.lblTexto.Caption))
@@ -1132,11 +1132,11 @@ Private Sub CambiaPrecio()
     oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
  
@@ -1188,8 +1188,8 @@ Private Sub elimina()
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SpActualizarPlato"
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numsec", adInteger, adParamInput, , Me.lvPlatos.SelectedItem.SubItems(6))
     oCmdEjec.Execute
     
@@ -1202,8 +1202,8 @@ Private Sub elimina()
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@Usuario", adVarChar, adParamInput, 20, LK_CODUSU)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodArt", adBigInt, adParamInput, , Me.lvPlatos.SelectedItem.Tag)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@cp", adBigInt, adParamInput, , Me.lvPlatos.SelectedItem.SubItems(3))
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mesa", adChar, adParamInput, 10, "")
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@tipo", adBoolean, adParamInput, , 0)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSec", adInteger, adParamInput, , 0)
@@ -1216,41 +1216,41 @@ Private Sub elimina()
     
     Dim XDTA As Double
 
-    XDTA = CDbl(Me.lblnumero.Caption)    'linea nueva
+    XDTA = CDbl(Me.lblNumero.Caption)    'linea nueva
     If Me.lvPlatos.ListItems.count = 1 Then
         LimpiaParametros oCmdEjec
         oCmdEjec.CommandText = "SpLiberarDelivery"
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@fecha", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
         
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adInteger, adParamInput, , Me.lblserie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adInteger, adParamInput, , Me.lblSerie.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , XDTA)
         oCmdEjec.Execute
 
   oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
         Unload Me
     
     Else
-        Me.lvPlatos.ListItems.Remove Me.lvPlatos.SelectedItem.index
+        Me.lvPlatos.ListItems.Remove Me.lvPlatos.SelectedItem.Index
         Me.lblTot.Caption = FormatCurrency(sumatoria, 2)
         Me.lblItems.Caption = "Items: " & Me.lvPlatos.ListItems.count
         
           oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
        
@@ -1302,8 +1302,8 @@ Private Sub extorna(cIDmotivo As Integer, cMOTIVO As String, cUSUARIO As String)
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SpActualizarPlato1"
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numsec", adInteger, adParamInput, , Me.lvPlatos.SelectedItem.SubItems(6))
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@Usuario", adVarChar, adParamInput, 20, frmClaveCaja.vUSUARIO)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDMOTIVO", adInteger, adParamInput, , cIDmotivo)
@@ -1319,8 +1319,8 @@ Private Sub extorna(cIDmotivo As Integer, cMOTIVO As String, cUSUARIO As String)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@Usuario", adVarChar, adParamInput, 20, LK_CODUSU)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodArt", adBigInt, adParamInput, , Me.lvPlatos.SelectedItem.Tag)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@cp", adBigInt, adParamInput, , Me.lvPlatos.SelectedItem.SubItems(3))
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mesa", adChar, adParamInput, 10, vMesa)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@tipo", adBoolean, adParamInput, , 0)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSec", adInteger, adParamInput, , 0)
@@ -1329,7 +1329,7 @@ Private Sub extorna(cIDmotivo As Integer, cMOTIVO As String, cUSUARIO As String)
 
     oCmdEjec.Execute
     Dim XDTA As Double
-    XDTA = CDbl(Me.lblnumero.Caption) 'NUMERO DE COMANDA
+    XDTA = CDbl(Me.lblNumero.Caption) 'NUMERO DE COMANDA
     
  If Me.lvPlatos.ListItems.count = 1 Then
         LimpiaParametros oCmdEjec
@@ -1337,34 +1337,34 @@ Private Sub extorna(cIDmotivo As Integer, cMOTIVO As String, cUSUARIO As String)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@fecha", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
         
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adInteger, adParamInput, , Me.lblserie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adInteger, adParamInput, , Me.lblSerie.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , XDTA)
         oCmdEjec.Execute
         
          oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     oCmdEjec.Execute
 
         Unload Me
     Else
-        Me.lvPlatos.ListItems.Remove Me.lvPlatos.SelectedItem.index
+        Me.lvPlatos.ListItems.Remove Me.lvPlatos.SelectedItem.Index
         Me.lblTot.Caption = FormatCurrency(sumatoria, 2)
         Me.lblItems.Caption = "Items: " & Me.lvPlatos.ListItems.count
         
          oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     oCmdEjec.Execute
     End If
     
@@ -1394,8 +1394,8 @@ Dim fila As ListItem
 Dim vTot As Currency
 vTot = 0
 
-For c = 1 To Me.lvPlatos.ListItems.count
-    vTot = vTot + val(Me.lvPlatos.ListItems(c).SubItems(5))
+For C = 1 To Me.lvPlatos.ListItems.count
+    vTot = vTot + val(Me.lvPlatos.ListItems(C).SubItems(5))
 Next
 
 'For Each fila In Me.lvPlatos.ListItems
@@ -1431,8 +1431,8 @@ Public Sub CargarComanda(vCodCia As String, vnumser As String, vNumFac As Double
     Set oRsComanda = oCmdEjec.Execute
 
     If Not oRsComanda.EOF Then
-        Me.lblnumero.Caption = oRsComanda.Fields!PED_NUMFAC 'oCmdEjec.Parameters("@NumFac").Value
-        Me.lblserie.Caption = oRsComanda.Fields!PED_numser 'oCmdEjec.Parameters("@NumSer").Value
+        Me.lblNumero.Caption = oRsComanda.Fields!PED_NUMFAC 'oCmdEjec.Parameters("@NumFac").Value
+        Me.lblSerie.Caption = oRsComanda.Fields!PED_numser 'oCmdEjec.Parameters("@NumSer").Value
         ' Me.lblMozo.Tag = oRsComanda.Fields!PED_CODVEN  'oCmdEjec.Parameters("@CodMozo").Value
         ' Me.lblMozo.Caption = Trim(oRsComanda.Fields!mozo) 'Trim(oCmdEjec.Parameters("@Mozo").Value)
         Me.lblCliente.Caption = IIf(IsNull(Trim(oRsComanda!cliente)), "", oRsComanda!cliente)
@@ -1470,7 +1470,7 @@ Public Sub CargarComanda(vCodCia As String, vnumser As String, vNumFac As Double
         
             oRsComanda.MoveNext
         Loop
-        Me.lblicbper.Caption = cICBPEr
+        Me.lblICBPER.Caption = cICBPEr
         Me.lblicbperORI.Caption = cICBPEr
         If Not VNuevo Then
 
@@ -1479,8 +1479,8 @@ Public Sub CargarComanda(vCodCia As String, vnumser As String, vNumFac As Double
             Set orsP = oRsComanda.NextRecordset
             Me.lblCliente.Caption = orsP!IDECLIENTE
             Me.txtCliente.Text = Trim(orsP!cliente)
-            Me.lblruc.Caption = orsP!RUC
-            Me.lblDni.Caption = orsP!DNI
+            Me.lblRUC.Caption = orsP!RUC
+            Me.lblDNI.Caption = orsP!DNI
             'OBS
             Me.txtObs.Text = orsP!OBS
             Me.chkRecojo.Value = orsP!RECOJO
@@ -1500,14 +1500,14 @@ Public Sub CargarComanda(vCodCia As String, vnumser As String, vNumFac As Double
             
             Set ORSurb = oRSdir.NextRecordset
             Me.txtUrb.Text = ORSurb!urb
-            Me.lblUrb.Caption = ORSurb!IDEURB
+            Me.lblurb.Caption = ORSurb!IDEURB
             
             Dim ORSz As ADODB.Recordset
             Set ORSz = oRSdir.NextRecordset
-            Set Me.datZona.RowSource = ORSz
-            Me.datZona.BoundColumn = ORSz.Fields(0).Name
-            Me.datZona.ListField = ORSz.Fields(1).Name
-            Me.datZona.BoundText = -1
+            Set Me.DatZona.RowSource = ORSz
+            Me.DatZona.BoundColumn = ORSz.Fields(0).Name
+            Me.DatZona.ListField = ORSz.Fields(1).Name
+            Me.DatZona.BoundText = -1
             
             'Me.DatDireccion.BoundText = orsP!IDZ
             Me.DatDireccion.BoundText = orsP!IDDIR
@@ -1570,7 +1570,7 @@ Public Function AgregaPlato(vcp As Double, _
             .Parameters.Append .CreateParameter("@DIRECCION", adVarChar, adParamInput, 150, Me.DatDireccion.Text)
             .Parameters.Append .CreateParameter("@IDCLIENTE", adBigInt, adParamInput, , Me.lblCliente.Caption)
              '.Parameters.Append .CreateParameter("@IDZONA", adInteger, adParamInput, , IIf(Me.DatDireccion.BoundText = "", -1, Me.DatDireccion.BoundText))
-            .Parameters.Append .CreateParameter("@IDZONA", adInteger, adParamInput, , IIf(Me.datZona.BoundText = "", -1, Me.datZona.BoundText))
+            .Parameters.Append .CreateParameter("@IDZONA", adInteger, adParamInput, , IIf(Me.DatZona.BoundText = "", -1, Me.DatZona.BoundText))
             .Parameters.Append .CreateParameter("@RECOJO", adBoolean, adParamInput, , Me.chkRecojo.Value)               '08-06-2020
             If Me.DatDireccion.BoundText = "" Then
             .Parameters.Append .CreateParameter("@IDDIR", adInteger, adParamInput, , -1)         '08-06-2020
@@ -1583,8 +1583,8 @@ Public Function AgregaPlato(vcp As Double, _
             .Execute
             ' , Array(LK_CODCIA, LK_CODUSU, vMesa, vcp, vc, vpre, vimp, "ss", CInt(Me.lblMozo.Tag), NumSer, NumFac, LK_FECHA_DIA, vCodFam, 0)
         
-            Me.lblserie.Caption = oCmdEjec.Parameters("@NumSer").Value
-            Me.lblnumero.Caption = oCmdEjec.Parameters("@NumFac").Value
+            Me.lblSerie.Caption = oCmdEjec.Parameters("@NumSer").Value
+            Me.lblNumero.Caption = oCmdEjec.Parameters("@NumFac").Value
             vnumsec = oCmdEjec.Parameters("@NumSec").Value
         End With
 
@@ -1633,8 +1633,8 @@ Public Function AgregaPlato(vcp As Double, _
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodArt", adDouble, adParamInput, , vcp)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@cp", adInteger, adParamInput, , 1)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@cp", adInteger, adParamInput, , vc)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@ser", adChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@nro", adInteger, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mesa", adVarChar, adParamInput, 10, "")
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@tipo", adBoolean, adParamInput, , 1) '0 cuando es extorno
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSec", adInteger, adParamInput, , vnumsec)
@@ -1718,8 +1718,8 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
 vPlato = cant
 'Dim vPri As Boolean
 'vPri = True
-Dim f, c As Integer
-c = 1
+Dim f, C As Integer
+C = 1
 
 Dim valor As Double
 valor = vPlato / 22
@@ -1775,29 +1775,29 @@ vIniLeft = 30
 vIniTop = 120
 For i = 1 To vPlato
     Load Me.cmdPlato(i)
-    If c <= 5 Then '1 fila
-        If c = 1 Then
+    If C <= 5 Then '1 fila
+        If C = 1 Then
             vIniLeft = vIniLeft + Me.cmdPlatoAnt.Width
         Else
             vIniLeft = vIniLeft + Me.cmdPlato(i - i).Width
         End If
 '        Else: viniLeft = viniLeft + 970
 '        End If
-    ElseIf c <= 11 Then '2º Fila
+    ElseIf C <= 11 Then '2º Fila
         'viniLeft = 30
-        If c = 6 Then
+        If C = 6 Then
             vIniLeft = 30
             vIniTop = vIniTop + Me.cmdPlatoAnt.Height
         Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
         End If
-    ElseIf c <= 17 Then '3º Fila
-        If c = 12 Then
+    ElseIf C <= 17 Then '3º Fila
+        If C = 12 Then
             vIniTop = vIniTop + Me.cmdPlato(4).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
         End If
     Else '4º y ultima fila
-        If c = 18 Then
+        If C = 18 Then
             vIniTop = vIniTop + Me.cmdPlato(11).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
@@ -1851,14 +1851,14 @@ For i = 1 To vPlato
 '        Me.cmdFam(i).Visible = False
 '    End If
 oRS.MoveNext
-    If c = 22 Then
+    If C = 22 Then
 '        vPri = False
-        c = 1
+        C = 1
         'vuelve a empezar
         vIniLeft = 30
         vIniTop = 120
         Else
-        c = c + 1
+        C = C + 1
    End If
    
 Next
@@ -1870,10 +1870,10 @@ Private Sub FiltarSubFamilias(cant As Integer, oRS As ADODB.Recordset)
 vSubFamilia = cant
 'Dim vPri As Boolean
 'vPri = True
-Dim f, c As Integer
+Dim f, C As Integer
 
 
-c = 1
+C = 1
 
 Dim valor As Double
 valor = vSubFamilia / 14
@@ -1899,28 +1899,28 @@ vIniTop = 120
 For i = 1 To vSubFamilia
     Load Me.cmdSubFam(i)
     
-    If c <= 3 Then '1 fila
+    If C <= 3 Then '1 fila
     
         vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         Me.cmdSubFam(i).Left = vIniLeft
         Me.cmdSubFam(i).Top = vIniTop
         Me.cmdSubFam(i).Visible = True
         
-    ElseIf c <= 7 Then '2º Fila
+    ElseIf C <= 7 Then '2º Fila
         'viniLeft = 30
-        If c = 4 Then
+        If C = 4 Then
             vIniLeft = 30
             vIniTop = vIniTop + Me.cmdSubFamAnt.Height
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         End If
-    ElseIf c <= 11 Then '3º Fila
-        If c = 8 Then
+    ElseIf C <= 11 Then '3º Fila
+        If C = 8 Then
             vIniTop = vIniTop + Me.cmdSubFam(4).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         End If
     Else '4º y ultima fila
-        If c = 12 Then
+        If C = 12 Then
             vIniTop = vIniTop + Me.cmdSubFam(11).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
@@ -1940,14 +1940,14 @@ For i = 1 To vSubFamilia
 '        Me.cmdFam(i).Visible = False
 '    End If
 oRS.MoveNext
-    If c = 14 Then
+    If C = 14 Then
 '        vPri = False
-        c = 1
+        C = 1
         'vuelve a empezar
         vIniLeft = 30
         vIniTop = 120
         Else
-        c = c + 1
+        C = C + 1
    End If
    
 Next
@@ -1973,8 +1973,8 @@ End If
         oCmdEjec.CommandText = "USP_PEDIDO_RECOJO"
         oCmdEjec.CommandType = adCmdStoredProc
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adDouble, adParamInput, , Me.lblserie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSFAC", adDouble, adParamInput, , Me.lblnumero.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adDouble, adParamInput, , Me.lblSerie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSFAC", adDouble, adParamInput, , Me.lblNumero.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@RECOJO", adBoolean, adParamInput, , Me.chkRecojo.Value)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adInteger, adParamInput, , IIf(Me.DatDireccion.BoundText = "", -1, Me.DatDireccion.BoundText))
@@ -1984,11 +1984,11 @@ End If
         oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
         LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
         'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
         oCmdEjec.Execute
     
@@ -2017,8 +2017,8 @@ Private Sub cmdActualizaObservaciones_Click()
     oCmdEjec.CommandText = "SP_PEDIDO_OBSERVACION"
     oCmdEjec.CommandType = adCmdStoredProc
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adDouble, adParamInput, , Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSFAC", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adDouble, adParamInput, , Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSFAC", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
 
     If Len(Trim(Me.txtObs.Text)) <> 0 Then
@@ -2053,7 +2053,7 @@ Private Sub cmdCantidad_Click()
             MsgBox ("no se puede MODIFICAR el plato, ya fue despachado")
            
         Else
-    Me.lblicbper.Caption = val(Me.lblicbperORI.Caption) * val(Me.lblTexto.Caption)
+    Me.lblICBPER.Caption = val(Me.lblicbperORI.Caption) * val(Me.lblTexto.Caption)
             'Varificando insumos del plato
             Dim msn As String
 
@@ -2138,8 +2138,8 @@ Private Sub cmdCantidad_Click()
                     With oCmdEjec
                         .CommandText = "SpModificarPreCantPla"
                         .Parameters.Append .CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-                        .Parameters.Append .CreateParameter("@NumSer", adChar, adParamInput, 4, Trim(Me.lblserie.Caption))
-                        .Parameters.Append .CreateParameter("@NumFac", adDouble, adParamInput, , CDbl(Me.lblnumero.Caption))
+                        .Parameters.Append .CreateParameter("@NumSer", adChar, adParamInput, 4, Trim(Me.lblSerie.Caption))
+                        .Parameters.Append .CreateParameter("@NumFac", adDouble, adParamInput, , CDbl(Me.lblNumero.Caption))
                         .Parameters.Append .CreateParameter("@NumSec", adInteger, adParamInput, , CInt(Me.lvPlatos.SelectedItem.SubItems(6)))
                         .Parameters.Append .CreateParameter("@CodArt", adDouble, adParamInput, , CDbl(Me.lvPlatos.SelectedItem.Tag))
                         .Parameters.Append .CreateParameter("@Pre", adInteger, adParamInput, , Null)
@@ -2175,11 +2175,11 @@ Private Sub cmdCantidad_Click()
     oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
 
@@ -2195,8 +2195,8 @@ End Sub
 Private Sub cmdCaracteristicas_Click()
 If Me.lvPlatos.ListItems.count = 0 Then Exit Sub
 frmComandaProdCaracteristicas.gIDproducto = Me.lvPlatos.SelectedItem.Tag
-frmComandaProdCaracteristicas.gNUMFAC = Me.lblnumero.Caption
-frmComandaProdCaracteristicas.gNUMSER = Me.lblserie.Caption
+frmComandaProdCaracteristicas.gNUMFAC = Me.lblNumero.Caption
+frmComandaProdCaracteristicas.gNUMSER = Me.lblSerie.Caption
 frmComandaProdCaracteristicas.gNUMSEC = Me.lvPlatos.SelectedItem.SubItems(6)
 frmComandaProdCaracteristicas.Show vbModal
 End Sub
@@ -2233,15 +2233,15 @@ Private Sub cmdCliente_Click()
         'Dim ORSurb As ADODB.Recordset
         Set ORSurb = oRSdir.NextRecordset
         Me.txtUrb.Text = ORSurb!urb
-        Me.lblUrb.Caption = ORSurb!IDEURB
+        Me.lblurb.Caption = ORSurb!IDEURB
             
         Dim ORSz As ADODB.Recordset
 
         Set ORSz = oRSdir.NextRecordset
-        Set Me.datZona.RowSource = ORSz
-        Me.datZona.BoundColumn = ORSz.Fields(0).Name
-        Me.datZona.ListField = ORSz.Fields(1).Name
-        Me.datZona.BoundText = -1
+        Set Me.DatZona.RowSource = ORSz
+        Me.DatZona.BoundColumn = ORSz.Fields(0).Name
+        Me.DatZona.ListField = ORSz.Fields(1).Name
+        Me.DatZona.BoundText = -1
     End If
 
 End Sub
@@ -2249,7 +2249,7 @@ End Sub
 Private Sub cmdClienteEdit_Click()
 
     If Me.cmdClienteEdit.Caption = "Cambiar Cliente" Then
-        Me.FraCliente.Enabled = True
+        Me.fraCliente.Enabled = True
         Me.txtCliente.SetFocus
         Me.txtCliente.SelStart = 0
         Me.txtCliente.SelLength = Len(Me.txtCliente.Text)
@@ -2260,12 +2260,12 @@ Private Sub cmdClienteEdit_Click()
         oCmdEjec.CommandText = "SP_DELIVERY_CAMBIARCLIENTE"
 
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adInteger, adParamInput, , Me.lblserie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adBigInt, adParamInput, , Me.lblnumero.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adInteger, adParamInput, , Me.lblSerie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adBigInt, adParamInput, , Me.lblNumero.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDCLIENTE", adBigInt, adParamInput, , Me.lblCliente.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DIRECCION", adVarChar, adParamInput, 150, Me.DatDireccion.Text)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adBigInt, adParamInput, , Me.datZona.BoundText)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adBigInt, adParamInput, , Me.DatZona.BoundText)
         
         If Me.DatDireccion.BoundText = "" Then
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDDIR", adBigInt, adParamInput, , -1)
@@ -2285,7 +2285,7 @@ Private Sub cmdClienteEdit_Click()
             MsgBox "Datos Almacenados Correctamente."
         End If
 
-        Me.FraCliente.Enabled = False
+        Me.fraCliente.Enabled = False
         Me.cmdClienteEdit.Caption = "Cambiar Cliente"
     End If
 
@@ -2319,8 +2319,8 @@ Private Sub cmdDescuentos_Click()
                 oCmdEjec.CommandText = "SP_CALCULAR_DESCUENTOS"
         
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adChar, adParamInput, 3, Me.lblserie.Caption)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , CDbl(Me.lblnumero.Caption))
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adChar, adParamInput, 3, Me.lblSerie.Caption)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , CDbl(Me.lblNumero.Caption))
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@USUARIO", adVarChar, adParamInput, 20, frmClaveCaja.vUSUARIO)
         
                 If frmComandaDescuentos.gTIPO = "2" Then '"P" Then 'porcentual
@@ -2361,8 +2361,8 @@ Private Sub cmdDetalle_Click()
             LimpiaParametros oCmdEjec
             oCmdEjec.CommandText = "SpActualizarDetallePlato"
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adChar, adParamInput, 3, Me.lblserie.Caption)
-            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , CDbl(Me.lblnumero.Caption))
+            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adChar, adParamInput, 3, Me.lblSerie.Caption)
+            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , CDbl(Me.lblNumero.Caption))
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numsec", adInteger, adParamInput, , CInt(Me.lvPlatos.SelectedItem.SubItems(6)))
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@det", adVarChar, adParamInput, 50, frmDetalle.vDetalle)
             oCmdEjec.Execute
@@ -2390,8 +2390,8 @@ Private Sub cmdDoctoDespacho_Click()
 
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adInteger, adParamInput, , Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adInteger, adParamInput, , Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
 
     Set rsd = oCmdEjec.Execute
     
@@ -2434,8 +2434,8 @@ Private Sub cmdDoctoDespacho_Click()
  
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
 
     Set rsd = oCmdEjec.Execute
     
@@ -2454,14 +2454,14 @@ Private Sub cmdDoctoDespacho_Click()
         Select Case crParamDef.ParameterFieldName
 
             Case "Pm-ado.NROCOMANDA"
-                crParamDef.AddCurrentValue Me.lblserie.Caption + "-" + Me.lblnumero.Caption
+                crParamDef.AddCurrentValue Me.lblSerie.Caption + "-" + Me.lblNumero.Caption
         End Select
 
     Next
     
    
     
-    VReporte.OpenSubreport("PAGOS").DataBase.LogOnServer "p2sodbc.dll", "DSN_DATOS", "bdatos", "sa", "anteromariano"
+    VReporte.OpenSubreport("PAGOS").DataBase.LogOnServer "p2sodbc.dll", "DSN_DATOS", "bdatos", "sa", cClave
     
     VReporte.PrintOut False, 1, , 1, 1
     Set objCrystal = Nothing
@@ -2508,7 +2508,7 @@ End Sub
 
 Private Sub cmdEnviar_Click()
 
-    If Len(Trim(Me.lblnumero.Caption)) = 0 And Len(Trim(Me.lblnumero.Caption)) = 0 Then
+    If Len(Trim(Me.lblNumero.Caption)) = 0 And Len(Trim(Me.lblNumero.Caption)) = 0 Then
         MsgBox "No hay nada que imprimir", vbCritical, NombreProyecto
     Else
         Me.cmdClienteEdit.Visible = False
@@ -2599,33 +2599,33 @@ Private Sub cmdEnviar_Click()
 
         vdata = ""
 
-        Dim c As Integer
+        Dim C As Integer
 
         If Me.lvPlatos.CheckBoxes Then
 
-            For c = 1 To Me.lvPlatos.ListItems.count
+            For C = 1 To Me.lvPlatos.ListItems.count
 
-                If Me.lvPlatos.ListItems(c).Checked Then
-                    vdata = vdata & Me.lvPlatos.ListItems(c).Tag & ","
-                    vnumsec = vnumsec & Me.lvPlatos.ListItems(c).SubItems(6) & ","
+                If Me.lvPlatos.ListItems(C).Checked Then
+                    vdata = vdata & Me.lvPlatos.ListItems(C).Tag & ","
+                    vnumsec = vnumsec & Me.lvPlatos.ListItems(C).SubItems(6) & ","
                 End If
 
             Next
 
         Else
 
-            For c = 1 To Me.lvPlatos.ListItems.count
+            For C = 1 To Me.lvPlatos.ListItems.count
 
-                vdata = vdata & Me.lvPlatos.ListItems(c).Tag & ","
-                vnumsec = vnumsec & Me.lvPlatos.ListItems(c).SubItems(6) & ","
+                vdata = vdata & Me.lvPlatos.ListItems(C).Tag & ","
+                vnumsec = vnumsec & Me.lvPlatos.ListItems(C).SubItems(6) & ","
 
             Next
 
         End If
 
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblserie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblnumero.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblSerie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xdet", adVarChar, adParamInput, 4000, vdata)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xnumsec", adVarChar, adParamInput, 4000, vnumsec)
 
@@ -2819,8 +2819,8 @@ Private Sub cmdEnviar_Click()
  
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblserie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblnumero.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblSerie.Caption)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
 
         Set rsd = oCmdEjec.Execute
     
@@ -2838,12 +2838,12 @@ Private Sub cmdEnviar_Click()
             Select Case crParamDef.ParameterFieldName
 
                 Case "Pm-ado.NROCOMANDA"
-                    crParamDef.AddCurrentValue Me.lblserie.Caption + "-" + Me.lblnumero.Caption
+                    crParamDef.AddCurrentValue Me.lblSerie.Caption + "-" + Me.lblNumero.Caption
             End Select
 
         Next
     
-        VReporte.OpenSubreport("PAGOS").DataBase.LogOnServer "p2sodbc.dll", "DSN_DATOS", "bdatos", "sa", "anteromariano"
+        VReporte.OpenSubreport("PAGOS").DataBase.LogOnServer "p2sodbc.dll", "DSN_DATOS", "bdatos", "sa", cClave
     
         VReporte.PrintOut False, 1, , 1, 1
         Set objCrystal = Nothing
@@ -2864,7 +2864,7 @@ Private Sub cmdEnviarDelivery_Click()
 
     Dim orsT As ADODB.Recordset
 
-    Set orsT = oCmdEjec.Execute(, Array(LK_CODCIA, frmDeliveryApp.lblserie.Caption, frmDeliveryApp.lblnumero.Caption))
+    Set orsT = oCmdEjec.Execute(, Array(LK_CODCIA, frmDeliveryApp.lblSerie.Caption, frmDeliveryApp.lblNumero.Caption))
             
     If Not orsT.EOF Then
         cMontoTarifa = orsT!tarifa
@@ -2958,8 +2958,8 @@ Private Sub cmdLimpiar_Click()
 Me.lblTexto.Caption = ""
 End Sub
 
-Private Sub cmdNum_Click(index As Integer)
-Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdNum(index).Caption
+Private Sub cmdNum_Click(Index As Integer)
+Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdnum(Index).Caption
 End Sub
 
 Private Sub cmdPagar_Click()
@@ -2973,8 +2973,8 @@ Private Sub cmdPagar_Click()
     oCmdEjec.CommandType = adCmdStoredProc
     oCmdEjec.CommandText = "SP_DELIVERY_PAGAR"
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@SERIECOMANDA", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMEROCOMANDA", adBigInt, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@SERIECOMANDA", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMEROCOMANDA", adBigInt, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@exito", adVarChar, adParamOutput, 300, oMSN)
     oCmdEjec.Execute
@@ -2990,7 +2990,7 @@ Private Sub cmdPagar_Click()
 
 End Sub
 
-Private Sub cmdPlato_Click(index As Integer)
+Private Sub cmdPlato_Click(Index As Integer)
 
     If Len(Trim(Me.lblCliente.Caption)) = 0 Then
         MsgBox "Debe ingresar el Cliente.", vbInformation, Pub_Titulo
@@ -3008,7 +3008,7 @@ Private Sub cmdPlato_Click(index As Integer)
     oCmdEjec.CommandText = "SpDevuelveInsumosxPlato"
     oCmdEjec.CommandType = adCmdStoredProc
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodPlato", adDouble, adParamInput, , CDbl(Me.cmdPlato(index).Tag))
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodPlato", adDouble, adParamInput, , CDbl(Me.cmdPlato(Index).Tag))
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mensaje", adVarChar, adParamOutput, 300, msn)
 
     Dim vstrmin  As String 'variable para capturar los insumos
@@ -3080,12 +3080,12 @@ Private Sub cmdPlato_Click(index As Integer)
     If VNuevo Then
         If Me.lvPlatos.ListItems.count = 0 Then
             'obteniendo precio
-            oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
+            oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
        
-            If AgregaPlato(Me.cmdPlato(index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", "", 0, Me.lblCliente.Caption, 0) Then
+            If AgregaPlato(Me.cmdPlato(Index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", "", 0, Me.lblCliente.Caption, 0) Then
         
-                With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(index).Caption, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
-                    .Tag = Me.cmdPlato(index).Tag
+                With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(Index).Caption, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
+                    .Tag = Me.cmdPlato(Index).Tag
                     .Checked = True
                     .SubItems(2) = " "
                     .SubItems(3) = FormatNumber(1, 2)
@@ -3104,9 +3104,9 @@ Private Sub cmdPlato_Click(index As Integer)
 
                 vEstado = "O"
                 Me.cmdClienteEdit.Visible = True
-                Me.FraCliente.Enabled = False
+                Me.fraCliente.Enabled = False
                 
-                CargarComanda LK_CODCIA, Me.lblserie.Caption, Me.lblnumero.Caption
+                CargarComanda LK_CODCIA, Me.lblSerie.Caption, Me.lblNumero.Caption
                 'Me.DatZona.BoundText = Me.DatDireccion.BoundText
                 Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
             End If
@@ -3116,16 +3116,16 @@ Private Sub cmdPlato_Click(index As Integer)
 
         Dim DD As Integer
 
-        oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
+        oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
 
-        If AgregaPlato(Me.cmdPlato(index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", Me.lblserie.Caption, Me.lblnumero.Caption, Me.lblCliente.Caption, 0, DD) Then
+        If AgregaPlato(Me.cmdPlato(Index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", Me.lblSerie.Caption, Me.lblNumero.Caption, Me.lblCliente.Caption, 0, DD) Then
     
-            With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(index).Caption, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
-                .Tag = Me.cmdPlato(index).Tag
+            With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(Index).Caption, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
+                .Tag = Me.cmdPlato(Index).Tag
                 .Checked = True
                 .SubItems(3) = FormatNumber(1, 2)
                 'obteniendo precio
-                oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
+                oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
 
                 If Not oRsPlatos.EOF Then: .SubItems(4) = FormatNumber(oRsPlatos!PRECIO, 2)
                 .SubItems(5) = FormatNumber(val(.SubItems(3)) * val(.SubItems(4)), 2)
@@ -3138,7 +3138,7 @@ Private Sub cmdPlato_Click(index As Integer)
             oRsPlatos.Filter = ""
             oRsPlatos.MoveFirst
             
-            CargarComanda LK_CODCIA, Me.lblserie.Caption, Me.lblnumero.Caption
+            CargarComanda LK_CODCIA, Me.lblSerie.Caption, Me.lblNumero.Caption
             'Me.DatZona.BoundText = Me.DatDireccion.BoundText
             Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
         End If
@@ -3154,20 +3154,20 @@ Private Sub cmdPlato_Click(index As Integer)
     oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
     
     
     End If
   
-    For c = 1 To Me.lvPlatos.ListItems.count
+    For C = 1 To Me.lvPlatos.ListItems.count
         'If Me.lvPlatos.ListItems(c).Checked Then
-        Me.lvPlatos.ListItems(c).Selected = False
+        Me.lvPlatos.ListItems(C).Selected = False
         'End If
     Next
     
@@ -3222,7 +3222,7 @@ End Sub
 
 Private Sub cmdPorcion_Click()
 
-    Dim i, c As Integer
+    Dim i, C As Integer
 
     Dim xPRODselecccionados As String
 
@@ -3237,17 +3237,17 @@ Private Sub cmdPorcion_Click()
     xPROD1 = 0
     xPROD2 = 0
 
-    c = 0
+    C = 0
 
     For i = 1 To Me.lvPlatos.ListItems.count
 
         If Me.lvPlatos.ListItems(i).Selected Then
-            c = c + 1
+            C = C + 1
         End If
 
     Next
 
-    If c = 2 Then
+    If C = 2 Then
 
         For i = 1 To Me.lvPlatos.ListItems.count
 
@@ -3293,8 +3293,8 @@ Private Sub cmdPorcion_Click()
             oCmdEjec.CommandText = "SP_VERIFICA_PRODUCTO_MEDIAPORCION2"
         
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
-            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblserie.Caption)
-            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblnumero.Caption)
+            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblSerie.Caption)
+            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSEC", adInteger, adParamInput, , xSEC1)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , xPROD1)
@@ -3313,8 +3313,8 @@ Private Sub cmdPorcion_Click()
                 oCmdEjec.CommandText = "SP_PEDIDO_PROCESAR_MEDIAPORCION"
         
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblserie.Caption)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblnumero.Caption)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblSerie.Caption)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
 
                 If xPRE1 >= xPRE2 Then
@@ -3331,17 +3331,17 @@ Private Sub cmdPorcion_Click()
 
                 oCmdEjec.Execute
             End If
-            CargarComanda LK_CODCIA, Me.lblserie.Caption, Me.lblnumero.Caption
+            CargarComanda LK_CODCIA, Me.lblSerie.Caption, Me.lblNumero.Caption
             'nuevo 09-08-18  PARA RECALCULAR 1/2 PORCION
             LimpiaParametros oCmdEjec
              oCmdEjec.CommandText = "USP_COMANDA_ACTUALIZA_PAGOSDELIVERY"
     LimpiaParametros oCmdEjec
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@codcia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblserie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numser", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numfac", adDouble, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@TOTAL", adDouble, adParamInput, , Me.lblTot.Caption)
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.datZona.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDZONA", adDouble, adParamInput, , Me.DatZona.BoundText)
     
     oCmdEjec.Execute
             
@@ -3444,17 +3444,17 @@ Private Sub cmdRepartidor_Click()
         Exit Sub
     End If
     
-    frmDeliveryCambiaRepartidor.gSerie = Me.lblserie.Caption
-    frmDeliveryCambiaRepartidor.gNumero = Me.lblnumero.Caption
+    frmDeliveryCambiaRepartidor.gSerie = Me.lblSerie.Caption
+    frmDeliveryCambiaRepartidor.gNumero = Me.lblNumero.Caption
     frmDeliveryCambiaRepartidor.Show vbModal
 End Sub
 
-Private Sub cmdSubFam_Click(index As Integer)
+Private Sub cmdSubFam_Click(Index As Integer)
 Me.cmdPlatoAnt.Enabled = False
 Me.cmdPlatoSig.Enabled = False
-vColor = index
+vColor = Index
 Me.cmdPlatoAnt.Enabled = False
-oRsPlatos.Filter = "CodFam='" & vCodFam & "' and CodSubFam = '" & Me.cmdSubFam(index).Tag & "'"
+oRsPlatos.Filter = "CodFam='" & vCodFam & "' and CodSubFam = '" & Me.cmdSubFam(Index).Tag & "'"
    For i = 1 To Me.cmdPlato.count - 1
         Unload Me.cmdPlato(i)
     Next
@@ -3464,12 +3464,12 @@ oRsSubFam.Filter = ""
 oRsSubFam.MoveFirst
 End Sub
 
-Private Sub cmdFam_Click(index As Integer)
+Private Sub cmdFam_Click(Index As Integer)
     Me.cmdSubFamAnt.Enabled = False
     Me.cmdSubFamSig.Enabled = False
-    vValorActFam = index
-    oRsSubFam.Filter = "CodFam='" & cmdFam(index).Tag & "'"
-    vCodFam = Me.cmdFam(index).Tag 'Linea Nueva
+    vValorActFam = Index
+    oRsSubFam.Filter = "CodFam='" & cmdFam(Index).Tag & "'"
+    vCodFam = Me.cmdFam(Index).Tag 'Linea Nueva
 
     If oRsSubFam.RecordCount <> 0 Then
         FiltarSubFamilias oRsSubFam.RecordCount, oRsSubFam
@@ -3562,15 +3562,15 @@ Private Sub DatDireccion_Change()
     Me.lblReferencia.Caption = oRSdir!ref
 
  Me.txtUrb.Text = ""
-            Me.lblUrb.Caption = "-1"
+            Me.lblurb.Caption = "-1"
             
-            Me.datZona.BoundText = oRSdir!zn2
+            Me.DatZona.BoundText = oRSdir!zn2
     If Not oRSdir.EOF Then
         ORSurb.Filter = "ZN=" & oRSdir!ZONA
 
         If Not ORSurb.EOF Then
             Me.txtUrb.Text = ORSurb!urb
-            Me.lblUrb.Caption = ORSurb!IDEURB
+            Me.lblurb.Caption = ORSurb!IDEURB
         End If
     End If
 
@@ -3619,7 +3619,7 @@ Private Sub Form_Load()
     End If
     
     If vEstado = "O" Then
-        Me.FraCliente.Enabled = False
+        Me.fraCliente.Enabled = False
         Me.cmdClienteEdit.Visible = False
     End If
     
@@ -3637,7 +3637,7 @@ Private Sub Form_Load()
 
     Dim orsT As ADODB.Recordset
 
-    Set orsT = oCmdEjec.Execute(, Array(LK_CODCIA, frmDeliveryApp.lblserie.Caption, frmDeliveryApp.lblnumero.Caption))
+    Set orsT = oCmdEjec.Execute(, Array(LK_CODCIA, frmDeliveryApp.lblSerie.Caption, frmDeliveryApp.lblNumero.Caption))
             
     If Not orsT.EOF Then
         cMontoTarifa = orsT!tarifa
@@ -3676,7 +3676,7 @@ Private Sub Form_Load()
     
     oRSfp.AddNew
     oRSfp!idformapago = 1
-    oRSfp!formaPAGO = "CONTADO"
+    oRSfp!formapago = "CONTADO"
     oRSfp!referencia = ""
     If Len(Trim(Me.lblTot.Caption)) = 0 Then
         oRSfp!monto = 0
@@ -3708,9 +3708,9 @@ Private Sub CargarFamilias()
 
     'Dim vPri As Boolean
     'vPri = True
-    Dim f, c As Integer
+    Dim f, C As Integer
 
-    c = 1
+    C = 1
 
     Dim valor As Double
 
@@ -3729,22 +3729,22 @@ Private Sub CargarFamilias()
     For i = 1 To vfamilia
         Load Me.cmdFam(i)
     
-        If c <= 3 Then '1 fila
+        If C <= 3 Then '1 fila
             vIniLeft = vIniLeft + 970
             Me.cmdFam(i).Left = vIniLeft
             Me.cmdFam(i).Top = vIniTop
-        ElseIf c <= 7 Then '2º Fila
+        ElseIf C <= 7 Then '2º Fila
 
             'viniLeft = 30
-            If c = 4 Then
+            If C = 4 Then
                 vIniLeft = 30
                 vIniTop = vIniTop + cmdFamAnt.Height
                 Else: vIniLeft = vIniLeft + 970
             End If
 
-        ElseIf c <= 11 Then '3º Fila
+        ElseIf C <= 11 Then '3º Fila
 
-            If c = 8 Then
+            If C = 8 Then
                 vIniTop = vIniTop + Me.cmdFam(4).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + 970
@@ -3752,7 +3752,7 @@ Private Sub CargarFamilias()
 
         Else '4º y ultima fila
 
-            If c = 12 Then
+            If C = 12 Then
                 vIniTop = vIniTop + Me.cmdFam(11).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + 970
@@ -3773,14 +3773,14 @@ Private Sub CargarFamilias()
         '    End If
         oRsFam.MoveNext
 
-        If c = 14 Then
+        If C = 14 Then
             '        vPri = False
-            c = 1
+            C = 1
             'vuelve a empezar
             vIniLeft = 30
             vIniTop = 120
         Else
-            c = c + 1
+            C = C + 1
         End If
    
     Next
@@ -3789,8 +3789,8 @@ End Sub
 
 
 
-Private Sub optFiltro_Click(index As Integer)
-vFiltro = index
+Private Sub optFiltro_Click(Index As Integer)
+vFiltro = Index
 If gEstaCargando Then Exit Sub
 Me.txtCliente.SetFocus
 Me.txtCliente.SelStart = 0
@@ -3915,7 +3915,7 @@ Private Sub txtCliente_KeyPress(KeyAscii As Integer)
                 If frmDeliveryCliente.gIDz <> -1 Then
                     Me.lblCliente.Caption = frmDeliveryCliente.gIDz
                     Me.txtCliente.Text = frmDeliveryCliente.gRS
-                    Me.lblDni.Caption = frmDeliveryCliente.gDNI
+                    Me.lblDNI.Caption = frmDeliveryCliente.gDNI
                     LimpiaParametros oCmdEjec
                     oCmdEjec.CommandText = "SP_DELIVERY_CLIENTE_DIRECCIONES"
                     
@@ -3931,14 +3931,14 @@ Private Sub txtCliente_KeyPress(KeyAscii As Integer)
                     'Dim ORSurb As ADODB.Recordset
                     Set ORSurb = oRSdir.NextRecordset
                     Me.txtUrb.Text = ORSurb!urb
-                    Me.lblUrb.Caption = ORSurb!IDEURB
+                    Me.lblurb.Caption = ORSurb!IDEURB
                     vBuscar = False
                     
                     Set ORSz = oRSdir.NextRecordset
-                    Set Me.datZona.RowSource = ORSz
-                    Me.datZona.BoundColumn = ORSz.Fields(0).Name
-                    Me.datZona.ListField = ORSz.Fields(1).Name
-                    Me.datZona.BoundText = -1
+                    Set Me.DatZona.RowSource = ORSz
+                    Me.DatZona.BoundColumn = ORSz.Fields(0).Name
+                    Me.DatZona.ListField = ORSz.Fields(1).Name
+                    Me.DatZona.BoundText = -1
                 End If
             End If
 
@@ -3957,7 +3957,7 @@ Private Sub txtCliente_KeyPress(KeyAscii As Integer)
                 If CBool(ORSpp!pendiente) Then
                     If MsgBox("EL CLIENTE TIENE PEDIDOS ANTERIORES. ¿DESEA CONTINUAR?", vbQuestion + vbYesNo, Pub_Titulo) = vbNo Then
                     Me.lblCliente.Caption = ""
-                    Me.lblDni.Caption = ""
+                    Me.lblDNI.Caption = ""
                     Me.txtCliente.Text = ""
                     Me.lvCliente.ListItems.Clear
                     Me.lvCliente.Visible = False
@@ -3968,7 +3968,7 @@ Private Sub txtCliente_KeyPress(KeyAscii As Integer)
             
             Me.lblCliente.Caption = Me.lvCliente.SelectedItem.Tag
             Me.txtCliente.Text = Me.lvCliente.SelectedItem.Text
-            Me.lblDni.Caption = Me.lvCliente.SelectedItem.SubItems(1)
+            Me.lblDNI.Caption = Me.lvCliente.SelectedItem.SubItems(1)
             Me.lvCliente.Visible = False
             Me.lvCliente.ListItems.Clear
             LimpiaParametros oCmdEjec
@@ -3989,10 +3989,10 @@ Private Sub txtCliente_KeyPress(KeyAscii As Integer)
             '            Me.lblUrb.Caption = ORSurb!IDEURB
 
             Set ORSz = oRSdir.NextRecordset
-            Set Me.datZona.RowSource = ORSz
-            Me.datZona.BoundColumn = ORSz.Fields(0).Name
-            Me.datZona.ListField = ORSz.Fields(1).Name
-            Me.datZona.BoundText = -1
+            Set Me.DatZona.RowSource = ORSz
+            Me.DatZona.BoundColumn = ORSz.Fields(0).Name
+            Me.DatZona.ListField = ORSz.Fields(1).Name
+            Me.DatZona.BoundText = -1
             
         End If
        
@@ -4202,7 +4202,7 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
             If AgregaPlato(xIDproducto, 1, xPrecio, xPrecio, "", "", 0, Me.lblCliente.Caption, 0) Then
         
                 With Me.lvPlatos.ListItems.Add(, , xIDproducto, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
-                    .Tag = Me.cmdPlato(index).Tag
+                    .Tag = Me.cmdPlato(Index).Tag
                     .Checked = True
                     .SubItems(2) = " "
                     .SubItems(3) = FormatNumber(1, 2)
@@ -4229,10 +4229,10 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
 
         'oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
 
-        If AgregaPlato(xIDproducto, 1, FormatNumber(xPrecio, 2), xPrecio, "", Me.lblserie.Caption, Me.lblnumero.Caption, Me.lblCliente.Caption, 0, DD) Then
+        If AgregaPlato(xIDproducto, 1, FormatNumber(xPrecio, 2), xPrecio, "", Me.lblSerie.Caption, Me.lblNumero.Caption, Me.lblCliente.Caption, 0, DD) Then
     
             With Me.lvPlatos.ListItems.Add(, , xProducto, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
-                .Tag = Me.cmdPlato(index).Tag
+                .Tag = Me.cmdPlato(Index).Tag
                 .Checked = True
                 .SubItems(3) = FormatNumber(1, 2)
                 'obteniendo precio
@@ -4260,11 +4260,11 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
         Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
     End If
 
-    CargarComanda LK_CODCIA, Me.lblserie.Caption, Me.lblnumero.Caption
+    CargarComanda LK_CODCIA, Me.lblSerie.Caption, Me.lblNumero.Caption
   
-    For c = 1 To Me.lvPlatos.ListItems.count
+    For C = 1 To Me.lvPlatos.ListItems.count
         'If Me.lvPlatos.ListItems(c).Checked Then
-        Me.lvPlatos.ListItems(c).Selected = False
+        Me.lvPlatos.ListItems(C).Selected = False
         'End If
     Next
 
@@ -4398,15 +4398,15 @@ Public Sub AgregarDesdeBuscador1(xIDproducto As Double, _
 
     'oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
 
-    If AgregaPlato(xIDproducto, xCANT, FormatNumber(xPrecio, 2), xPrecio * xCANT, "", Me.lblserie.Caption, Me.lblnumero.Caption, Me.lblCliente.Caption, 0, DD) Then
+    If AgregaPlato(xIDproducto, xCANT, FormatNumber(xPrecio, 2), xPrecio * xCANT, "", Me.lblSerie.Caption, Me.lblNumero.Caption, Me.lblCliente.Caption, 0, DD) Then
     
     'MODIFICANDO EL PRODUCTO ORIGINAL
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SP_PEDIDO_ACTUALIZAR_MEDIAPORCION"
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblserie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adChar, adParamInput, 3, Me.lblSerie.Caption)
     
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblnumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSEC", adInteger, adParamInput, , xNROsecACT)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODART", adBigInt, adParamInput, , xIDproductoACT)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CANTIDAD", adDouble, adParamInput, , 0.5)
@@ -4414,7 +4414,7 @@ Public Sub AgregarDesdeBuscador1(xIDproducto As Double, _
     oCmdEjec.Execute
     
         With Me.lvPlatos.ListItems.Add(, , xProducto, Me.ilPedido.ListImages.Item(1).key, Me.ilPedido.ListImages.Item(1).key)
-            .Tag = Me.cmdPlato(index).Tag
+            .Tag = Me.cmdPlato(Index).Tag
             .Checked = True
             .SubItems(3) = FormatNumber(xCANT, 2)
             'obteniendo precio
@@ -4443,11 +4443,11 @@ Public Sub AgregarDesdeBuscador1(xIDproducto As Double, _
         Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
     End If
 
-    CargarComanda LK_CODCIA, Me.lblserie.Caption, Me.lblnumero.Caption
+    CargarComanda LK_CODCIA, Me.lblSerie.Caption, Me.lblNumero.Caption
   
-    For c = 1 To Me.lvPlatos.ListItems.count
+    For C = 1 To Me.lvPlatos.ListItems.count
         'If Me.lvPlatos.ListItems(c).Checked Then
-        Me.lvPlatos.ListItems(c).Selected = False
+        Me.lvPlatos.ListItems(C).Selected = False
         'End If
     Next
 
@@ -4456,7 +4456,7 @@ End Sub
 
 Private Sub txtUrb_Change()
 vBuscar_u = True
-Me.lblUrb.Caption = -1
+Me.lblurb.Caption = -1
 End Sub
 
 Private Sub txtUrb_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -4498,7 +4498,7 @@ Private Sub txtUrb_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = 27 Then
         Me.ListView1.Visible = False
         Me.txtUrb.Text = ""
-        Me.lblUrb.Caption = "-1"
+        Me.lblurb.Caption = "-1"
     End If
 
     GoTo fin
@@ -4552,7 +4552,7 @@ Private Sub txtUrb_KeyPress(KeyAscii As Integer)
 
                 If frmClientesUrbAdd.gAcepta Then
                     Me.txtUrb.Text = frmClientesUrbAdd.gNombre
-                    Me.lblUrb.Caption = frmClientesUrbAdd.gIde
+                    Me.lblurb.Caption = frmClientesUrbAdd.gIde
                     Me.ListView1.Visible = False
                     vBuscar_u = True
                     'AQUI GRABA
@@ -4560,7 +4560,7 @@ Private Sub txtUrb_KeyPress(KeyAscii As Integer)
                     oCmdEjec.CommandText = "SP_DELIVERY_ACTUALIZA_URB_CLIENTE"
                     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
                     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDCLIENTE", adBigInt, adParamInput, , Me.lblCliente.Caption)
-                    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDURB", adInteger, adParamInput, , Me.lblUrb.Caption)
+                    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDURB", adInteger, adParamInput, , Me.lblurb.Caption)
                     oCmdEjec.Execute
                     'Me.datZona.SetFocus
                 End If
@@ -4568,13 +4568,13 @@ Private Sub txtUrb_KeyPress(KeyAscii As Integer)
         
         Else
             Me.txtUrb.Text = Me.ListView1.ListItems(loc_key_u).Text
-            Me.lblUrb.Caption = Me.ListView1.ListItems(loc_key_u).Tag
+            Me.lblurb.Caption = Me.ListView1.ListItems(loc_key_u).Tag
             
              LimpiaParametros oCmdEjec
                     oCmdEjec.CommandText = "SP_DELIVERY_ACTUALIZA_URB_CLIENTE"
                     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
                     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDCLIENTE", adBigInt, adParamInput, , Me.lblCliente.Caption)
-                    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDURB", adInteger, adParamInput, , Me.lblUrb.Caption)
+                    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDURB", adInteger, adParamInput, , Me.lblurb.Caption)
                     oCmdEjec.Execute
                     
             Me.ListView1.Visible = False

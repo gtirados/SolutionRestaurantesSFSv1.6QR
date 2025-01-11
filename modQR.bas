@@ -1,6 +1,6 @@
 Attribute VB_Name = "modQR"
 Public wdsn As String
-Public wAcceso As String
+
 Public oRSmain As ADODB.Recordset
 Public oCMDmain As ADODB.Command
 Public objConex As ADODB.Connection
@@ -78,9 +78,9 @@ Public Sub CreaCodigoQR(cTipoDocto As String, _
     Dim oRSresul As ADODB.Recordset
     
     Dim objConex As ADODB.Connection
-'    xCadena = "Provider=SQLOLEDB;data Source=.;Initial Catalog=BDATOS;User Id=sa;Password=anteromariano"
-wAcceso = "anteromariano"
-    xCadenaCNN = "dsn=" + wdsn + ";uid=sa;pwd=" & wAcceso & ";database=bdatos;"
+
+
+    xCadenaCNN = "dsn=" + wdsn + ";uid=sa;pwd=" & cClave & ";database=bdatos;"
     Set objConex = New ADODB.Connection
     objConex.CursorLocation = adUseClient
     objConex.Open xCadenaCNN
