@@ -1,10 +1,11 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form frmFacComanda 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Facturar Comanda"
-   ClientHeight    =   8700
+   ClientHeight    =   8805
    ClientLeft      =   45
    ClientTop       =   345
    ClientWidth     =   10110
@@ -21,7 +22,7 @@ Begin VB.Form frmFacComanda
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8700
+   ScaleHeight     =   8805
    ScaleWidth      =   10110
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancelar 
@@ -29,7 +30,7 @@ Begin VB.Form frmFacComanda
       Height          =   495
       Left            =   1560
       TabIndex        =   18
-      Top             =   8160
+      Top             =   8280
       Width           =   1335
    End
    Begin MSComctlLib.ListView ListView1 
@@ -307,18 +308,35 @@ Begin VB.Form frmFacComanda
       End
    End
    Begin VB.Frame fraImporte 
-      Height          =   2295
+      Height          =   2415
       Left            =   240
       TabIndex        =   3
       Top             =   5760
       Width           =   9735
+      Begin VB.TextBox txtCopias 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Left            =   1560
+         TabIndex        =   47
+         Text            =   "1"
+         Top             =   1920
+         Width           =   375
+      End
+      Begin VB.CheckBox chkServicio 
+         Height          =   255
+         Left            =   7320
+         TabIndex        =   45
+         Top             =   240
+         Visible         =   0   'False
+         Width           =   255
+      End
       Begin VB.CommandButton cmdFormasPago 
          Caption         =   "Forma de Pago"
          Height          =   720
          Left            =   1920
          TabIndex        =   24
          Top             =   480
-         Width           =   3135
+         Width           =   3375
       End
       Begin VB.CommandButton cmdCobrar 
          Caption         =   "&Cobrar"
@@ -338,30 +356,103 @@ Begin VB.Form frmFacComanda
          Visible         =   0   'False
          Width           =   1095
       End
+      Begin MSComCtl2.UpDown udCopias 
+         Height          =   285
+         Left            =   1936
+         TabIndex        =   48
+         Top             =   1920
+         Width           =   240
+         _ExtentX        =   423
+         _ExtentY        =   503
+         _Version        =   393216
+         Value           =   1
+         BuddyControl    =   "txtCopias"
+         BuddyDispid     =   196656
+         OrigLeft        =   3240
+         OrigTop         =   1680
+         OrigRight       =   3480
+         OrigBottom      =   2055
+         Min             =   1
+         SyncBuddy       =   -1  'True
+         BuddyProperty   =   65547
+         Enabled         =   -1  'True
+      End
+      Begin VB.Label Label8 
+         AutoSize        =   -1  'True
+         Caption         =   "Nro de Copias:"
+         Height          =   195
+         Left            =   240
+         TabIndex        =   49
+         Top             =   1920
+         Width           =   1290
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "SERVICIO:"
+         Height          =   195
+         Left            =   6240
+         TabIndex        =   46
+         Top             =   240
+         Visible         =   0   'False
+         Width           =   960
+      End
+      Begin VB.Label lblServicio 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H8000000C&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
+         Height          =   315
+         Left            =   7680
+         TabIndex        =   44
+         Top             =   200
+         Visible         =   0   'False
+         Width           =   1695
+      End
       Begin VB.Label Label3 
          Alignment       =   1  'Right Justify
          Caption         =   "OPER.GRATUITAS:"
          Height          =   375
          Left            =   5760
          TabIndex        =   43
-         Top             =   480
+         Top             =   600
          Width           =   1815
       End
       Begin VB.Label lblgratuita 
+         Alignment       =   1  'Right Justify
          BackColor       =   &H8000000C&
-         Height          =   375
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
+         Height          =   330
          Left            =   7680
          TabIndex        =   42
-         Top             =   400
+         Top             =   570
          Width           =   1695
       End
       Begin VB.Label lblporcigv 
+         Alignment       =   2  'Center
          Caption         =   "Label3"
          Height          =   255
-         Left            =   4200
+         Left            =   7200
          TabIndex        =   40
-         Top             =   1560
-         Width           =   735
+         Top             =   1320
+         Width           =   375
       End
       Begin VB.Label lblpICBPER 
          AutoSize        =   -1  'True
@@ -371,6 +462,7 @@ Begin VB.Form frmFacComanda
          Left            =   5040
          TabIndex        =   39
          Top             =   1320
+         Visible         =   0   'False
          Width           =   660
       End
       Begin VB.Label Label12 
@@ -381,15 +473,26 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6720
          TabIndex        =   38
-         Top             =   1560
+         Top             =   1680
          Width           =   735
       End
       Begin VB.Label lblICBPER 
+         Alignment       =   1  'Right Justify
          BackColor       =   &H8000000C&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
          Height          =   315
          Left            =   7680
          TabIndex        =   37
-         Top             =   1560
+         Top             =   1680
          Width           =   1695
       End
       Begin VB.Label label 
@@ -400,8 +503,8 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6240
          TabIndex        =   32
-         Top             =   1200
-         Width           =   1245
+         Top             =   1320
+         Width           =   885
       End
       Begin VB.Label Label11 
          AutoSize        =   -1  'True
@@ -410,23 +513,45 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6240
          TabIndex        =   31
-         Top             =   840
+         Top             =   960
          Width           =   1290
       End
       Begin VB.Label lblvvta 
+         Alignment       =   1  'Right Justify
          BackColor       =   &H8000000C&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
          Height          =   315
          Left            =   7680
          TabIndex        =   30
-         Top             =   840
+         Top             =   960
          Width           =   1695
       End
       Begin VB.Label lblIGV 
+         Alignment       =   1  'Right Justify
          BackColor       =   &H8000000C&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
          Height          =   315
          Left            =   7680
          TabIndex        =   29
-         Top             =   1200
+         Top             =   1320
          Width           =   1695
       End
       Begin VB.Label lblDscto 
@@ -441,13 +566,23 @@ Begin VB.Form frmFacComanda
          Width           =   1455
       End
       Begin VB.Label lblImporte 
+         Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H8000000C&
-         ForeColor       =   &H80000008&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00FF0000&
          Height          =   285
          Left            =   7680
          TabIndex        =   7
-         Top             =   1920
+         Top             =   2040
          Width           =   1695
       End
       Begin VB.Label lblvuelto 
@@ -477,7 +612,7 @@ Begin VB.Form frmFacComanda
          Height          =   195
          Left            =   6120
          TabIndex        =   4
-         Top             =   1920
+         Top             =   2040
          Width           =   1470
       End
    End
@@ -486,7 +621,7 @@ Begin VB.Form frmFacComanda
       Height          =   495
       Left            =   240
       TabIndex        =   16
-      Top             =   8160
+      Top             =   8280
       Width           =   1335
    End
 End
@@ -639,7 +774,8 @@ Private Sub chkGratuito_Click()
     
            ' If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
             If VerificaPassPrecios(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
-               Me.lblgratuita.Caption = Me.lblImporte
+               'Me.lblgratuita.Caption = Me.lblImporte
+               Me.lblgratuita.Caption = Format(val(Me.lblImporte.Caption), "########0.#0")
                Me.lblvvta.Caption = "0.00"
                Me.lblIGV.Caption = "0.00"
                Me.lblImporte.Caption = "0.00"
@@ -659,6 +795,19 @@ End Sub
 Private Sub cmdAceptar_Click()
 'ImprimirDocumentoVenta "01", "Factura", True, "1", 27427495, "126.5", "caleta", "123", "tirado" ' Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtcli.Text
 'Exit Sub
+
+If Len(Trim(Me.txtCopias.Text)) = 0 Then
+        MsgBox "Debe ingresar el nro de copias a imprimir.", vbInformation, Pub_Titulo
+        Me.txtCopias.SetFocus
+        Exit Sub
+    End If
+    
+    If val(Me.txtCopias.Text) <= 0 Then
+    ' MsgBox "Nro de copias incorrecto.", vbInformation, Pub_Titulo
+     '   Me.txtcopias.SetFocus
+     '   Exit Sub
+    End If
+
 
 If Me.DatTiposDoctos.BoundText = "" Then ' .ListIndex = -1 Then
     MsgBox "Debe elegir el Tipo de documento.", vbCritical, Pub_Titulo
@@ -847,7 +996,7 @@ If oRSfp.RecordCount <> 0 Then
     Do While Not oRSfp.EOF
         xFP = xFP & "<d "
         xFP = xFP & "idfp=""" & Trim(str(oRSfp!idformapago)) & """ "
-        xFP = xFP & "fp=""" & Trim(oRSfp!formaPAGO) & """ "
+        xFP = xFP & "fp=""" & Trim(oRSfp!formapago) & """ "
         xFP = xFP & "mon=""" & "S" & """ "
         xFP = xFP & "monto=""" & Trim(str(oRSfp!monto)) & """ "
         xFP = xFP & "ref=""" & Trim(oRSfp!referencia) & """ "
@@ -947,6 +1096,7 @@ With oCmdEjec
             .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@CIAPEDIDO", adChar, adParamInput, 2, LK_CODCIA)
             .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption))
+            .Parameters.Append .CreateParameter("@SERVICIO", adDouble, adParamInput, , Me.lblServicio.Caption)
             .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
             .Parameters.Append .CreateParameter("@MaxNumOper", adInteger, adParamOutput, , 0)
             .Parameters.Append .CreateParameter("@AUTONUMFAC", adInteger, adParamOutput, , 0)
@@ -967,7 +1117,7 @@ With oCmdEjec
 'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
                 CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
                 If xARCENCONTRADO Then
-                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuito.Value
+                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuito.Value, Me.txtCopias.Text
                 End If
                     
 'If Me.DatTiposDoctos.BoundText = "01" Or Me.DatTiposDoctos.BoundText = "03" Then
@@ -1039,7 +1189,7 @@ If oRSfp.RecordCount = 0 Then
         Do While Not oRSfp.EOF
             xFP = xFP & "<d "
             xFP = xFP & "idfp=""" & Trim(str(oRSfp!idformapago)) & """ "
-            xFP = xFP & "fp=""" & Trim(oRSfp!formaPAGO) & """ "
+            xFP = xFP & "fp=""" & Trim(oRSfp!formapago) & """ "
             xFP = xFP & "mon=""" & Trim(oRSfp!moneda) & """ "
             xFP = xFP & "monto=""" & Trim(str(oRSfp!monto)) & """ "
             xFP = xFP & "/>"
@@ -1357,7 +1507,7 @@ Private Sub DatEmpresas_Click(Area As Integer)
 
 CargarDocumentos
 
-    cargarSeries
+cargarSeries
 End Sub
 
 
@@ -1523,6 +1673,10 @@ Private Sub Form_Load()
    
     Me.lblvuelto.Caption = "0.00"
     Me.chkConsumo.Value = 0
+    'Me.lblgratuita.Caption = Format("########0.#0")
+    Me.lblServicio.Caption = "0.00"
+     Me.lblgratuita.Caption = "0.00"
+     Me.lblICBPER.Caption = "0.00"
 
     If LK_CODUSU = "MOZOB" Then
         Me.DatTiposDoctos.BoundText = "01"
@@ -1551,7 +1705,7 @@ Private Sub Form_Load()
     
     oRSfp.AddNew
     oRSfp!idformapago = 1
-    oRSfp!formaPAGO = "CONTADO"
+    oRSfp!formapago = "CONTADO"
     oRSfp!referencia = ""
     oRSfp!monto = Me.lblImporte.Caption
     oRSfp!tipo = "E"
@@ -1849,8 +2003,8 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
             C = 1
             sCadena = ""
             Do While Not orsPAG.EOF
-                xFormaPago = orsPAG!formaPAGO
-                sCadena = sCadena & orsPAG!formaPAGO & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
+                xFormaPago = orsPAG!formapago
+                sCadena = sCadena & orsPAG!formapago & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
                 If C < orsPAG.RecordCount Then
                     sCadena = sCadena & vbCrLf
                 End If
@@ -1996,7 +2150,7 @@ Private Sub lvDetalle_KeyDown(KeyCode As Integer, Shift As Integer)
             
             oRSfp.AddNew
             oRSfp!idformapago = 1
-            oRSfp!formaPAGO = "CONTADO"
+            oRSfp!formapago = "CONTADO"
             oRSfp!referencia = ""
             oRSfp!tipo = "E"
             oRSfp!monto = Me.lblImporte.Caption
@@ -2030,9 +2184,11 @@ Dim vIgv As Integer
     Next
 
     'Me.lblImporte.Caption = Format(vimp, "########0.#0") 'FormatNumber(vimp, 2)
+     Me.lblServicio.Caption = "0.00"
+     Me.lblgratuita.Caption = "0.00"
      Me.lblvvta.Caption = Round(vimp / ((vIgv / 100) + 1), 2)
-        Me.lblIGV.Caption = vimp - Me.lblvvta.Caption
-        Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblICBPER.Caption), "########0.#0")
+     Me.lblIGV.Caption = vimp - Me.lblvvta.Caption
+     Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblICBPER.Caption), "########0.#0")
         
 
     
@@ -2069,7 +2225,7 @@ Private Sub lvDetalle_KeyPress(KeyAscii As Integer)
             
     oRSfp.AddNew
     oRSfp!idformapago = 1
-    oRSfp!formaPAGO = "CONTADO"
+    oRSfp!formapago = "CONTADO"
     oRSfp!referencia = ""
     oRSfp!monto = Me.lblImporte.Caption
     oRSfp!tipo = "E"

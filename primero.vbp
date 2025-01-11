@@ -208,6 +208,7 @@ Form=frmChangeFormasPagoEDIT.frm
 Form=frmProduccion_Find.frm
 Form=frmFacComandaFP2credito.frm
 Form=frmEventoConsulta.frm
+Module=modMain; modMain.bas
 IconForm="RCRYSTAL"
 Startup="Splash"
 HelpFile=""

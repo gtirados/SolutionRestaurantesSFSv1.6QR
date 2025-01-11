@@ -24,6 +24,15 @@ Begin VB.Form frmDeliveryEnviar
    ScaleWidth      =   6840
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtcopias 
+      Height          =   285
+      Left            =   360
+      TabIndex        =   39
+      Text            =   "1"
+      Top             =   5040
+      Visible         =   0   'False
+      Width           =   495
+   End
    Begin VB.CheckBox chkgratuito 
       Caption         =   "Gratuito"
       Height          =   195
@@ -588,18 +597,18 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set oRSdet = oRS.NextRecordset
    
     sCadena = ""
-    Dim C As Integer
-    C = 1
+    Dim c As Integer
+    c = 1
 
     If LK_CODTRA = 2412 Then
 
         Do While Not oRSdet.EOF
          
             sCadena = sCadena & oRSdet!CODUNIDADMEDIDA & "|" & oRSdet!CTDUNIDADITEM & "|" & oRSdet!CODPRODUCTO & "|" & oRSdet!CODPRODUCTOSUNAT & "|" & oRSdet!DESITEM & "|" & oRSdet!MTOVALORUNITARIO & "|" & oRSdet!MTOIGVITEM & "|" & oRSdet!CODTIPTRIBUTOIGV & "|" & oRSdet!MTOIGVITEM1 & "|" & oRSdet!NOMTRIBITEM & "|" & oRSdet!CODTIPTRIBUTOITEM & "|" & oRSdet!TIPAFEIGV & "|" & FormatNumber(oRSdet!PORCIGV, 2) & "|" & oRSdet!CODISC & "|" & oRSdet!CODOTROITEM & "|" & oRSdet!GRATUITO & "|"
-            If C < oRSdet.RecordCount Then
+            If c < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             C = C + 1
+             c = c + 1
             oRSdet.MoveNext
             
         Loop
@@ -617,10 +626,10 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
            "|" & oRSdet!MONTOTRIBOTO & "|" & oRSdet!BASEIMPONIBLEOTO & "|" & oRSdet!NOMBRETRIBOTO & "|" & oRSdet!TIPSISISC & "|" & oRSdet!PORCOTO & "|" & oRSdet!CODIGOICBPER & _
            "|" & oRSdet!IMPORTEICBPER & "|" & oRSdet!CANTIDADICBPER & "|" & oRSdet!TITULOICBPER & "|" & oRSdet!IDEICBPER & "|" & oRSdet!MONTOICBPER & "|" & _
            oRSdet!PRECIOVTAUNITARIO & "|" & oRSdet!VALORVTAXITEM & "|" & oRSdet!GRATUITO & "|"
-            If C < oRSdet.RecordCount Then
+            If c < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             C = C + 1
+             c = c + 1
             oRSdet.MoveNext
              
         Loop
@@ -639,14 +648,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set orsTri = oRS.NextRecordset
     
     sCadena = ""
-    C = 1
+    c = 1
     'ARCIVO .TRI
     Do While Not orsTri.EOF
     sCadena = sCadena & orsTri!Codigo & "|" & orsTri!Nombre & "|" & orsTri!cod & "|" & orsTri!BASEIMPONIBLE & "|" & orsTri!TRIBUTO & "|"
-    If C < orsTri.RecordCount Then
+    If c < orsTri.RecordCount Then
         sCadena = sCadena & vbCrLf
     End If
-    C = C + 1
+    c = c + 1
         orsTri.MoveNext
     Loop
     
@@ -660,14 +669,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Dim orsLey As ADODB.Recordset
     Set orsLey = oRS.NextRecordset
     
-    C = 1
+    c = 1
     sCadena = ""
     Do While Not orsLey.EOF
         sCadena = sCadena & orsLey!cod & "|" & Trim(CONVER_LETRAS(Me.lblTotal2.Caption, "S")) & "|"
-        If C < orsLey.RecordCount Then
+        If c < orsLey.RecordCount Then
             sCadena = sCadena & vbCrLf
         End If
-        C = C + 1
+        c = c + 1
         orsLey.MoveNext
     Loop
     
@@ -681,15 +690,15 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
             Dim orsPAG As ADODB.Recordset
             Set orsPAG = oRS.NextRecordset
             
-            C = 1
+            c = 1
             sCadena = ""
             Do While Not orsPAG.EOF
-                xFormaPago = orsPAG!formaPAGO
-                sCadena = sCadena & orsPAG!formaPAGO & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
-                If C < orsPAG.RecordCount Then
+                xFormaPago = orsPAG!formapago
+                sCadena = sCadena & orsPAG!formapago & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
+                If c < orsPAG.RecordCount Then
                     sCadena = sCadena & vbCrLf
                 End If
-                C = C + 1
+                c = c + 1
                 orsPAG.MoveNext
             Loop
             
@@ -704,14 +713,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
                 Set ArchivoDPA = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOdpa, True)
                
                 
-                C = 1
+                c = 1
                 sCadena = ""
                 Do While Not orsDPA.EOF
                     sCadena = sCadena & orsDPA!cuotapago & "|" & orsDPA!fechavcto & "|" & orsDPA!TIPMONEDA & "|"
-                    If C < orsDPA.RecordCount Then
+                    If c < orsDPA.RecordCount Then
                         sCadena = sCadena & vbCrLf
                     End If
-                    C = C + 1
+                    c = c + 1
                     orsDPA.MoveNext
                 Loop
                 
@@ -1124,7 +1133,7 @@ Private Sub cmdAceptar_Click()
             CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblserie.Caption, Me.txtNumero.Text, LK_FECHA_DIA, xxIgv, Me.lblTotal2.Caption, Me.txtRuc.Text, Me.txtDni.Text
             'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
             If xARCENCONTRADO Then
-                ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNumero.Text, Me.lblTotal2.Caption, 0, 0, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtCliente.Text, Me.txtDni.Text, LK_CODCIA, Me.lblicbper.Caption, Me.chkprom.Value, Me.chkgratuito
+                ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNumero.Text, Me.lblTotal2.Caption, 0, 0, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtCliente.Text, Me.txtDni.Text, LK_CODCIA, Me.lblicbper.Caption, Me.chkprom.Value, Me.chkgratuito, txtcopias.Text
             End If
              
            ' If Me.DatTiposDoctos.BoundText = "01" Then
