@@ -61,7 +61,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public Mostrador As Boolean
-Public gDelivery As Boolean
+Public gDELIVERY As Boolean
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyEscape Then Unload Me
@@ -79,7 +79,7 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
         If Len(Trim(Me.txtCodigo.Text)) <> 0 Then
             If Not Mostrador Then
- If Not gDelivery Then
+ If Not gDELIVERY Then
                 If Len(Trim(frmComanda.lblMozo.Caption)) = 0 Then
                     MsgBox "Debe Elegir Mozo", vbInformation, "Error"
 
@@ -92,7 +92,7 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
             If Mostrador Then
                 frmComanda2.oRsPlatos.Filter = "alt='" & Me.txtCodigo.Text & "'"
             Else
-                If gDelivery Then
+                If gDELIVERY Then
                 frmDeliveryApp.oRsPlatos.Filter = "alt='" & Me.txtCodigo.Text & "'"
                 Else
                 frmComanda.oRsPlatos.Filter = "alt='" & Me.txtCodigo.Text & "'"
@@ -114,7 +114,7 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
             PUB_CODART = art_llave_alt!ART_KEY
 
-            Dim oRsTemp As ADODB.Recordset
+            Dim oRStemp As ADODB.Recordset
 
             'Varificando insumos del plato
             Dim msn     As String
@@ -137,39 +137,39 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
             vmin = False
             vcero = False
 
-            Set oRsTemp = oCmdEjec.Execute
+            Set oRStemp = oCmdEjec.Execute
 
-            If Not oRsTemp.EOF Then
+            If Not oRStemp.EOF Then
 
-                Do While Not oRsTemp.EOF
+                Do While Not oRStemp.EOF
 
-                    If oRsTemp!sa <= 0 Or (oRsTemp!sa - oRsTemp!ei) < 0 Then
+                    If oRStemp!sa <= 0 Or (oRStemp!sa - oRStemp!ei) < 0 Then
                         vcero = True
 
                         'MsgBox "Algunos insumos del Plato no estan disponibles", vbCritical, NombreProyecto
                         If Len(vstrcero) = 0 Then
-                            vstrcero = Trim(oRsTemp!nm)
+                            vstrcero = Trim(oRStemp!nm)
                         Else
-                            vstrcero = vstrcero & vbCrLf & Trim(oRsTemp!nm)
+                            vstrcero = vstrcero & vbCrLf & Trim(oRStemp!nm)
                         End If
 
                         'Exit Sub
         
-                    ElseIf (oRsTemp!sa - oRsTemp!ei) <= oRsTemp!sm Then
+                    ElseIf (oRStemp!sa - oRStemp!ei) <= oRStemp!sm Then
                         vmin = True
 
                         'MsgBox "Algunos insumos del Plato estan el el Minimó permitido", vbInformation, NombreProyecto
                         If Len(vstrmin) = 0 Then
-                            vstrmin = Trim(oRsTemp!nm)
+                            vstrmin = Trim(oRStemp!nm)
                         Else
-                            vstrmin = vstrmin & vbCrLf & Trim(oRsTemp!nm)
+                            vstrmin = vstrmin & vbCrLf & Trim(oRStemp!nm)
                         End If
 
                         'Exit Do
                     End If
 
                     'c = c + 1
-                    oRsTemp.MoveNext
+                    oRStemp.MoveNext
                 Loop
 
                 'Else
@@ -198,18 +198,18 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
                     If frmComanda2.VNuevo Then
                         If frmComanda2.lvPlatos.ListItems.count = 0 Then
                             If frmComanda2.AgregaPlato(frmComanda2.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda2.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda2.oRsPlatos!PRECIO), "", "", 0, frmComanda2.lblCliente.Caption, IIf(Len(Trim(frmComanda2.lblComensales.Caption)) = 0, 0, frmComanda2.lblComensales.Caption)) Then
-                                Me.lblplato.Caption = frmComanda2.oRsPlatos!PLATO
-                                Set ItemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!PLATO), frmComanda2.ilComanda.ListImages.Item(1).Key, frmComanda2.ilComanda.ListImages.Item(1).Key)
-                                ItemP.Tag = frmComanda2.oRsPlatos!Codigo
-                                ItemP.Checked = True
-                                ItemP.SubItems(2) = " "
-                                ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
-                                ItemP.SubItems(4) = Format(frmComanda2.oRsPlatos!PRECIO, "##.#0")
-                                ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                                ItemP.SubItems(6) = 0
-                                ItemP.SubItems(7) = 0   'linea nueva
-                                ItemP.SubItems(8) = frmComanda2.vMaxFac
-                                ItemP.SubItems(9) = 0
+                                Me.lblplato.Caption = frmComanda2.oRsPlatos!plato
+                                Set itemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!plato), frmComanda2.ilComanda.ListImages.Item(1).key, frmComanda2.ilComanda.ListImages.Item(1).key)
+                                itemP.Tag = frmComanda2.oRsPlatos!Codigo
+                                itemP.Checked = True
+                                itemP.SubItems(2) = " "
+                                itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                itemP.SubItems(4) = Format(frmComanda2.oRsPlatos!PRECIO, "##.#0")
+                                itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                                itemP.SubItems(6) = 0
+                                itemP.SubItems(7) = 0   'linea nueva
+                                itemP.SubItems(8) = frmComanda2.vMaxFac
+                                itemP.SubItems(9) = 0
                                 frmComanda2.VNuevo = False
            
                                 'ItemP.Checked = True
@@ -245,16 +245,16 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
                             Else
 
                                 If frmComanda2.AgregaPlato(frmComanda2.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda2.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda2.oRsPlatos!PRECIO), "", "", 0, frmComanda2.lblCliente.Caption, IIf(Len(Trim(frmComanda2.lblComensales.Caption)) = 0, 0, frmComanda2.lblComensales.Caption)) Then
-                                    Me.lblplato.Caption = frmComanda2.oRsPlatos!PLATO
-                                    Set ItemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!PLATO), frmComanda2.ilComanda.ListImages.Item(1).Key, frmComanda2.ilComanda.ListImages.Item(1).Key)
-                                    ItemP.Tag = frmComanda2.oRsPlatos!Codigo
-                                    ItemP.Checked = True
-                                    ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                    Me.lblplato.Caption = frmComanda2.oRsPlatos!plato
+                                    Set itemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!plato), frmComanda2.ilComanda.ListImages.Item(1).key, frmComanda2.ilComanda.ListImages.Item(1).key)
+                                    itemP.Tag = frmComanda2.oRsPlatos!Codigo
+                                    itemP.Checked = True
+                                    itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                                     'obteniendo precio
                                     frmComanda2.oRsPlatos.Filter = "Codigo = '" & frmComanda2.oRsPlatos!Codigo & "'"
 
-                                    If Not frmComanda2.oRsPlatos.EOF Then: ItemP.SubItems(4) = FormatNumber(frmComanda2.oRsPlatos!PRECIO, 2)
-                                    ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
+                                    If Not frmComanda2.oRsPlatos.EOF Then: itemP.SubItems(4) = FormatNumber(frmComanda2.oRsPlatos!PRECIO, 2)
+                                    itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
                                     frmComanda2.oRsPlatos.Filter = ""
                                     frmComanda2.oRsPlatos.MoveFirst
                                     Me.txtCodigo.Text = ""
@@ -272,21 +272,21 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
                         'AgregaPlato Me.cmdPlato(Index).Tag, 1, FormatNumber(frmcomanda2.oRsPlatos!Precio, 2), oRsPlatos!Precio, "", Me.lblSerie.Caption, Me.lblNumero.Caption, dd
                         If frmComanda2.AgregaPlato(frmComanda2.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda2.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda2.oRsPlatos!PRECIO), "", frmComanda2.lblSerie.Caption, frmComanda2.lblNumero.Caption, frmComanda2.lblCliente.Caption, IIf(Len(Trim(frmComanda2.lblComensales.Caption)) = 0, 0, frmComanda2.lblComensales.Caption), DD) Then
-                            Me.lblplato.Caption = frmComanda2.oRsPlatos!PLATO
-                            Set ItemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!PLATO), frmComanda2.ilComanda.ListImages.Item(1).Key, frmComanda2.ilComanda.ListImages.Item(1).Key)
-                            ItemP.Tag = frmComanda2.oRsPlatos!Codigo
-                            ItemP.Checked = True
-                            ItemP.SubItems(2) = " "
-                            ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                            Me.lblplato.Caption = frmComanda2.oRsPlatos!plato
+                            Set itemP = frmComanda2.lvPlatos.ListItems.Add(, , Trim(frmComanda2.oRsPlatos!plato), frmComanda2.ilComanda.ListImages.Item(1).key, frmComanda2.ilComanda.ListImages.Item(1).key)
+                            itemP.Tag = frmComanda2.oRsPlatos!Codigo
+                            itemP.Checked = True
+                            itemP.SubItems(2) = " "
+                            itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                             'obteniendo precio
                             frmComanda2.oRsPlatos.Filter = "Codigo = '" & frmComanda2.oRsPlatos!Codigo & "'"
 
-                            If Not frmComanda2.oRsPlatos.EOF Then: ItemP.SubItems(4) = Format(frmComanda2.oRsPlatos!PRECIO, "##.#0")
-                            ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                            ItemP.SubItems(6) = DD
-                            ItemP.SubItems(7) = 0   'linea nueva
-                            ItemP.SubItems(8) = frmComanda2.vMaxFac
-                            ItemP.SubItems(9) = 0
+                            If Not frmComanda2.oRsPlatos.EOF Then: itemP.SubItems(4) = Format(frmComanda2.oRsPlatos!PRECIO, "##.#0")
+                            itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                            itemP.SubItems(6) = DD
+                            itemP.SubItems(7) = 0   'linea nueva
+                            itemP.SubItems(8) = frmComanda2.vMaxFac
+                            itemP.SubItems(9) = 0
                             frmComanda2.oRsPlatos.Filter = ""
                             frmComanda2.oRsPlatos.MoveFirst
                         End If
@@ -309,25 +309,25 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
             Else 'no es mostrador
 
-                If gDelivery Then
+                If gDELIVERY Then
                     If Not frmDeliveryApp.oRsPlatos.EOF Then
                         frmDeliveryApp.vCodFam = frmDeliveryApp.oRsPlatos!codfam
 
                         If frmDeliveryApp.VNuevo Then
                             If frmDeliveryApp.lvPlatos.ListItems.count = 0 Then
                                 If frmDeliveryApp.AgregaPlato(frmDeliveryApp.oRsPlatos!Codigo, Me.txtCantidad.Text, frmDeliveryApp.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmDeliveryApp.oRsPlatos!PRECIO), "", "", 0, frmDeliveryApp.lblCliente.Caption, 0) Then
-                                    Me.lblplato.Caption = Trim(frmDeliveryApp.oRsPlatos!PLATO)
-                                    Set ItemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!PLATO), frmDeliveryApp.ilPedido.ListImages.Item(1).Key, frmDeliveryApp.ilPedido.ListImages.Item(1).Key)
-                                    ItemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
-                                    ItemP.Checked = True
-                                    ItemP.SubItems(2) = " "
-                                    ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
-                                    ItemP.SubItems(4) = Format(frmDeliveryApp.oRsPlatos!PRECIO, "##.#0")
-                                    ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                                    ItemP.SubItems(6) = 0
-                                    ItemP.SubItems(7) = 0   'linea nueva
-                                    ItemP.SubItems(8) = frmDeliveryApp.vMaxFac
-                                    ItemP.SubItems(9) = 0
+                                    Me.lblplato.Caption = Trim(frmDeliveryApp.oRsPlatos!plato)
+                                    Set itemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!plato), frmDeliveryApp.ilPedido.ListImages.Item(1).key, frmDeliveryApp.ilPedido.ListImages.Item(1).key)
+                                    itemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
+                                    itemP.Checked = True
+                                    itemP.SubItems(2) = " "
+                                    itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                    itemP.SubItems(4) = Format(frmDeliveryApp.oRsPlatos!PRECIO, "##.#0")
+                                    itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                                    itemP.SubItems(6) = 0
+                                    itemP.SubItems(7) = 0   'linea nueva
+                                    itemP.SubItems(8) = frmDeliveryApp.vMaxFac
+                                    itemP.SubItems(9) = 0
                                     frmDeliveryApp.VNuevo = False
            
                                     'ItemP.Checked = True
@@ -361,16 +361,16 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
                                 Else
 
                                     If frmDeliveryApp.AgregaPlato(frmDeliveryApp.oRsPlatos!Codigo, Me.txtCantidad.Text, frmDeliveryApp.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmDeliveryApp.oRsPlatos!PRECIO), "", "", 0, frmDeliveryApp.lblCliente.Caption, 0) Then
-                                        Me.lblplato.Caption = frmDeliveryApp.oRsPlatos!PLATO
-                                        Set ItemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!PLATO), frmDeliveryApp.ilPedido.ListImages.Item(1).Key, frmDeliveryApp.ilPedido.ListImages.Item(1).Key)
-                                        ItemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
-                                        ItemP.Checked = True
-                                        ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                        Me.lblplato.Caption = frmDeliveryApp.oRsPlatos!plato
+                                        Set itemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!plato), frmDeliveryApp.ilPedido.ListImages.Item(1).key, frmDeliveryApp.ilPedido.ListImages.Item(1).key)
+                                        itemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
+                                        itemP.Checked = True
+                                        itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                                         'obteniendo precio
                                         frmDeliveryApp.oRsPlatos.Filter = "Codigo = '" & frmDeliveryApp.oRsPlatos!Codigo & "'"
 
-                                        If Not frmDeliveryApp.oRsPlatos.EOF Then: ItemP.SubItems(4) = FormatNumber(frmDeliveryApp.oRsPlatos!PRECIO, 2)
-                                        ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
+                                        If Not frmDeliveryApp.oRsPlatos.EOF Then: itemP.SubItems(4) = FormatNumber(frmDeliveryApp.oRsPlatos!PRECIO, 2)
+                                        itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
                                         frmDeliveryApp.oRsPlatos.Filter = ""
                                         frmDeliveryApp.oRsPlatos.MoveFirst
                                        Me.txtCodigo.Text = ""
@@ -388,21 +388,21 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
                             'AgregaPlato Me.cmdPlato(Index).Tag, 1, FormatNumber(frmcomanda.oRsPlatos!Precio, 2), oRsPlatos!Precio, "", Me.lblSerie.Caption, Me.lblNumero.Caption, dd
                             If frmDeliveryApp.AgregaPlato(frmDeliveryApp.oRsPlatos!Codigo, Me.txtCantidad.Text, frmDeliveryApp.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmDeliveryApp.oRsPlatos!PRECIO), "", frmDeliveryApp.lblSerie.Caption, frmDeliveryApp.lblNumero.Caption, frmDeliveryApp.lblCliente.Caption, 0, DD) Then
-                                Me.lblplato.Caption = Trim(frmDeliveryApp.oRsPlatos!PLATO)
-                                Set ItemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!PLATO), frmDeliveryApp.ilPedido.ListImages.Item(1).Key, frmDeliveryApp.ilPedido.ListImages.Item(1).Key)
-                                ItemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
-                                ItemP.Checked = True
-                                ItemP.SubItems(2) = " "
-                                ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                Me.lblplato.Caption = Trim(frmDeliveryApp.oRsPlatos!plato)
+                                Set itemP = frmDeliveryApp.lvPlatos.ListItems.Add(, , Trim(frmDeliveryApp.oRsPlatos!plato), frmDeliveryApp.ilPedido.ListImages.Item(1).key, frmDeliveryApp.ilPedido.ListImages.Item(1).key)
+                                itemP.Tag = frmDeliveryApp.oRsPlatos!Codigo
+                                itemP.Checked = True
+                                itemP.SubItems(2) = " "
+                                itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                                 'obteniendo precio
                                 frmDeliveryApp.oRsPlatos.Filter = "Codigo = '" & frmDeliveryApp.oRsPlatos!Codigo & "'"
 
-                                If Not frmDeliveryApp.oRsPlatos.EOF Then: ItemP.SubItems(4) = Format(frmDeliveryApp.oRsPlatos!PRECIO, "##.#0")
-                                ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                                ItemP.SubItems(6) = DD
-                                ItemP.SubItems(7) = 0   'linea nueva
-                                ItemP.SubItems(8) = frmDeliveryApp.vMaxFac
-                                ItemP.SubItems(9) = 0
+                                If Not frmDeliveryApp.oRsPlatos.EOF Then: itemP.SubItems(4) = Format(frmDeliveryApp.oRsPlatos!PRECIO, "##.#0")
+                                itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                                itemP.SubItems(6) = DD
+                                itemP.SubItems(7) = 0   'linea nueva
+                                itemP.SubItems(8) = frmDeliveryApp.vMaxFac
+                                itemP.SubItems(9) = 0
                                 frmDeliveryApp.oRsPlatos.Filter = ""
                                 frmDeliveryApp.oRsPlatos.MoveFirst
                             End If
@@ -431,30 +431,30 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
                         If frmComanda.VNuevo Then
                             If frmComanda.lvPlatos.ListItems.count = 0 Then
                                 If frmComanda.AgregaPlato(frmComanda.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda.oRsPlatos!PRECIO), "", "", 0, frmComanda.lblCliente.Caption, IIf(Len(Trim(frmComanda.lblComensales.Caption)) = 0, 0, frmComanda.lblComensales.Caption)) Then
-                                    Me.lblplato.Caption = frmComanda.oRsPlatos!PLATO
-                                    Set ItemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!PLATO), frmComanda.ilComanda.ListImages.Item(1).Key, frmComanda.ilComanda.ListImages.Item(1).Key)
-                                    ItemP.Tag = frmComanda.oRsPlatos!Codigo
-                                    ItemP.Checked = True
-                                    ItemP.SubItems(2) = " "
-                                    ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
-                                    ItemP.SubItems(4) = Format(frmComanda.oRsPlatos!PRECIO, "##.#0")
-                                    ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                                    ItemP.SubItems(6) = 0
-                                    ItemP.SubItems(7) = 0   'linea nueva
-                                    ItemP.SubItems(8) = frmComanda.vMaxFac
-                                    ItemP.SubItems(9) = 0
+                                    Me.lblplato.Caption = frmComanda.oRsPlatos!plato
+                                    Set itemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!plato), frmComanda.ilComanda.ListImages.Item(1).key, frmComanda.ilComanda.ListImages.Item(1).key)
+                                    itemP.Tag = frmComanda.oRsPlatos!Codigo
+                                    itemP.Checked = True
+                                    itemP.SubItems(2) = " "
+                                    itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                    itemP.SubItems(4) = Format(frmComanda.oRsPlatos!PRECIO, "##.#0")
+                                    itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                                    itemP.SubItems(6) = 0
+                                    itemP.SubItems(7) = 0   'linea nueva
+                                    itemP.SubItems(8) = frmComanda.vMaxFac
+                                    itemP.SubItems(9) = 0
                                     frmComanda.VNuevo = False
            
                                     'ItemP.Checked = True
                                     frmComanda.oRsPlatos.Filter = ""
                                     frmComanda.oRsPlatos.MoveFirst
 
-                                    For i = 1 To frmDisMesas.imgMesa.count - 1
+                                    For i = 1 To frmDisMesas.pbMesa.count - 1
 
                                         If frmDisMesas.lblNomMesa(i).Tag = vMesa Then
-                                            frmDisMesas.imgMesa(i).Picture = frmDisMesas.ilMesas.ListImages(4).Picture
-                                            frmDisMesas.imgMesa(i).ToolTipText = "Mesa Ocupada"
-                                            frmDisMesas.imgMesa(i).Tag = "O"
+                                            frmDisMesas.pbMesa(i).Picture = frmDisMesas.pbOcupada.Picture
+                                            frmDisMesas.pbMesa(i).ToolTipText = "Mesa Ocupada"
+                                            frmDisMesas.pbMesa(i).Tag = "O"
                                         End If
 
                                     Next
@@ -488,16 +488,16 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
                                 Else
 
                                     If frmComanda.AgregaPlato(frmComanda.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda.oRsPlatos!PRECIO), "", "", 0, frmComanda.lblCliente.Caption, IIf(Len(Trim(frmComanda.lblComensales.Caption)) = 0, 0, frmComanda.lblComensales.Caption)) Then
-                                        Me.lblplato.Caption = frmComanda.oRsPlatos!PLATO
-                                        Set ItemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!PLATO), frmComanda.ilComanda.ListImages.Item(1).Key, frmComanda.ilComanda.ListImages.Item(1).Key)
-                                        ItemP.Tag = frmComanda.oRsPlatos!Codigo
-                                        ItemP.Checked = True
-                                        ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                        Me.lblplato.Caption = frmComanda.oRsPlatos!plato
+                                        Set itemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!plato), frmComanda.ilComanda.ListImages.Item(1).key, frmComanda.ilComanda.ListImages.Item(1).key)
+                                        itemP.Tag = frmComanda.oRsPlatos!Codigo
+                                        itemP.Checked = True
+                                        itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                                         'obteniendo precio
                                         frmComanda.oRsPlatos.Filter = "Codigo = '" & frmComanda.oRsPlatos!Codigo & "'"
 
-                                        If Not frmComanda.oRsPlatos.EOF Then: ItemP.SubItems(4) = FormatNumber(frmComanda.oRsPlatos!PRECIO, 2)
-                                        ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
+                                        If Not frmComanda.oRsPlatos.EOF Then: itemP.SubItems(4) = FormatNumber(frmComanda.oRsPlatos!PRECIO, 2)
+                                        itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
                                         frmComanda.oRsPlatos.Filter = ""
                                         frmComanda.oRsPlatos.MoveFirst
                                         Me.txtCodigo.Text = ""
@@ -515,21 +515,21 @@ Private Sub txtCantidad_KeyPress(KeyAscii As Integer)
 
                             'AgregaPlato Me.cmdPlato(Index).Tag, 1, FormatNumber(frmcomanda.oRsPlatos!Precio, 2), oRsPlatos!Precio, "", Me.lblSerie.Caption, Me.lblNumero.Caption, dd
                             If frmComanda.AgregaPlato(frmComanda.oRsPlatos!Codigo, Me.txtCantidad.Text, frmComanda.oRsPlatos!PRECIO, CDbl(Me.txtCantidad.Text * frmComanda.oRsPlatos!PRECIO), "", frmComanda.lblSerie.Caption, frmComanda.lblNumero.Caption, frmComanda.lblCliente.Caption, IIf(Len(Trim(frmComanda.lblComensales.Caption)) = 0, 0, frmComanda.lblComensales.Caption), DD) Then
-                                Me.lblplato.Caption = frmComanda.oRsPlatos!PLATO
-                                Set ItemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!PLATO), frmComanda.ilComanda.ListImages.Item(1).Key, frmComanda.ilComanda.ListImages.Item(1).Key)
-                                ItemP.Tag = frmComanda.oRsPlatos!Codigo
-                                ItemP.Checked = True
-                                ItemP.SubItems(2) = " "
-                                ItemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
+                                Me.lblplato.Caption = frmComanda.oRsPlatos!plato
+                                Set itemP = frmComanda.lvPlatos.ListItems.Add(, , Trim(frmComanda.oRsPlatos!plato), frmComanda.ilComanda.ListImages.Item(1).key, frmComanda.ilComanda.ListImages.Item(1).key)
+                                itemP.Tag = frmComanda.oRsPlatos!Codigo
+                                itemP.Checked = True
+                                itemP.SubItems(2) = " "
+                                itemP.SubItems(3) = Format(Me.txtCantidad.Text, "##.#0")
                                 'obteniendo precio
                                 frmComanda.oRsPlatos.Filter = "Codigo = '" & frmComanda.oRsPlatos!Codigo & "'"
 
-                                If Not frmComanda.oRsPlatos.EOF Then: ItemP.SubItems(4) = Format(frmComanda.oRsPlatos!PRECIO, "##.#0")
-                                ItemP.SubItems(5) = Format(val(ItemP.SubItems(3)) * val(ItemP.SubItems(4)), "##.#0")
-                                ItemP.SubItems(6) = DD
-                                ItemP.SubItems(7) = 0   'linea nueva
-                                ItemP.SubItems(8) = frmComanda.vMaxFac
-                                ItemP.SubItems(9) = 0
+                                If Not frmComanda.oRsPlatos.EOF Then: itemP.SubItems(4) = Format(frmComanda.oRsPlatos!PRECIO, "##.#0")
+                                itemP.SubItems(5) = Format(val(itemP.SubItems(3)) * val(itemP.SubItems(4)), "##.#0")
+                                itemP.SubItems(6) = DD
+                                itemP.SubItems(7) = 0   'linea nueva
+                                itemP.SubItems(8) = frmComanda.vMaxFac
+                                itemP.SubItems(9) = 0
                                 frmComanda.oRsPlatos.Filter = ""
                                 frmComanda.oRsPlatos.MoveFirst
                             End If
@@ -568,17 +568,17 @@ End Sub
 Private Sub Deselecciona()
 
     If Not Mostrador Then
-        If gDelivery Then
+        If gDELIVERY Then
 
-            For C = 1 To frmDeliveryApp.lvPlatos.ListItems.count
-                frmDeliveryApp.lvPlatos.ListItems(C).Selected = False
+            For c = 1 To frmDeliveryApp.lvPlatos.ListItems.count
+                frmDeliveryApp.lvPlatos.ListItems(c).Selected = False
             Next
 
             frmDeliveryApp.lvPlatos.ListItems(frmDeliveryApp.lvPlatos.ListItems.count).Selected = True
         Else
 
-            For C = 1 To frmComanda.lvPlatos.ListItems.count
-                frmComanda.lvPlatos.ListItems(C).Selected = False
+            For c = 1 To frmComanda.lvPlatos.ListItems.count
+                frmComanda.lvPlatos.ListItems(c).Selected = False
             Next
 
             frmComanda.lvPlatos.ListItems(frmComanda.lvPlatos.ListItems.count).Selected = True
@@ -586,8 +586,8 @@ Private Sub Deselecciona()
 
     Else
 
-        For C = 1 To frmComanda2.lvPlatos.ListItems.count
-            frmComanda2.lvPlatos.ListItems(C).Selected = False
+        For c = 1 To frmComanda2.lvPlatos.ListItems.count
+            frmComanda2.lvPlatos.ListItems(c).Selected = False
         Next
 
         frmComanda2.lvPlatos.ListItems(frmComanda2.lvPlatos.ListItems.count).Selected = True

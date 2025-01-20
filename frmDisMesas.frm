@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form frmDisMesas 
    BackColor       =   &H00FFC0C0&
    Caption         =   "Distribución de Mesas"
@@ -23,54 +23,25 @@ Begin VB.Form frmDisMesas
    ScaleHeight     =   7215
    ScaleWidth      =   12270
    WindowState     =   2  'Maximized
+   Begin XtremeSuiteControls.PushButton pbLibre 
+      Height          =   1095
+      Left            =   8040
+      TabIndex        =   11
+      Top             =   4440
+      Visible         =   0   'False
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmDisMesas.frx":06EA
+   End
    Begin VB.Timer Timer1 
       Interval        =   2000
       Left            =   9240
       Top             =   3240
-   End
-   Begin MSComctlLib.ImageList ilMesas 
-      Left            =   6480
-      Top             =   3240
-      _ExtentX        =   1005
-      _ExtentY        =   1005
-      BackColor       =   -2147483643
-      ImageWidth      =   48
-      ImageHeight     =   48
-      MaskColor       =   12632256
-      _Version        =   393216
-      BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-         NumListImages   =   5
-         BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmDisMesas.frx":06EA
-            Key             =   "L"
-         EndProperty
-         BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmDisMesas.frx":1188
-            Key             =   "E"
-         EndProperty
-         BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmDisMesas.frx":1C70
-            Key             =   "R"
-         EndProperty
-         BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmDisMesas.frx":274D
-            Key             =   "O"
-         EndProperty
-         BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmDisMesas.frx":3230
-            Key             =   "U"
-         EndProperty
-      EndProperty
-   End
-   Begin VB.CommandButton cmdSalir 
-      Caption         =   "&Salir"
-      Height          =   735
-      Left            =   10320
-      Picture         =   "frmDisMesas.frx":3D46
-      Style           =   1  'Graphical
-      TabIndex        =   2
-      Top             =   4800
-      Width           =   1095
    End
    Begin VB.Timer tmrMensaje 
       Interval        =   500
@@ -93,10 +64,93 @@ Begin VB.Form frmDisMesas
       Index           =   0
       Left            =   10200
       Style           =   1  'Graphical
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   120
       Visible         =   0   'False
       Width           =   1335
+   End
+   Begin XtremeSuiteControls.PushButton pbMesa 
+      Height          =   1095
+      Index           =   0
+      Left            =   10200
+      TabIndex        =   12
+      Top             =   2280
+      Visible         =   0   'False
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+   End
+   Begin XtremeSuiteControls.PushButton pbOcupada 
+      Height          =   1095
+      Left            =   9240
+      TabIndex        =   13
+      Top             =   4440
+      Visible         =   0   'False
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmDisMesas.frx":3944
+   End
+   Begin XtremeSuiteControls.PushButton pbCuenta 
+      Height          =   1095
+      Left            =   8040
+      TabIndex        =   14
+      Top             =   5520
+      Visible         =   0   'False
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmDisMesas.frx":6B9E
+   End
+   Begin XtremeSuiteControls.PushButton pbReservada 
+      Height          =   1095
+      Left            =   9240
+      TabIndex        =   15
+      Top             =   5520
+      Visible         =   0   'False
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmDisMesas.frx":9DF8
+   End
+   Begin XtremeSuiteControls.PushButton cmdSalir 
+      Height          =   1095
+      Left            =   10680
+      TabIndex        =   16
+      Top             =   5520
+      Width           =   1095
+      _Version        =   786433
+      _ExtentX        =   1931
+      _ExtentY        =   1931
+      _StockProps     =   79
+      Caption         =   "&Salir"
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmDisMesas.frx":D052
+      TextImageRelation=   1
+   End
+   Begin VB.Image imgR 
+      Height          =   495
+      Left            =   1920
+      Stretch         =   -1  'True
+      Top             =   6600
+      Width           =   615
    End
    Begin VB.Label lblsolution 
       BackStyle       =   0  'Transparent
@@ -113,29 +167,11 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00800000&
       Height          =   855
       Left            =   1800
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   0
       Visible         =   0   'False
       Width           =   3135
       WordWrap        =   -1  'True
-   End
-   Begin VB.Label lblmU 
-      AutoSize        =   -1  'True
-      BackColor       =   &H00FFC0C0&
-      Caption         =   "MESA POR COBRAR"
-      ForeColor       =   &H00800000&
-      Height          =   195
-      Left            =   9480
-      TabIndex        =   12
-      Top             =   6720
-      Width           =   1710
-   End
-   Begin VB.Image imgU 
-      Height          =   495
-      Left            =   8760
-      Stretch         =   -1  'True
-      Top             =   6600
-      Width           =   615
    End
    Begin VB.Label lblmE 
       AutoSize        =   -1  'True
@@ -144,7 +180,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00800000&
       Height          =   195
       Left            =   7200
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   6720
       Width           =   1530
    End
@@ -171,7 +207,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00C00000&
       Height          =   240
       Left            =   840
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   3480
       Width           =   2625
    End
@@ -191,7 +227,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00C00000&
       Height          =   240
       Left            =   840
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   3840
       Visible         =   0   'False
       Width           =   1470
@@ -203,7 +239,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00800000&
       Height          =   195
       Left            =   2640
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   6750
       Width           =   1605
    End
@@ -214,7 +250,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00800000&
       Height          =   195
       Left            =   5040
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   6750
       Width           =   1410
    End
@@ -225,16 +261,9 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H00800000&
       Height          =   195
       Left            =   840
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   6750
       Width           =   1050
-   End
-   Begin VB.Image imgR 
-      Height          =   495
-      Left            =   1920
-      Stretch         =   -1  'True
-      Top             =   6600
-      Width           =   615
    End
    Begin VB.Image imgO 
       Height          =   495
@@ -265,7 +294,7 @@ Begin VB.Form frmDisMesas
       ForeColor       =   &H8000000D&
       Height          =   270
       Left            =   1800
-      TabIndex        =   4
+      TabIndex        =   3
       Top             =   120
       Width           =   75
    End
@@ -282,22 +311,13 @@ Begin VB.Form frmDisMesas
       Visible         =   0   'False
       Width           =   75
    End
-   Begin VB.Image imgMesa 
-      Height          =   615
-      Index           =   0
-      Left            =   7680
-      Stretch         =   -1  'True
-      Top             =   1560
-      Visible         =   0   'False
-      Width           =   975
-   End
 End
 Attribute VB_Name = "frmDisMesas"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private P As Integer
+Private p As Integer
 Dim oMesa() As String
 Dim oPosLeft() As String
 Dim oPosTop() As String
@@ -309,7 +329,7 @@ Public VZONA As Integer
 Private Sub LlamarxTecla()
 Dim ve As Boolean
 ve = False
-For i = 1 To Me.imgMesa.count - 1
+For i = 1 To Me.pbMesa.count - 1
 If vMesa = Me.lblNomMesa(i).Tag Then
     ve = True
     Exit For
@@ -319,12 +339,12 @@ Next
 If ve Then
    ' MsgBox vMesa
     vMesa = ""
-     If Me.imgMesa(i).Tag = "L" Or Me.imgMesa(i).Tag = "R" Then 'Mesa Libre
+     If Me.pbMesa(i).Tag = "L" Or Me.pbMesa(i).Tag = "R" Then 'Mesa Libre
         frmComanda.VNuevo = True
     Else
         frmComanda.VNuevo = False
     End If
-    frmComanda.vEstado = Me.imgMesa(i).Tag
+    frmComanda.vEstado = Me.pbMesa(i).Tag
     frmComanda.vMesa = Me.lblNomMesa(i).Tag
     frmComanda.vCodZona = VZONA
     'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
@@ -338,12 +358,12 @@ End If
 
 
 'If vModifica = False Then
-'    If Me.imgMesa(Index).Tag = "L" Or Me.imgMesa(Index).Tag = "R" Then 'Mesa Libre
+'    If Me.pbMESA(Index).Tag = "L" Or Me.pbMESA(Index).Tag = "R" Then 'Mesa Libre
 '        frmComanda.VNuevo = True
 '    Else
 '        frmComanda.VNuevo = False
 '    End If
-'    frmComanda.vEstado = Me.imgMesa(Index).Tag
+'    frmComanda.vEstado = Me.pbMESA(Index).Tag
 '    frmComanda.vMesa = Me.lblNomMesa(Index).Tag
 '    frmComanda.vCodZona = vZona
 '    'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
@@ -356,11 +376,11 @@ Private Sub CreaEstructuraXML(vCadena As String)
 
 Dim i As Integer
 vCadena = "<r>"
-For i = 1 To Me.imgMesa.count - 1
+For i = 1 To Me.pbMesa.count - 1
     vCadena = vCadena & "<d "
     vCadena = vCadena & "codmesa=""" & Trim(Me.lblNomMesa(i).Tag) & """ "
-    vCadena = vCadena & "posleft=""" & Trim(Me.imgMesa(i).Left) & """ "
-    vCadena = vCadena & "postop=""" & Trim(Me.imgMesa(i).Top) & """ "
+    vCadena = vCadena & "posleft=""" & Trim(Me.pbMesa(i).Left) & """ "
+    vCadena = vCadena & "postop=""" & Trim(Me.pbMesa(i).Top) & """ "
     vCadena = vCadena & "/>"
 Next
 vCadena = vCadena & "</r>"
@@ -408,47 +428,38 @@ Public Sub CargarMesas(xZona As Integer)
     Dim loopIndice As Integer
 
     'limpiando las mesas
-    For loopIndice = 1 To Me.imgMesa.count - 1
+    For loopIndice = 1 To Me.pbMesa.count - 1
         Unload Me.lblNomMesa(loopIndice)
-        Unload Me.imgMesa(loopIndice)
+        Unload Me.pbMesa(loopIndice)
     Next
 
     For loopIndice = 1 To ORSmESAS.RecordCount
-        Load imgMesa(loopIndice)
-
-       
-        'imgMesa(loopIndice).Enabled = False
-        Me.imgMesa(loopIndice).Left = ORSmESAS!posleft
-        Me.imgMesa(loopIndice).Top = ORSmESAS!postop
+        Load pbMesa(loopIndice)
+        
+        Me.pbMesa(loopIndice).Left = ORSmESAS!posleft
+        Me.pbMesa(loopIndice).Top = ORSmESAS!postop
     
-        'imgMesa(loopIndice).Picture = LoadPicture(App.Path & "\" & Trim(oRsMesas!Estado) & ".gif")
         If Trim(ORSmESAS!ESTADO) = "L" Then
-            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(1).Picture
+            Me.pbMesa(loopIndice).Picture = Me.pbLibre.Picture
         ElseIf Trim(ORSmESAS!ESTADO) = "E" Then
-            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(2).Picture
+            Me.pbMesa(loopIndice).Picture = Me.pbCuenta.Picture
         ElseIf Trim(ORSmESAS!ESTADO) = "R" Then
-            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(3).Picture
+            Me.pbMesa(loopIndice).Picture = Me.pbReservada.Picture
         ElseIf Trim(ORSmESAS!ESTADO) = "O" Then
-            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(4).Picture
-        ElseIf Trim(ORSmESAS!ESTADO) = "U" Then
-            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(5).Picture
-'                ElseIf Trim(oRsMesas!ESTADO) = "C" Then
-'            Me.imgMesa(loopIndice).Picture = Me.ilMesas.ListImages(6).Picture
+            Me.pbMesa(loopIndice).Picture = Me.pbOcupada.Picture
         End If
 
-        Me.imgMesa(loopIndice).Tag = Trim(ORSmESAS!ESTADO)
+        Me.pbMesa(loopIndice).Tag = Trim(ORSmESAS!ESTADO)
 
         Select Case ORSmESAS!ESTADO
 
-            Case "L": Me.imgMesa(loopIndice).ToolTipText = "Mesa Libre"
+            Case "L": Me.pbMesa(loopIndice).ToolTipText = "Mesa Libre"
 
-            Case "E": Me.imgMesa(loopIndice).ToolTipText = "Mesa En Cuenta"
+            Case "E": Me.pbMesa(loopIndice).ToolTipText = "Mesa En Cuenta"
 
-            Case "O": Me.imgMesa(loopIndice).ToolTipText = "Mesa Ocupada"
-            
-            Case "U": Me.imgMesa(loopIndice).ToolTipText = "Mesa Por Cobrar"
+            Case "O": Me.pbMesa(loopIndice).ToolTipText = "Mesa Ocupada"
 
-            Case Else: Me.imgMesa(loopIndice).ToolTipText = "Mesa Reservada"
+            Case Else: Me.pbMesa(loopIndice).ToolTipText = "Mesa Reservada"
         End Select
     
         Load lblNomMesa(loopIndice)
@@ -456,10 +467,10 @@ Public Sub CargarMesas(xZona As Integer)
         Me.lblNomMesa(loopIndice).Caption = Trim(ORSmESAS!mesa)
       ' If Trim(ORSmESAS!cliente) <> "" And Trim(ORSmESAS!ESTADO) <> "L" Then Me.lblNomMesa(loopIndice).Caption = Me.lblNomMesa(loopIndice).Caption & vbCrLf & Trim(ORSmESAS!cliente)  ' gts aca se muestra nombre cliente
         Me.lblNomMesa(loopIndice).Tag = Trim(ORSmESAS!codmesa)
-        Me.lblNomMesa(loopIndice).Move ORSmESAS!posleft, ORSmESAS!postop + imgMesa(loopIndice).Height
+        Me.lblNomMesa(loopIndice).Move ORSmESAS!posleft, ORSmESAS!postop + pbMesa(loopIndice).Height
         'picTable(loopIndice).Caption = Trim(oRsMesas!Mesa)
         
-         Me.imgMesa(loopIndice).Visible = True
+         Me.pbMesa(loopIndice).Visible = True
           Me.lblNomMesa(loopIndice).Visible = True
         ORSmESAS.MoveNext
     Next
@@ -474,7 +485,7 @@ frmZonas.Show
 Unload Me
 End Sub
 
-Private Sub Command3_Click(Index As Integer)
+Private Sub Command3_Click(index As Integer)
 CargarMesas VZONA
 End Sub
 
@@ -485,7 +496,7 @@ End Sub
 Sub Form_DragDrop(Source As Control, x As Single, y As Single)
 If vModifica Then
 Source.Move (x - DragX), (y - DragY)
-lblNomMesa(P).Move Me.imgMesa(P).Left, Me.imgMesa(P).Top + Me.imgMesa(P).Height
+lblNomMesa(p).Move Me.pbMesa(p).Left, Me.pbMesa(p).Top + Me.pbMesa(p).Height
 Else
 CargarMesas VZONA
 Me.Timer1.Enabled = True
@@ -526,14 +537,14 @@ Private Sub Form_Load()
     End If
 
     'Leer_Mesas App.Path & "\Mesas.txt", vbTab
-    P = 0
+    p = 0
     CargarMesas VZONA
     'Cargar Imagenes de Leyenda
-    Me.imgL.Picture = Me.ilMesas.ListImages(1).Picture
-    Me.imgE.Picture = Me.ilMesas.ListImages(2).Picture
-    Me.imgR.Picture = Me.ilMesas.ListImages(3).Picture
-    Me.imgO.Picture = Me.ilMesas.ListImages(4).Picture
-    Me.imgU.Picture = Me.ilMesas.ListImages(5).Picture
+    Me.imgL.Picture = Me.pbLibre.Picture
+    Me.imgE.Picture = Me.pbCuenta.Picture
+    Me.imgR.Picture = Me.pbReservada.Picture
+    Me.imgO.Picture = Me.pbOcupada.Picture
+    'Me.imgU.Picture = Me.ilMesas.ListImages(5).Picture
 End Sub
 
 Private Sub Form_Resize()
@@ -543,13 +554,13 @@ Me.imgL.Top = Me.lblF4.Top + 300
 Me.imgO.Top = Me.imgL.Top
 Me.imgR.Top = Me.imgL.Top
 Me.imgE.Top = Me.imgL.Top
-Me.imgU.Top = Me.imgL.Top
+'Me.imgU.Top = Me.imgL.Top
 
 Me.lblmL.Top = Me.lblF4.Top + 400
 Me.lblmO.Top = Me.lblmL.Top
 Me.lblmR.Top = Me.lblmL.Top
 Me.lblmE.Top = Me.lblmL.Top
-Me.lblmU.Top = Me.lblmL.Top
+'Me.lblmU.Top = Me.lblmL.Top
 
 'Me.imgL.Move 30, Me.ScaleHeight - Me.imgL.Height  ' - (Me.imgO.Height + Me.imgR.Height)
 'Me.lblmL.Move Me.imgL.Width + 170, Me.imgL.Top + 150
@@ -573,10 +584,36 @@ Me.cmdSalir.Move (Me.ScaleWidth - Me.cmdSalir.Width), (Me.ScaleHeight - Me.cmdSa
 
 End Sub
 
-Private Sub imgMesa_Click(Index As Integer)
+Private Sub imgMesa_Click(index As Integer)
 
-    If vModifica = False Then
-        '        If Me.imgMesa(Index).Tag = "U" Then
+  
+
+End Sub
+
+Private Sub imgMesa_DragDrop(index As Integer, _
+                             Source As Control, _
+                             x As Single, _
+                             y As Single)
+
+ 
+End Sub
+
+Private Sub imgMesa_MouseDown(index As Integer, _
+                              Button As Integer, _
+                              Shift As Integer, _
+                              x As Single, _
+                              y As Single)
+
+  
+End Sub
+
+Private Sub imgMesa_MouseUp(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+
+End Sub
+
+Private Sub pbMESA_Click(index As Integer)
+  If vModifica = False Then
+        '        If Me.pbMESA(Index).Tag = "U" Then
         '            MsgBox "La Mesa se encuentra en uso.", vbInformation, Pub_Titulo
         '
         '            Exit Sub
@@ -623,7 +660,7 @@ Private Sub imgMesa_Click(Index As Integer)
 
         Dim xmozo As Integer
 
-        If Me.imgMesa(Index).Tag = "L" Or Me.imgMesa(Index).Tag = "R" Then 'Mesa Libre
+        If Me.pbMesa(index).Tag = "L" Or Me.pbMesa(index).Tag = "R" Then 'Mesa Libre
         
             If LK_USU_PASSWORD = "A" Then   'requiere password
                 
@@ -633,7 +670,7 @@ Private Sub imgMesa_Click(Index As Integer)
                     LimpiaParametros oCmdEjec
                     oCmdEjec.CommandText = "SPVERIFICA_MOZOMESA"
 
-                    Set orsM = oCmdEjec.Execute(, Array(LK_CODCIA, Me.lblNomMesa(Index).Tag))
+                    Set orsM = oCmdEjec.Execute(, Array(LK_CODCIA, Me.lblNomMesa(index).Tag))
 
                     If orsM.EOF Then
                         vPasa = True
@@ -671,7 +708,7 @@ Private Sub imgMesa_Click(Index As Integer)
                     LimpiaParametros oCmdEjec
                     oCmdEjec.CommandText = "SPVERIFICA_MOZOMESA"
 
-                    Set orsM = oCmdEjec.Execute(, Array(LK_CODCIA, Me.lblNomMesa(Index).Tag))
+                    Set orsM = oCmdEjec.Execute(, Array(LK_CODCIA, Me.lblNomMesa(index).Tag))
 
                     If orsM.EOF Then
                         vPasa = True
@@ -708,15 +745,15 @@ Private Sub imgMesa_Click(Index As Integer)
 
         If LK_USU_PASSWORD = "A" Then
             If Not vPasa Then Exit Sub
-            If Me.imgMesa(Index).Tag = "L" Or Me.imgMesa(Index).Tag = "R" Then 'Mesa Libre
+            If Me.pbMesa(index).Tag = "L" Or Me.pbMesa(index).Tag = "R" Then 'Mesa Libre
         
                 frmComanda.VNuevo = True
                 frmComanda.vPrimero = True
-                frmComanda.vEstado = Me.imgMesa(Index).Tag
-                frmComanda.vMesa = Me.lblNomMesa(Index).Tag
+                frmComanda.vEstado = Me.pbMesa(index).Tag
+                frmComanda.vMesa = Me.lblNomMesa(index).Tag
                 frmComanda.vCodZona = VZONA
                 'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
-                frmComanda.lblmesa.Caption = Me.lblNomMesa(Index).Caption
+                frmComanda.lblmesa.Caption = Me.lblNomMesa(index).Caption
     
                 Me.Timer1.Enabled = False
                 frmComanda.Show vbModal
@@ -725,11 +762,11 @@ Private Sub imgMesa_Click(Index As Integer)
             Else
                 frmComanda.VNuevo = False
                 frmComanda.vPrimero = False
-                frmComanda.vEstado = Me.imgMesa(Index).Tag
-                frmComanda.vMesa = Me.lblNomMesa(Index).Tag
+                frmComanda.vEstado = Me.pbMesa(index).Tag
+                frmComanda.vMesa = Me.lblNomMesa(index).Tag
                 frmComanda.vCodZona = VZONA
                 'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
-                frmComanda.lblmesa.Caption = Me.lblNomMesa(Index).Caption
+                frmComanda.lblmesa.Caption = Me.lblNomMesa(index).Caption
     
                 Me.Timer1.Enabled = False
                 frmComanda.Show vbModal
@@ -738,32 +775,32 @@ Private Sub imgMesa_Click(Index As Integer)
 
         Else
 
-            If Me.imgMesa(Index).Tag = "L" Or Me.imgMesa(Index).Tag = "R" Then 'Mesa Libre
+            If Me.pbMesa(index).Tag = "L" Or Me.pbMesa(index).Tag = "R" Then 'Mesa Libre
         
                 frmComanda.VNuevo = True
                 frmComanda.vPrimero = True
-                frmComanda.vEstado = Me.imgMesa(Index).Tag
-                frmComanda.vMesa = Me.lblNomMesa(Index).Tag
+                frmComanda.vEstado = Me.pbMesa(index).Tag
+                frmComanda.vMesa = Me.lblNomMesa(index).Tag
                 frmComanda.vCodZona = VZONA
                 'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
-                frmComanda.lblmesa.Caption = Me.lblNomMesa(Index).Caption
+                frmComanda.lblmesa.Caption = Me.lblNomMesa(index).Caption
                 Me.Timer1.Enabled = False
                 frmComanda.Show vbModal
                 Me.Timer1.Enabled = True
             Else
                 frmComanda.VNuevo = False
                 frmComanda.vPrimero = False
-                frmComanda.vEstado = Me.imgMesa(Index).Tag
-                frmComanda.vMesa = Me.lblNomMesa(Index).Tag
+                frmComanda.vEstado = Me.pbMesa(index).Tag
+                frmComanda.vMesa = Me.lblNomMesa(index).Tag
                 frmComanda.vCodZona = VZONA
                 'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
-                frmComanda.lblmesa.Caption = Me.lblNomMesa(Index).Caption
+                frmComanda.lblmesa.Caption = Me.lblNomMesa(index).Caption
     
                 LimpiaParametros oCmdEjec
                 oCmdEjec.CommandText = "spcargamozosBYmesa"
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@fecha", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mesa", adVarChar, adParamInput, 10, Me.lblNomMesa(Index).Tag) 'JULIO 09/02/2011
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mesa", adVarChar, adParamInput, 10, Me.lblNomMesa(index).Tag) 'JULIO 09/02/2011
                
                 Dim ORSx As ADODB.Recordset
 
@@ -780,15 +817,10 @@ Private Sub imgMesa_Click(Index As Integer)
         End If
    
     End If
-
 End Sub
 
-Private Sub imgMesa_DragDrop(Index As Integer, _
-                             Source As Control, _
-                             x As Single, _
-                             y As Single)
-
-    'MsgBox "Mesa origen: " & Me.lblNomMesa(Source.Index).Tag & " => " & Me.lblNomMesa(Source.Index).Caption
+Private Sub pbMESA_DragDrop(index As Integer, Source As Control, x As Single, y As Single)
+   'MsgBox "Mesa origen: " & Me.lblNomMesa(Source.Index).Tag & " => " & Me.lblNomMesa(Source.Index).Caption
     'MsgBox "Mesa destino: " & Me.lblNomMesa(Index).Tag & " => " & Me.lblNomMesa(Index).Caption
 
     On Error GoTo UneMesas
@@ -811,15 +843,15 @@ Private Sub imgMesa_DragDrop(Index As Integer, _
     '            MsgBox Split(xMENSAJE, "=")(1), vbInformation, Pub_Titulo
     '        Else
         
-    If MsgBox("¿Desea mover el Pedido de la mesa " & Me.lblNomMesa(Source.Index).Caption & vbCrLf & "a la mesa " & Me.lblNomMesa(Index).Tag & "?", vbQuestion + vbYesNo, Pub_Titulo) = vbNo Then Exit Sub
+    If MsgBox("¿Desea mover el Pedido de la mesa " & Me.lblNomMesa(Source.index).Caption & vbCrLf & "a la mesa " & Me.lblNomMesa(index).Tag & "?", vbQuestion + vbYesNo, Pub_Titulo) = vbNo Then Exit Sub
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SP_PEDIDOS_UNIR_MESAS"
        
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@usuario", adVarChar, adParamInput, 10, LK_CODUSU)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@origen", adVarChar, adParamInput, 10, Me.lblNomMesa(Source.Index).Tag)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@destino", adVarChar, adParamInput, 10, Me.lblNomMesa(Index).Tag)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@origen", adVarChar, adParamInput, 10, Me.lblNomMesa(Source.index).Tag)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@destino", adVarChar, adParamInput, 10, Me.lblNomMesa(index).Tag)
     
     Set oRSfp = oCmdEjec.Execute
             
@@ -843,24 +875,19 @@ UneMesas:
     MsgBox Err.Description, vbCritical, Pub_Titulo
 End Sub
 
-Private Sub imgMesa_MouseDown(Index As Integer, _
-                              Button As Integer, _
-                              Shift As Integer, _
-                              x As Single, _
-                              y As Single)
-
-    'Si el boton del raton es el derecho, no hacemos nada
+Private Sub pbMESA_MouseDown(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+  'Si el boton del raton es el derecho, no hacemos nada
     If Button = 1 Then Exit Sub
     'If vModifica = False Then Exit Sub
-    imgMesa(Index).Drag 1
+    Me.pbMesa(index).Drag 1
     Timer1.Enabled = False
     'DragX = X
     'DragY = Y
-    P = Index
+    p = index
 End Sub
 
-Private Sub imgMesa_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
-Me.imgMesa(Index).Drag 2
+Private Sub pbMESA_MouseUp(index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
+Me.pbMesa(index).Drag 2
 End Sub
 
 Private Sub Timer1_Timer()

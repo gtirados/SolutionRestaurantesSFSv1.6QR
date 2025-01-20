@@ -1,4 +1,5 @@
 VERSION 5.00
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form frmZonas 
    BackColor       =   &H00FFC0C0&
    BorderStyle     =   1  'Fixed Single
@@ -24,35 +25,49 @@ Begin VB.Form frmZonas
    MinButton       =   0   'False
    ScaleHeight     =   8025
    ScaleWidth      =   13530
-   Begin VB.CommandButton cmdSalir 
-      Caption         =   "&Salir"
+   Begin XtremeSuiteControls.PushButton cmdZonAnt 
       Height          =   495
-      Left            =   2760
-      Picture         =   "frmZonas.frx":08CB
-      Style           =   1  'Graphical
-      TabIndex        =   2
-      Top             =   7440
-      Width           =   1215
-   End
-   Begin VB.CommandButton cmdZonSig 
-      Enabled         =   0   'False
-      Height          =   495
-      Left            =   1440
-      Picture         =   "frmZonas.frx":0FB5
-      Style           =   1  'Graphical
+      Left            =   120
       TabIndex        =   1
       Top             =   7440
       Width           =   1215
-   End
-   Begin VB.CommandButton cmdZonAnt 
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   873
+      _StockProps     =   79
       Enabled         =   0   'False
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmZonas.frx":08CB
+   End
+   Begin XtremeSuiteControls.PushButton cmdZonSig 
       Height          =   495
-      Left            =   120
-      Picture         =   "frmZonas.frx":16A0
-      Style           =   1  'Graphical
-      TabIndex        =   0
+      Left            =   1440
+      TabIndex        =   2
       Top             =   7440
       Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   873
+      _StockProps     =   79
+      Enabled         =   0   'False
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmZonas.frx":1045
+   End
+   Begin XtremeSuiteControls.PushButton cmdSalir 
+      Height          =   495
+      Left            =   2760
+      TabIndex        =   3
+      Top             =   7440
+      Width           =   1215
+      _Version        =   786433
+      _ExtentX        =   2143
+      _ExtentY        =   873
+      _StockProps     =   79
+      Caption         =   "&Salir"
+      Appearance      =   6
+      DrawFocusRect   =   0   'False
    End
    Begin VB.Label lblnZona 
       BackColor       =   &H00FFC0C0&
@@ -70,7 +85,7 @@ Begin VB.Form frmZonas
       Height          =   255
       Index           =   0
       Left            =   720
-      TabIndex        =   3
+      TabIndex        =   0
       Top             =   2880
       Visible         =   0   'False
       Width           =   3360
@@ -80,7 +95,7 @@ Begin VB.Form frmZonas
       Height          =   2160
       Index           =   0
       Left            =   50
-      Picture         =   "frmZonas.frx":1D8B
+      Picture         =   "frmZonas.frx":17BF
       Stretch         =   -1  'True
       Top             =   50
       Visible         =   0   'False
@@ -164,8 +179,7 @@ End Sub
 Private Sub Form_Load()
     vIniLeft = 50
     vIniTop = 50
-   CentrarFormulario MDIForm1, Me
-    'Me.cmdZonAnt.Left = vIniLeft
+    CentrarFormulario MDIForm1, Me
 
     Dim VZONA    As Integer
 
@@ -200,9 +214,12 @@ Private Sub Form_Load()
     If VZONA > 12 Then Me.cmdZonSig.Enabled = True
     If pos2 > 0 Then: vPagTotZon = ent + 1
 
-    Dim b As Integer
-Dim xFILA As Integer
-xFILA = 1
+    Dim b     As Integer
+
+    Dim xFILA As Integer
+
+    xFILA = 1
+
     For b = 1 To VZONA
         Load Me.imgZonas(b)
         Load Me.lblnZona(b)
@@ -210,34 +227,33 @@ xFILA = 1
         If f <= 4 Then '1° fila
             If f <> 1 Then
                 vIniLeft = vIniLeft + Me.imgZonas(f - 1).Width
+
             End If
 
         ElseIf f <= 8 Then '2° fila
-xFILA = 2
+            xFILA = 2
+
             If f = 5 Then
                 vIniLeft = 50
                 vIniTop = vIniTop + Me.imgZonas(f - 1).Height + Me.lblnZona(f - 1).Height
             Else
                 vIniLeft = vIniLeft + Me.imgZonas(f - 1).Width
+
             End If
 
         ElseIf f <= 12 Then
-xFILA = 3
+            xFILA = 3
+
             If f = 9 Then
                 vIniLeft = 50
                 vIniTop = vIniTop + Me.imgZonas(f - 1).Height + Me.lblnZona(f - 1).Height
             Else
                 vIniLeft = vIniLeft + Me.imgZonas(f - 1).Width
+
             End If
+
         End If
 
-        '        If f > 12 Then
-        '            vIniLeft = 50
-        '            f = 1
-        '        ElseIf b > 1 Then
-        '            vIniLeft = vIniLeft + Me.imgZonas(b - 1).Width
-        '        End If
-        '
         Me.imgZonas(b).Visible = True
         Me.imgZonas(b).Tag = oRsZonas!Codigo
         Me.imgZonas(b).Move vIniLeft, vIniTop
@@ -253,6 +269,7 @@ xFILA = 3
             vIniLeft = 50
         Else
             f = f + 1
+
         End If
         
         oRsZonas.MoveNext
@@ -270,12 +287,14 @@ xFILA = 3
         Me.cmdSalir.Top = Me.imgZonas(1).Height + Me.lblnZona(1).Height + Me.cmdSalir.Height
         Me.cmdZonAnt.Top = Me.imgZonas(1).Height + Me.lblnZona(1).Height + Me.cmdSalir.Height
         Me.cmdZonSig.Top = Me.imgZonas(1).Height + Me.lblnZona(1).Height + Me.cmdSalir.Height
-        ElseIf xFILA = 2 Then
+    ElseIf xFILA = 2 Then
         Me.Height = (Me.imgZonas(1).Height * 2) + (Me.lblnZona(1).Height * 2) + 1000 + (Me.cmdSalir.Height * 2)
-         Me.cmdSalir.Top = (Me.imgZonas(1).Height * 2) + (Me.lblnZona(1).Height * 2) + (Me.cmdSalir.Height * 2)
+        Me.cmdSalir.Top = (Me.imgZonas(1).Height * 2) + (Me.lblnZona(1).Height * 2) + (Me.cmdSalir.Height * 2)
         Me.cmdZonAnt.Top = (Me.imgZonas(1).Height * 2) + (Me.lblnZona(1).Height * 2) + (Me.cmdSalir.Height * 2)
         Me.cmdZonSig.Top = (Me.imgZonas(1).Height * 2) + (Me.lblnZona(1).Height * 2) + (Me.cmdSalir.Height * 2)
+
     End If
+
 End Sub
 
 Private Sub imgZonas_Click(Index As Integer)

@@ -1,93 +1,364 @@
 VERSION 5.00
-Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "MSMASK32.OCX"
+Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "msmask32.ocx"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form PASSFORM 
-   BackColor       =   &H00FAEFDA&
-   BorderStyle     =   0  'None
+   BorderStyle     =   1  'Fixed Single
    Caption         =   "ADMIN - Ingresos de Usuario"
-   ClientHeight    =   5490
-   ClientLeft      =   1005
-   ClientTop       =   1995
-   ClientWidth     =   4830
-   ForeColor       =   &H00FFFF00&
+   ClientHeight    =   6510
+   ClientLeft      =   1050
+   ClientTop       =   2370
+   ClientWidth     =   8640
+   BeginProperty Font 
+      Name            =   "Verdana"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   ForeColor       =   &H00000000&
    Icon            =   "passform2.frx":0000
    LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
    MousePointer    =   1  'Arrow
    PaletteMode     =   1  'UseZOrder
-   ScaleHeight     =   5490
-   ScaleWidth      =   4830
-   ShowInTaskbar   =   0   'False
+   ScaleHeight     =   434
+   ScaleMode       =   3  'Pixel
+   ScaleWidth      =   576
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
-   Begin VB.CommandButton SALIR 
-      BackColor       =   &H00FFFFFF&
-      Caption         =   "&Salir del Sistema"
+   Begin XtremeSuiteControls.GroupBox GroupBox2 
+      Height          =   6255
+      Left            =   3600
+      TabIndex        =   17
+      Top             =   120
+      Width           =   4935
+      _Version        =   786433
+      _ExtentX        =   8705
+      _ExtentY        =   11033
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton cmdIngresar 
+         Height          =   1215
+         Left            =   120
+         TabIndex        =   8
+         Top             =   4560
+         Width           =   2295
+         _Version        =   786433
+         _ExtentX        =   4048
+         _ExtentY        =   2143
+         _StockProps     =   79
+         Caption         =   "&Acceder"
+         UseVisualStyle  =   -1  'True
+         Picture         =   "passform2.frx":0442
+      End
+      Begin XtremeSuiteControls.FlatEdit Text1 
+         Height          =   405
+         Left            =   1320
+         TabIndex        =   3
+         Top             =   1560
+         Width           =   3495
+         _Version        =   786433
+         _ExtentX        =   6165
+         _ExtentY        =   714
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         PasswordChar    =   "*"
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
+      End
+      Begin XtremeSuiteControls.CheckBox cheguarda 
+         Height          =   255
+         Left            =   1320
+         TabIndex        =   5
+         TabStop         =   0   'False
+         Top             =   2160
+         Width           =   2655
+         _Version        =   786433
+         _ExtentX        =   4683
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "&Guardar Password"
+         ForeColor       =   9128212
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+      End
+      Begin XtremeSuiteControls.FlatEdit Label3 
+         Height          =   405
+         Left            =   1320
+         TabIndex        =   7
+         TabStop         =   0   'False
+         Top             =   1080
+         Width           =   3495
+         _Version        =   786433
+         _ExtentX        =   6165
+         _ExtentY        =   714
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Enabled         =   0   'False
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
+      End
+      Begin MSMask.MaskEdBox fecha_proceso 
+         Height          =   405
+         Left            =   1920
+         TabIndex        =   6
+         Top             =   2640
+         Width           =   1815
+         _ExtentX        =   3201
+         _ExtentY        =   714
+         _Version        =   393216
+         Enabled         =   0   'False
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         PromptChar      =   "_"
+      End
+      Begin XtremeSuiteControls.PushButton Salir 
+         Height          =   1215
+         Left            =   2520
+         TabIndex        =   9
+         Top             =   4560
+         Width           =   2295
+         _Version        =   786433
+         _ExtentX        =   4048
+         _ExtentY        =   2143
+         _StockProps     =   79
+         Caption         =   "&Salir del Sistema"
+         UseVisualStyle  =   -1  'True
+         Picture         =   "passform2.frx":211C
+      End
+      Begin XtremeSuiteControls.Label lblarraos 
+         Height          =   360
+         Left            =   0
+         TabIndex        =   24
+         Top             =   5880
+         Width           =   4935
+         _Version        =   786433
+         _ExtentX        =   8705
+         _ExtentY        =   635
+         _StockProps     =   79
+         Caption         =   "Solution for Business"
+         ForeColor       =   14737632
+         BackColor       =   9128212
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+         AutoEllipsis    =   -1  'True
+      End
+      Begin VB.Label label4 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00C0C0C0&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Fecha del Sistema :"
+         ForeColor       =   &H008B4914&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   23
+         Top             =   2760
+         Width           =   1695
+      End
+      Begin VB.Label LBLPAS 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00C0C0C0&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Password :"
+         ForeColor       =   &H008B4914&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   22
+         Top             =   1710
+         Width           =   945
+      End
+      Begin VB.Label lblDescripción 
+         AutoSize        =   -1  'True
+         BackColor       =   &H00C0C0C0&
+         BackStyle       =   0  'Transparent
+         Caption         =   "Descripción: "
+         ForeColor       =   &H008B4914&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   21
+         Top             =   1185
+         Width           =   1125
+      End
+      Begin VB.Label Label7 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Compañia por Defecto :"
+         ForeColor       =   &H008B4914&
+         Height          =   195
+         Left            =   120
+         TabIndex        =   20
+         Top             =   3480
+         Width           =   2070
+      End
+      Begin XtremeSuiteControls.Label Momento 
+         Height          =   600
+         Left            =   120
+         TabIndex        =   19
+         Top             =   3840
+         Width           =   4695
+         _Version        =   786433
+         _ExtentX        =   8281
+         _ExtentY        =   1058
+         _StockProps     =   79
+         ForeColor       =   9128212
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+         WordWrap        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label lblLabel8 
+         Height          =   615
+         Left            =   120
+         TabIndex        =   18
+         Top             =   240
+         Width           =   4695
+         _Version        =   786433
+         _ExtentX        =   8281
+         _ExtentY        =   1085
+         _StockProps     =   79
+         Caption         =   "SAL Y PIMIENTA"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   15.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+         WordWrap        =   -1  'True
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox GroupBox1 
+      Height          =   6225
+      Left            =   120
+      TabIndex        =   16
+      Top             =   120
+      Width           =   3375
+      _Version        =   786433
+      _ExtentX        =   5953
+      _ExtentY        =   10980
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton pbAnterior 
+         Height          =   975
+         Left            =   60
+         TabIndex        =   1
+         TabStop         =   0   'False
+         Top             =   150
+         Width           =   3255
+         _Version        =   786433
+         _ExtentX        =   5741
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   6
+         Picture         =   "passform2.frx":3DF6
+      End
+      Begin XtremeSuiteControls.PushButton pbSiguiente 
+         Height          =   975
+         Left            =   60
+         TabIndex        =   2
+         TabStop         =   0   'False
+         Top             =   5150
+         Width           =   3255
+         _Version        =   786433
+         _ExtentX        =   5741
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   6
+         Picture         =   "passform2.frx":5AD0
+      End
+      Begin XtremeSuiteControls.PushButton pbUsuario 
+         Height          =   975
+         Index           =   0
+         Left            =   60
+         TabIndex        =   4
+         TabStop         =   0   'False
+         Top             =   150
+         Visible         =   0   'False
+         Width           =   3255
+         _Version        =   786433
+         _ExtentX        =   5741
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Caption         =   "Usuario"
+         Appearance      =   6
+         DrawFocusRect   =   0   'False
+         Picture         =   "passform2.frx":77AA
+         ImageAlignment  =   0
+      End
+   End
+   Begin VB.Frame F2 
+      BackColor       =   &H00FAEFDA&
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   615
-      Left            =   1380
-      Picture         =   "passform2.frx":0442
-      Style           =   1  'Graphical
-      TabIndex        =   17
-      TabStop         =   0   'False
-      Top             =   4440
-      Width           =   1815
-   End
-   Begin VB.Frame F2 
-      BackColor       =   &H00FAEFDA&
       Height          =   3855
-      Left            =   120
-      TabIndex        =   5
-      Top             =   510
+      Left            =   13080
+      TabIndex        =   10
+      Top             =   4680
       Visible         =   0   'False
       Width           =   4575
-      Begin VB.CommandButton cmdIngresar 
-         BackColor       =   &H00FFFFFF&
-         Caption         =   "&Ok."
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   825
-         Left            =   3240
-         Picture         =   "passform2.frx":0CB8
-         Style           =   1  'Graphical
-         TabIndex        =   4
-         Top             =   2265
-         Width           =   1095
-      End
-      Begin VB.CheckBox cheguarda 
-         BackColor       =   &H00FAEFDA&
-         Caption         =   "&Guardar Password "
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   255
-         Left            =   1320
-         TabIndex        =   3
-         Top             =   1440
-         Width           =   1935
-      End
       Begin VB.TextBox Text2 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -101,111 +372,10 @@ Begin VB.Form PASSFORM
          Height          =   285
          Left            =   1320
          TabIndex        =   0
-         Top             =   240
-         Width           =   1335
-      End
-      Begin MSMask.MaskEdBox fecha_proceso 
-         Height          =   285
-         Left            =   1320
-         TabIndex        =   2
-         Top             =   2040
-         Width           =   1575
-         _ExtentX        =   2778
-         _ExtentY        =   503
-         _Version        =   393216
-         Enabled         =   0   'False
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         PromptChar      =   "_"
-      End
-      Begin VB.TextBox Text1 
-         BackColor       =   &H00FFFFFF&
-         Enabled         =   0   'False
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   285
-         IMEMode         =   3  'DISABLE
-         Left            =   1320
-         MaxLength       =   10
-         PasswordChar    =   "*"
-         TabIndex        =   1
          TabStop         =   0   'False
-         Top             =   1080
-         Width           =   1545
-      End
-      Begin VB.Label Label7 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Compañia por Defecto :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   255
-         Left            =   120
-         TabIndex        =   18
-         Top             =   3360
-         Width           =   2295
-      End
-      Begin VB.Label Label1 
-         BackColor       =   &H00C0C0C0&
-         BackStyle       =   0  'Transparent
-         Caption         =   "Descripción: "
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   255
-         Left            =   135
-         TabIndex        =   14
-         Top             =   600
-         Width           =   1095
-      End
-      Begin VB.Label Label4 
-         BackColor       =   &H00C0C0C0&
-         BackStyle       =   0  'Transparent
-         Caption         =   "Fecha del Sistema :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   435
-         Left            =   135
-         TabIndex        =   11
-         Top             =   1920
-         Width           =   1065
+         Top             =   240
+         Visible         =   0   'False
+         Width           =   1335
       End
       Begin VB.Label Label5 
          BackColor       =   &H00E0E0E0&
@@ -223,69 +393,10 @@ Begin VB.Form PASSFORM
          ForeColor       =   &H008B4914&
          Height          =   315
          Left            =   150
-         TabIndex        =   9
+         TabIndex        =   11
          Top             =   240
-         Width           =   975
-      End
-      Begin VB.Label LBLPAS 
-         BackColor       =   &H00C0C0C0&
-         BackStyle       =   0  'Transparent
-         Caption         =   "Password :"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   315
-         Left            =   135
-         TabIndex        =   8
-         Top             =   1080
-         Width           =   1185
-      End
-      Begin VB.Label Label3 
-         BackColor       =   &H00FFFFFF&
-         BorderStyle     =   1  'Fixed Single
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Left            =   1320
-         TabIndex        =   7
-         Top             =   600
-         Width           =   3015
-      End
-      Begin VB.Label Momento 
-         Alignment       =   2  'Center
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   " Un Momento  !!!"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H008B4914&
-         Height          =   240
-         Left            =   1410
-         TabIndex        =   6
-         Top             =   3600
          Visible         =   0   'False
-         Width           =   1620
+         Width           =   975
       End
       Begin VB.Label Label6 
          BackColor       =   &H00EAC793&
@@ -303,7 +414,7 @@ Begin VB.Form PASSFORM
          ForeColor       =   &H00800000&
          Height          =   480
          Left            =   135
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   2520
          Width           =   1935
       End
@@ -311,28 +422,8 @@ Begin VB.Form PASSFORM
    Begin VB.Timer Timer1 
       Enabled         =   0   'False
       Interval        =   100
-      Left            =   0
-      Top             =   2520
-   End
-   Begin VB.Label lblbarraos 
-      Alignment       =   2  'Center
-      BackColor       =   &H008B4914&
-      Caption         =   "Solution for Business"
-      BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H00E0E0E0&
-      Height          =   255
-      Left            =   0
-      TabIndex        =   16
-      Top             =   5160
-      Width           =   4815
+      Left            =   12840
+      Top             =   5760
    End
    Begin VB.Label empresa 
       Alignment       =   2  'Center
@@ -349,9 +440,10 @@ Begin VB.Form PASSFORM
       EndProperty
       ForeColor       =   &H00E0E0E0&
       Height          =   255
-      Left            =   120
+      Left            =   12960
       TabIndex        =   15
-      Top             =   120
+      Top             =   3360
+      Visible         =   0   'False
       Width           =   1095
    End
    Begin VB.Label lblempresa 
@@ -369,9 +461,10 @@ Begin VB.Form PASSFORM
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   255
-      Left            =   1215
-      TabIndex        =   12
-      Top             =   120
+      Left            =   14055
+      TabIndex        =   13
+      Top             =   3360
+      Visible         =   0   'False
       Width           =   3480
    End
    Begin VB.Label Label2 
@@ -387,9 +480,10 @@ Begin VB.Form PASSFORM
          Strikethrough   =   0   'False
       EndProperty
       Height          =   435
-      Left            =   240
-      TabIndex        =   10
-      Top             =   2520
+      Left            =   13080
+      TabIndex        =   12
+      Top             =   5760
+      Visible         =   0   'False
       Width           =   1185
    End
 End
@@ -402,6 +496,8 @@ Dim i, j As Integer
 Dim PASSW  As String * 10
 Dim VECES As Integer
 Dim LOC_FLAG_OJO As String
+Private vPagActUsu, vPagTotUsu As Integer
+
 Public Function WRITE1_READ2(WMODO As Integer, Optional wWRITE) As String
 Dim RUTA As String
 On Error GoTo SALE
@@ -532,7 +628,7 @@ pasa_todo:
   MDIForm1.Show
 Exit Sub
 SALE:
- MsgBox "Reiciar Sistema ..Intente Nuevamente...", 48, Pub_Titulo
+ MsgBox "Reiniciar Sistema ..Intente Nuevamente...", 48, Pub_Titulo
   End
  
 fin:
@@ -559,7 +655,7 @@ Screen.MousePointer = 11
 DoEvents
 'PASSFORM.F1.Visible = True
 DoEvents
-PASSFORM.F2.Visible = True
+'PASSFORM.F2.Visible = True
 DoEvents
 PASSFORM.momento.Caption = "Cargando Usuarios ... " + PASSFORM.momento.Caption
 DoEvents
@@ -575,6 +671,14 @@ If WTODO = "" Then
    Exit Sub
 End If
 Text2.Text = Left(WTODO, Len(WTODO) - 1)
+Dim i As Integer
+For i = 1 To Me.pbUsuario.count - 1
+    If Trim(Me.pbUsuario(i).Tag) = Trim(Me.Text2.Text) Then
+        Me.pbUsuario(i).Checked = True
+        Else
+        Me.pbUsuario(i).Checked = False
+        End If
+Next
 If Len(Text2.Text) = 0 Then
    Screen.MousePointer = 0
    Exit Sub
@@ -624,14 +728,106 @@ End Sub
 
 Private Sub Form_Load()
 
-LOC_FLAG_OJO = ""
-PS_GEN(0) = 0
-GEN.Requery
-If GEN.EOF Then
- MsgBox "La Tabla General no Existe Datos"
-Else
- lblempresa.Caption = Trim(GEN!GEN_NOMBRE)
-End If
+    LOC_FLAG_OJO = ""
+    PS_GEN(0) = 0
+    GEN.Requery
+
+    If GEN.EOF Then
+        MsgBox "La Tabla General no Existe Datos"
+    Else
+        lblempresa.Caption = Trim(GEN!GEN_NOMBRE)
+    End If
+
+cargarUsuarios
+End Sub
+
+Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+    If UnloadMode = 0 Then
+        Cancel = True
+    End If
+End Sub
+
+Private Sub pbAnterior_Click()
+
+    Dim ini, fin, f As Integer
+
+    If vPagActUsu = 2 Then
+        ini = 1
+        fin = ini * 4
+    ElseIf vPagActUsu = 1 Then
+        Exit Sub
+    Else
+        FF = vPagActFam - 1
+        ini = (4 * FF) - 3
+        fin = 4 * FF
+
+    End If
+
+    For f = ini To fin
+        Me.pbUsuario(f).Visible = True
+    Next
+
+    If vPagActUsu > 1 Then
+        vPagActUsu = vPagActUsu - 1
+
+        If vPagActUsu = 1 Then: Me.pbAnterior.Enabled = False
+    
+        Me.pbSiguiente.Enabled = True
+
+    End If
+
+End Sub
+
+Private Sub pbSiguiente_Click()
+
+    Dim ini, fin, f As Integer
+
+    If vPagActUsu = 1 Then
+        ini = 1
+        fin = ini * 4
+    ElseIf vPagActUsu = vPagTotUsu Then
+        Exit Sub
+    Else
+        ini = (4 * vPagActUsu) - 3
+        fin = 4 * vPagActFam
+
+    End If
+
+    For f = ini To fin
+        Me.pbUsuario(f).Visible = False
+    Next
+
+    If vPagActUsu < vPagTotUsu Then
+        vPagActUsu = vPagActUsu + 1
+
+        If vPagActUsu = vPagTotUsu Then: Me.pbSiguiente.Enabled = False
+    
+        Me.pbAnterior.Enabled = True
+
+    End If
+
+End Sub
+
+Private Sub pbUsuario_Click(index As Integer)
+
+    Dim i As Integer
+
+    For i = 1 To Me.pbUsuario.count - 1
+
+        If i = index Then
+            Me.pbUsuario(i).Checked = True
+        Else
+            Me.pbUsuario(i).Checked = False
+        End If
+
+    Next
+    
+    Me.Text2.Text = Trim(Me.pbUsuario(index).Tag)
+    Text2_KeyPress 13
+    Me.Text1.SetFocus
+    Me.Text1.SelStart = 0
+    Me.Text1.SelLength = Len(Me.Text1.Text)
+
 End Sub
 
 Private Sub salir_Click()
@@ -642,7 +838,7 @@ Private Sub salir_Click()
         MDIForm1.Caption = ""
         EN.Close
         CN.Close
-        Pub_ConnAdo.Close
+        If Pub_ConnAdo.State = adStateOpen Then Pub_ConnAdo.Close
         Screen.MousePointer = 0
         End
 End Sub
@@ -664,12 +860,12 @@ End If
 If KeyAscii = 27 Then
    VECES = 0
   Timer1.Enabled = False
-  Label3.Caption = ""
+  Label3.Text = ""
   LBLPAS.Visible = True
   Text1.Text = ""
   Text2.Text = ""
   Text2.Enabled = True
-  Text2.SetFocus
+'  Text2.SetFocus
   Exit Sub
 End If
 VECES = VECES + 1
@@ -799,7 +995,7 @@ PASO_TODO:
        cheguarda.Enabled = False
        cmdIngresar.Enabled = False
        USUARIO = Text2.Text
-       Label3.Caption = usu!USU_NOMBRE
+       Label3.Text = Trim(usu!USU_NOMBRE)
        PASSW = usu!USU_CLAVE
        Codi_Grupo = usu!USU_GRUPO1
        LK_CODUSU = Trim(usu!USU_KEY)
@@ -830,28 +1026,28 @@ Private Sub Timer1_Timer()
 LBLPAS.Visible = Not LBLPAS.Visible
 End Sub
 
-Public Function INGRESO_PASS(Texto) As String
+Public Function INGRESO_PASS(TEXTO) As String
 cade = " ABCDEFGHIJKLMNOPQSRTVWXYZ0123456789"
 SIMB = "ò~!@#$%^&*¤¶§éû¬½¼©¥+ãÃÓ¦¢ƒ×Ø£øÜïëÇ"
-TOT = Len(Texto)
+TOT = Len(TEXTO)
 For i = 1 To TOT
- tem = InStr(1, cade, Mid(UCase(Texto), i, 1))
+ tem = InStr(1, cade, Mid(UCase(TEXTO), i, 1))
  CARAC = Mid(SIMB, tem, 1)
- cadena = cadena + CARAC
+ CADENA = CADENA + CARAC
 Next i
-INGRESO_PASS = cadena
+INGRESO_PASS = CADENA
 End Function
 
-Public Function SALIDA_PASS(Texto) As String
+Public Function SALIDA_PASS(TEXTO) As String
 cade = " ABCDEFGHIJKLMNOPQSRTVWXYZ0123456789"
 SIMB = "ò~!@#$%^&*¤¶§éû¬½¼©¥+ãÃÓ¦¢ƒ×Ø£øÜïëÇ"
-TOT = Len(Texto)
+TOT = Len(TEXTO)
 For i = 1 To TOT
- tem = InStr(1, SIMB, Mid(Texto, i, 1))
+ tem = InStr(1, SIMB, Mid(TEXTO, i, 1))
  CARAC = Mid(cade, tem, 1)
- cadena = cadena + CARAC
+ CADENA = CADENA + CARAC
 Next i
-SALIDA_PASS = cadena
+SALIDA_PASS = CADENA
 End Function
 Public Sub ALFA_NUMERICO(Optional tecla)
 'CONVIERTE TODA A MAYUSCULAS LETRAS
@@ -869,4 +1065,65 @@ End If
 End If
 End Sub
 
+Private Sub cargarUsuarios()
+    LimpiaParametros oCmdEjec
 
+    Dim orsUsuarios As ADODB.Recordset
+
+    Dim cantidadUsuarios, vecesIngresa As Integer
+
+    oCmdEjec.CommandText = "[dbo].[SP_USUARIOS_LIST]"
+    Set orsUsuarios = oCmdEjec.Execute
+    
+    cantidadUsuarios = orsUsuarios.RecordCount
+    
+    Dim valor As Double
+
+    Dim i     As Integer
+
+    vecesIngresa = 1
+
+    valor = cantidadUsuarios / 4
+
+    pos = InStr(Trim(str(valor)), ".")
+    pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
+    ent = Left(Trim(str(valor)), pos - 1)
+
+    If ent = "" Then: ent = 0
+    If pos2 > 0 Then: vPagTotUsu = ent + 1
+
+    If cantidadUsuarios >= 1 Then: vPagActUsu = 1
+    If cantidadUsuarios > 4 Then: Me.pbSiguiente.Enabled = True
+
+    If Not orsUsuarios.EOF Then
+
+        For i = 1 To cantidadUsuarios
+            Load Me.pbUsuario(i)
+            
+            If vecesIngresa = 1 Then
+                Me.pbUsuario(i).Top = Me.pbAnterior.Top + 1000
+            Else
+                Me.pbUsuario(i).Top = Me.pbUsuario(i - 1).Top + 1000
+
+            End If
+
+            Me.pbUsuario(i).Caption = orsUsuarios!USUARIO
+            Me.pbUsuario(i).Tag = orsUsuarios!USU_KEY
+
+             Me.pbUsuario(i).Visible = True
+            
+            If vecesIngresa = 4 Then
+                vecesIngresa = 1
+                vPagActUsu = vPagActUsu + 1
+            Else
+                vecesIngresa = vecesIngresa + 1
+
+            End If
+            orsUsuarios.MoveNext
+        Next
+        vPagActUsu = 1
+    End If
+    
+    Pub_ConnAdo.Close
+
+End Sub

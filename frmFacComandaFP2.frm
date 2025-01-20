@@ -1,13 +1,13 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
-Object = "{BB35AEF3-E525-4F8B-81F2-511FF805ABB1}#2.1#0"; "scrollerii.ocx"
+Object = "{BB35AEF3-E525-4F8B-81F2-511FF805ABB1}#2.1#0"; "ScrollerII.ocx"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form frmFacComandaFP2 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Formas de Pago"
-   ClientHeight    =   7275
+   ClientHeight    =   7320
    ClientLeft      =   45
    ClientTop       =   285
-   ClientWidth     =   14055
+   ClientWidth     =   14040
    BeginProperty Font 
       Name            =   "Verdana"
       Size            =   8.25
@@ -17,80 +17,131 @@ Begin VB.Form frmFacComandaFP2
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmFacComandaFP2.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7275
-   ScaleWidth      =   14055
+   ScaleHeight     =   7320
+   ScaleWidth      =   14040
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CommandButton cmdCancelar 
-      Caption         =   "&Cancelar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   12
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   600
-      Left            =   12240
-      TabIndex        =   16
-      Top             =   6600
-      Width           =   1695
-   End
-   Begin VB.CommandButton cmdAceptar 
+   Begin XtremeSuiteControls.PushButton cmdAceptar 
+      Height          =   840
+      Left            =   9960
+      TabIndex        =   24
+      Top             =   6360
+      Width           =   1935
+      _Version        =   786433
+      _ExtentX        =   3413
+      _ExtentY        =   1482
+      _StockProps     =   79
       Caption         =   "&Aceptar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   12
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   600
-      Left            =   10440
-      TabIndex        =   15
-      Top             =   6600
-      Width           =   1695
+      Appearance      =   5
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmFacComandaFP2.frx":1CCA
    End
-   Begin VB.Frame Frame1 
-      Appearance      =   0  'Flat
-      ForeColor       =   &H80000008&
+   Begin XtremeSuiteControls.GroupBox GroFpListado 
       Height          =   4455
       Left            =   4680
       TabIndex        =   2
       Top             =   0
       Width           =   9255
-      Begin VB.CommandButton Command1 
-         Caption         =   "Quitar"
-         Height          =   720
-         Left            =   8040
-         TabIndex        =   17
+      _Version        =   786433
+      _ExtentX        =   16325
+      _ExtentY        =   7858
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton pbQuitar 
+         Height          =   855
+         Left            =   8160
+         TabIndex        =   4
          Top             =   600
-         Width           =   1095
+         Width           =   975
+         _Version        =   786433
+         _ExtentX        =   1720
+         _ExtentY        =   1508
+         _StockProps     =   79
+         Caption         =   "&Quitar"
+         Appearance      =   4
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComandaFP2.frx":39A4
+         TextImageRelation=   1
       End
-      Begin MSComctlLib.ListView lvFP 
+      Begin XtremeSuiteControls.ListView lvFP 
          Height          =   4095
          Left            =   120
          TabIndex        =   3
          Top             =   240
          Width           =   7935
+         _Version        =   786433
          _ExtentX        =   13996
          _ExtentY        =   7223
-         View            =   3
-         LabelEdit       =   1
-         LabelWrap       =   -1  'True
-         HideSelection   =   0   'False
-         _Version        =   393217
-         ForeColor       =   -2147483640
+         _StockProps     =   77
          BackColor       =   -2147483643
-         BorderStyle     =   1
-         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
+      End
+   End
+   Begin ScrollerII.ScrollableContainer ScrollableContainer1 
+      Height          =   4365
+      Left            =   120
+      TabIndex        =   0
+      Top             =   90
+      Width           =   4455
+      _ExtentX        =   7858
+      _ExtentY        =   7699
+      SmallChange     =   1
+      ScaleMode       =   0
+      BorderStyle     =   3
+      Begin XtremeSuiteControls.PushButton cmdFP 
+         Height          =   960
+         Index           =   0
+         Left            =   120
+         TabIndex        =   1
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   3855
+         _Version        =   786433
+         _ExtentX        =   6800
+         _ExtentY        =   1693
+         _StockProps     =   79
+         Caption         =   "PushButton1"
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComandaFP2.frx":411E
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox GroTotales 
+      Height          =   1815
+      Left            =   120
+      TabIndex        =   5
+      Top             =   4440
+      Width           =   13815
+      _Version        =   786433
+      _ExtentX        =   24368
+      _ExtentY        =   3201
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.FlatEdit txtPagaCon 
+         Height          =   435
+         Left            =   6480
+         TabIndex        =   20
+         Top             =   1200
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   77
+         BackColor       =   -2147483643
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
             Size            =   12
@@ -100,84 +151,12 @@ Begin VB.Form frmFacComandaFP2
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         NumItems        =   0
+         Alignment       =   1
       End
-   End
-   Begin ScrollerII.ScrollableContainer ScrollableContainer1 
-      Height          =   4360
-      Left            =   120
-      TabIndex        =   0
-      Top             =   95
-      Width           =   4455
-      _ExtentX        =   7858
-      _ExtentY        =   7699
-      SmallChange     =   1
-      ScaleMode       =   0
-      BorderStyle     =   3
-      Begin VB.CommandButton cmdFP 
-         Caption         =   "Command1"
-         Height          =   960
-         Index           =   0
-         Left            =   120
-         TabIndex        =   1
-         Top             =   120
-         Visible         =   0   'False
-         Width           =   3855
-      End
-   End
-   Begin VB.Frame Frame2 
-      Appearance      =   0  'Flat
-      ForeColor       =   &H80000008&
-      Height          =   2055
-      Left            =   120
-      TabIndex        =   4
-      Top             =   4440
-      Width           =   13815
-      Begin VB.TextBox txtPagaCon 
-         Alignment       =   1  'Right Justify
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   435
-         Left            =   6480
-         TabIndex        =   21
-         Text            =   "0.00"
-         Top             =   1440
-         Width           =   1755
-      End
-      Begin VB.Label lblicbper 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   435
-         Left            =   2520
-         TabIndex        =   25
-         Top             =   1440
-         Width           =   1755
-      End
-      Begin VB.Label Label9 
+      Begin VB.Label Label3 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "ICBPER:"
+         Caption         =   "Total Contado:"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   12
@@ -188,10 +167,10 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   1080
-         TabIndex        =   24
-         Top             =   1515
-         Width           =   1005
+         Left            =   600
+         TabIndex        =   23
+         Top             =   322
+         Width           =   1845
       End
       Begin VB.Label Label8 
          AutoSize        =   -1  'True
@@ -207,61 +186,15 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   1080
-         TabIndex        =   23
-         Top             =   960
+         Left            =   1185
+         TabIndex        =   22
+         Top             =   802
          Width           =   1260
       End
-      Begin VB.Label lblMovilidad 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   435
-         Left            =   2520
-         TabIndex        =   22
-         Top             =   878
-         Width           =   1755
-      End
-      Begin VB.Label lblVuelto 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   435
-         Left            =   10560
-         TabIndex        =   20
-         Top             =   1440
-         Width           =   1755
-      End
-      Begin VB.Label Label7 
+      Begin VB.Label Label9 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Vuelto:"
+         Caption         =   "ICBPER:"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   12
@@ -272,75 +205,29 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   9480
+         Left            =   1440
+         TabIndex        =   21
+         Top             =   1282
+         Width           =   1005
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Total Tarjeta:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   270
+         Left            =   4725
          TabIndex        =   19
-         Top             =   1522
-         Width           =   900
-      End
-      Begin VB.Label Label6 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Paga con:"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   270
-         Left            =   5160
-         TabIndex        =   18
-         Top             =   1522
-         Width           =   1215
-      End
-      Begin VB.Label lblTotalPagar 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   435
-         Left            =   6480
-         TabIndex        =   14
-         Top             =   878
-         Width           =   1755
-      End
-      Begin VB.Label lblTotalPagos 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
-         Height          =   435
-         Left            =   10560
-         TabIndex        =   13
-         Top             =   878
-         Width           =   1755
+         Top             =   322
+         Width           =   1710
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
@@ -356,15 +243,15 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   4635
-         TabIndex        =   12
-         Top             =   960
+         Left            =   4680
+         TabIndex        =   18
+         Top             =   802
          Width           =   1755
       End
-      Begin VB.Label Label1 
+      Begin VB.Label Label6 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Total Pagos:"
+         Caption         =   "Paga con:"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   12
@@ -375,10 +262,10 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   8910
-         TabIndex        =   11
-         Top             =   960
-         Width           =   1560
+         Left            =   5220
+         TabIndex        =   17
+         Top             =   1282
+         Width           =   1215
       End
       Begin VB.Label Label5 
          AutoSize        =   -1  'True
@@ -395,14 +282,14 @@ Begin VB.Form frmFacComandaFP2
          EndProperty
          Height          =   270
          Left            =   8760
-         TabIndex        =   10
-         Top             =   360
+         TabIndex        =   16
+         Top             =   322
          Width           =   1710
       End
-      Begin VB.Label Label4 
+      Begin VB.Label Label1 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Total Tarjeta:"
+         Caption         =   "Total Pagos:"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   12
@@ -413,15 +300,15 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   4680
-         TabIndex        =   9
-         Top             =   360
-         Width           =   1710
+         Left            =   8910
+         TabIndex        =   15
+         Top             =   802
+         Width           =   1560
       End
-      Begin VB.Label Label3 
+      Begin VB.Label Label7 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "Total Contado:"
+         Caption         =   "Vuelto:"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   12
@@ -432,80 +319,218 @@ Begin VB.Form frmFacComandaFP2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   270
-         Left            =   480
-         TabIndex        =   8
-         Top             =   360
-         Width           =   1845
+         Left            =   9570
+         TabIndex        =   14
+         Top             =   1282
+         Width           =   900
       End
-      Begin VB.Label lblTC 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "0.00"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H80000008&
+      Begin XtremeSuiteControls.Label lblVuelto 
          Height          =   435
          Left            =   10560
-         TabIndex        =   7
-         Top             =   278
+         TabIndex        =   13
+         Top             =   1200
          Width           =   1755
-      End
-      Begin VB.Label lblTT 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
          Caption         =   "0.00"
-         BeginProperty Font 
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
             Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H80000008&
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblTotalPagos 
+         Height          =   435
+         Left            =   10560
+         TabIndex        =   12
+         Top             =   720
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblTC 
+         Height          =   435
+         Left            =   10560
+         TabIndex        =   11
+         Top             =   240
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblTotalPagar 
          Height          =   435
          Left            =   6480
-         TabIndex        =   6
-         Top             =   278
+         TabIndex        =   10
+         Top             =   720
          Width           =   1755
-      End
-      Begin VB.Label lblTE 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
-         BackStyle       =   0  'Transparent
-         BorderStyle     =   1  'Fixed Single
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
          Caption         =   "0.00"
-         BeginProperty Font 
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
             Size            =   12
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H80000008&
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblTT 
+         Height          =   435
+         Left            =   6480
+         TabIndex        =   9
+         Top             =   240
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblicbper 
          Height          =   435
          Left            =   2520
-         TabIndex        =   5
-         Top             =   278
+         TabIndex        =   8
+         Top             =   1200
          Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
       End
+      Begin XtremeSuiteControls.Label lblMovilidad 
+         Height          =   435
+         Left            =   2520
+         TabIndex        =   7
+         Top             =   720
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblTE 
+         Height          =   435
+         Left            =   2520
+         TabIndex        =   6
+         Top             =   240
+         Width           =   1755
+         _Version        =   786433
+         _ExtentX        =   3096
+         _ExtentY        =   767
+         _StockProps     =   79
+         Caption         =   "0.00"
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+   End
+   Begin XtremeSuiteControls.PushButton cmdCancelar 
+      Height          =   840
+      Left            =   12000
+      TabIndex        =   25
+      Top             =   6360
+      Width           =   1935
+      _Version        =   786433
+      _ExtentX        =   3413
+      _ExtentY        =   1482
+      _StockProps     =   79
+      Caption         =   "&Cancelar"
+      Appearance      =   5
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmFacComandaFP2.frx":5DF8
    End
 End
 Attribute VB_Name = "frmFacComandaFP2"
@@ -589,7 +614,7 @@ Private Sub cmdAceptar_Click()
 
                 oRSfp.AddNew
                 oRSfp!idformapago = DD.Tag
-                oRSfp!formaPAGO = DD.SubItems(1) ' Me.lblFormaPago(DD).Caption
+                oRSfp!formapago = DD.SubItems(1) ' Me.lblFormaPago(DD).Caption
                 oRSfp!referencia = DD.SubItems(2) 'IIf(Me.cbomoneda(DD).ListIndex = 0, "S", "D")
                 oRSfp!monto = DD.SubItems(3)
                 oRSfp!tipo = DD.SubItems(4)
@@ -644,7 +669,7 @@ Private Sub cmdAceptar_Click()
 
             oRSfp.AddNew
             oRSfp!idformapago = DD.Tag
-            oRSfp!formaPAGO = DD.SubItems(1) ' Me.lblFormaPago(DD).Caption
+            oRSfp!formapago = DD.SubItems(1) ' Me.lblFormaPago(DD).Caption
             oRSfp!referencia = DD.SubItems(2) 'IIf(Me.cbomoneda(DD).ListIndex = 0, "S", "D")
             oRSfp!monto = DD.SubItems(3)
             oRSfp!tipo = DD.SubItems(4)
@@ -695,7 +720,7 @@ Private Sub cmdFP_Click(index As Integer)
         itemX.SubItems(1) = Me.cmdFP(index).Caption
         itemX.Tag = Split(Me.cmdFP(index).Tag, "|")(0)
         itemX.SubItems(2) = Trim(frmFacComandaFP3.gREF)
-        itemX.SubItems(3) = CDec(Me.lblTotalPagar.Caption) - CDec(Me.lblTotalPagos.Caption)
+        itemX.SubItems(3) = CStr(CDec(Me.lblTotalPagar.Caption) - CDec(Me.lblTotalPagos.Caption))
         itemX.SubItems(4) = Split(Me.cmdFP(index).Tag, "|")(1)
         itemX.SubItems(5) = strDato
        
@@ -767,9 +792,7 @@ Private Sub CalcularTotales()
 End Sub
 
 Private Sub Command1_Click()
-If Me.lvFP.ListItems.count = 0 Then Exit Sub
- Me.lvFP.ListItems.Remove Me.lvFP.SelectedItem.index
- CalcularTotales
+
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -818,7 +841,7 @@ Private Sub Form_Load()
         vTop = vTop + Me.cmdFP(f).Height + 50
         
         Me.cmdFP(f).Visible = True
-        Me.cmdFP(f).Caption = oRStp!formaPAGO
+        Me.cmdFP(f).Caption = oRStp!formapago
         Me.cmdFP(f).Tag = oRStp!Codigo & "|" & oRStp!tipo & "|" & oRStp!CRE
      
         oRStp.MoveNext
@@ -876,7 +899,7 @@ Private Sub Form_Load()
         If ORSpr.RecordCount = 0 Then
             oRSfp.AddNew
             oRSfp!idformapago = 1
-            oRSfp!formaPAGO = "CONTADO"
+            oRSfp!formapago = "CONTADO"
             oRSfp!referencia = ""
             oRSfp!monto = CDec(frmDeliveryApp.lblTot.Caption) + IIf(pINCMOV, CDec(Me.lblMovilidad.Caption), 0) + frmDeliveryApp.lblicbper.Caption
             oRSfp!tipo = "E"
@@ -889,7 +912,7 @@ Private Sub Form_Load()
             Do While Not ORSpr.EOF
                 oRSfp.AddNew
                 oRSfp!idformapago = ORSpr!idfp
-                oRSfp!formaPAGO = Trim(ORSpr!fp) ' Me.lblFormaPago(DD).Caption
+                oRSfp!formapago = Trim(ORSpr!fp) ' Me.lblFormaPago(DD).Caption
                 oRSfp!referencia = "" 'DD.SubItems(2) 'IIf(Me.cbomoneda(DD).ListIndex = 0, "S", "D")
                 oRSfp!monto = ORSpr!monto + val(frmDeliveryApp.lblicbper.Caption)
                 oRSfp!tipo = ORSpr!tipo ' "E" 'DD.SubItems(4)
@@ -919,7 +942,7 @@ Private Sub Form_Load()
         
          oRSfp.AddNew
             oRSfp!idformapago = 1
-            oRSfp!formaPAGO = "CONTADO"
+            oRSfp!formapago = "CONTADO"
             oRSfp!referencia = ""
             If gDELIVERY Then
             oRSfp!monto = CDec(frmDeliveryApp.lblTot.Caption) + frmDeliveryApp.lblicbper.Caption
@@ -936,7 +959,7 @@ Private Sub Form_Load()
         Do While Not oRSfp.EOF
            
             Set itemX = Me.lvFP.ListItems.Add(, , Me.lvFP.ListItems.count + 1)
-            itemX.SubItems(1) = oRSfp!formaPAGO
+            itemX.SubItems(1) = oRSfp!formapago
             itemX.SubItems(2) = oRSfp!referencia
             itemX.SubItems(3) = oRSfp!monto
             itemX.SubItems(4) = oRSfp!tipo
@@ -983,15 +1006,16 @@ End Sub
 Private Sub ConfiguraLV()
 
     With Me.lvFP
+        .HideColumnHeaders = False
         .FullRowSelect = True
         .Gridlines = True
-        .LabelEdit = lvwManual
-        .View = lvwReport
+        .LabelEdit = xtpListViewLabelManual
+        .View = xtpListViewReport
         .ColumnHeaders.Add , , "Nro", 700
         .ColumnHeaders.Add , , "Forma Pago", 3000
         .ColumnHeaders.Add , , "Nro Referencia", 2100
         .ColumnHeaders.Add , , "Monto", 1400
-        .ColumnHeaders.Add , , "Tipo", 500
+        .ColumnHeaders.Add , , "Tipo", 0
         .ColumnHeaders.Add , , "FechaVenc", 0
         .MultiSelect = False
         
@@ -1019,6 +1043,13 @@ Private Sub lvFP_DblClick()
 
 End Sub
 
+
+Private Sub pbQuitar_Click()
+If Me.lvFP.ListItems.count = 0 Then Exit Sub
+If Me.lvFP.SelectedItem Is Nothing Then Exit Sub
+ Me.lvFP.ListItems.Remove Me.lvFP.SelectedItem.index
+ CalcularTotales
+End Sub
 
 Private Sub txtPagaCon_Change()
 CalcularTotales

@@ -16,6 +16,7 @@ Begin VB.Form frmMainMesas
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmMainMesas.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
@@ -55,7 +56,7 @@ Begin VB.Form frmMainMesas
          Caption         =   ""
          BackColor1      =   8421504
          BackColor2      =   14737632
-         Icon            =   "frmMainMesas.frx":0000
+         Icon            =   "frmMainMesas.frx":324A
          IconSize        =   3
          IconAlign       =   3
          IconWidth       =   40
@@ -85,7 +86,7 @@ Begin VB.Form frmMainMesas
          Caption         =   ""
          BackColor1      =   16744576
          BackColor2      =   16761024
-         Icon            =   "frmMainMesas.frx":0849
+         Icon            =   "frmMainMesas.frx":3A93
          IconSize        =   3
          IconWidth       =   72
          IconHeight      =   72
@@ -113,7 +114,7 @@ Begin VB.Form frmMainMesas
          Caption         =   ""
          BackColor1      =   16744576
          BackColor2      =   16761024
-         Icon            =   "frmMainMesas.frx":137A
+         Icon            =   "frmMainMesas.frx":45C4
          IconSize        =   3
          IconWidth       =   72
          IconHeight      =   72
@@ -166,7 +167,7 @@ Begin VB.Form frmMainMesas
          checkcaption    =   "Command"
          BackColor1      =   16744576
          BackColor2      =   16761024
-         Icon            =   "frmMainMesas.frx":1E9B
+         Icon            =   "frmMainMesas.frx":50E5
          IconSize        =   3
          IconAlign       =   1
          IconWidth       =   64
@@ -245,14 +246,14 @@ Private vPagActual As Integer, vPagTotal As Integer
 Private vPagActualZ As Integer, vPagTotalZ As Integer
 Private vIDZona As Integer
 
-Private Sub cmdMesa_Click(Index As Integer)
-   If Split(Me.cmdMesa(Index).Tag, "|")(1) = "L" Then 'MESA LIBRE
+Private Sub cmdMesa_Click(index As Integer)
+   If Split(Me.cmdMesa(index).Tag, "|")(1) = "L" Then 'MESA LIBRE
         frmComanda.gDefecto = True
         frmComanda.vPrimero = True
         frmComanda.VNuevo = True
         frmComanda.gMozo = frmMainMozos.gCodMozo
-        frmComanda.vMesa = Split(Me.cmdMesa(Index).Tag, "|")(0)
-        frmComanda.lblmesa.Caption = Me.cmdMesa(Index).Caption
+        frmComanda.vMesa = Split(Me.cmdMesa(index).Tag, "|")(0)
+        frmComanda.lblmesa.Caption = Me.cmdMesa(index).Caption
         frmComanda.lblMozo.Caption = frmMainMozos.gMozo
         frmComanda.Show vbModal
     Else 'MESA OCUPADA
@@ -260,10 +261,10 @@ Private Sub cmdMesa_Click(Index As Integer)
         frmComanda.gDefecto = True
         frmComanda.vPrimero = False
         frmComanda.vEstado = "O"
-        frmComanda.vMesa = Split(Me.cmdMesa(Index).Tag, "|")(0)
+        frmComanda.vMesa = Split(Me.cmdMesa(index).Tag, "|")(0)
         frmComanda.vCodZona = vIDZona
         'frmcomanda.vCodPlato = Me.lblNomMesa(Index).Tag
-        frmComanda.lblmesa.Caption = Me.cmdMesa(Index).Caption
+        frmComanda.lblmesa.Caption = Me.cmdMesa(index).Caption
         frmComanda.gMozo = frmMainMozos.gCodMozo 'nuevo
                 
         frmComanda.Show vbModal
@@ -392,21 +393,21 @@ Private Sub cmdPrevZona_Click()
     End If
 End Sub
 
-Private Sub cmdZona_Click(Index As Integer)
+Private Sub cmdZona_Click(index As Integer)
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SPCARGARMESAS_LIBRES"
 
     Dim ORSmESAS As ADODB.Recordset
 
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODZON", adInteger, adParamInput, , Me.cmdZona(Index).Tag)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODZON", adInteger, adParamInput, , Me.cmdZona(index).Tag)
                 
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODMOZO", adInteger, adParamInput, , frmMainMozos.gCodMozo)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
                 
     Set ORSmESAS = oCmdEjec.Execute
-    Me.lblZona.Caption = Me.cmdZona(Index).Caption
-    vIDZona = Me.cmdZona(Index).Tag
+    Me.lblZona.Caption = Me.cmdZona(index).Caption
+    vIDZona = Me.cmdZona(index).Tag
 
     Dim cont    As Integer
 
@@ -501,7 +502,7 @@ Private Sub cmdZona_Click(Index As Integer)
             cmdMesa(cont).HighColor2 = &HFFFF&
         End If
 
-        cmdMesa(cont).Caption = Trim(ORSmESAS!mesa) & vbCrLf & ORSmESAS!CLIENTE
+        cmdMesa(cont).Caption = Trim(ORSmESAS!mesa) & vbCrLf & ORSmESAS!cliente
         cmdMesa(cont).Enabled = True
 
         '  MsgBox "2"
@@ -518,7 +519,7 @@ Private Sub cmdZona_Click(Index As Integer)
 
     Dim valor As Double
 
-    valor = ORSmESAS.RecordCount / 13
+    valor = ORSmESAS.RecordCount / 34
     pos = InStr(Trim(str(valor)), ".")
 
     If pos <> 0 Then
@@ -546,7 +547,11 @@ Private Sub cmdZona_Click(Index As Integer)
 
     If valor <> 0 Then vPagActual = 1
 
-    If ORSmESAS.RecordCount > 18 Then: Me.cmdNext.Enabled = True
+    If ORSmESAS.RecordCount > 34 Then
+        Me.cmdNext.Enabled = True
+        Else
+        Me.cmdNext.Enabled = False
+        End If
 End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)

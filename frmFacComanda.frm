@@ -1,14 +1,13 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form frmFacComanda 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Facturar Comanda"
-   ClientHeight    =   8805
+   ClientHeight    =   10500
    ClientLeft      =   45
    ClientTop       =   345
-   ClientWidth     =   10110
+   ClientWidth     =   9495
    BeginProperty Font 
       Name            =   "Verdana"
       Size            =   8.25
@@ -18,32 +17,42 @@ Begin VB.Form frmFacComanda
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmFacComanda.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8805
-   ScaleWidth      =   10110
+   ScaleHeight     =   10500
+   ScaleWidth      =   9495
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CommandButton cmdCancelar 
-      Caption         =   "&Cancelar"
-      Height          =   495
-      Left            =   1560
-      TabIndex        =   18
-      Top             =   8280
-      Width           =   1335
+   Begin XtremeSuiteControls.PushButton cmdAceptar 
+      Height          =   855
+      Left            =   30
+      TabIndex        =   53
+      Top             =   9600
+      Width           =   1935
+      _Version        =   786433
+      _ExtentX        =   3413
+      _ExtentY        =   1508
+      _StockProps     =   79
+      Caption         =   "&Aceptar"
+      Appearance      =   4
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmFacComanda.frx":1CCA
    End
    Begin MSComctlLib.ListView ListView1 
       Height          =   1695
-      Left            =   1800
-      TabIndex        =   15
-      Top             =   2040
-      Width           =   7935
-      _ExtentX        =   13996
+      Left            =   1680
+      TabIndex        =   24
+      Top             =   3360
+      Width           =   7575
+      _ExtentX        =   13361
       _ExtentY        =   2990
       View            =   3
+      LabelEdit       =   1
       LabelWrap       =   -1  'True
       HideSelection   =   0   'False
+      HideColumnHeaders=   -1  'True
       _Version        =   393217
       ForeColor       =   -2147483640
       BackColor       =   -2147483643
@@ -51,254 +60,467 @@ Begin VB.Form frmFacComanda
       Appearance      =   1
       NumItems        =   0
    End
-   Begin VB.Frame fraTipDocto 
-      Caption         =   "Empresa que Factura:"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   1455
-      Left            =   240
-      TabIndex        =   0
+   Begin XtremeSuiteControls.GroupBox gbEmpresa 
+      Height          =   1140
+      Left            =   30
+      TabIndex        =   14
       Top             =   0
-      Width           =   9735
-      Begin VB.CheckBox chkprom 
-         Caption         =   "Imprime Promocion"
-         BeginProperty Font 
+      Width           =   9405
+      _Version        =   786433
+      _ExtentX        =   16589
+      _ExtentY        =   2011
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton pbEmpresa 
+         Height          =   975
+         Index           =   0
+         Left            =   6600
+         TabIndex        =   2
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   1335
+         _Version        =   786433
+         _ExtentX        =   2355
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Caption         =   "PushButton3"
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+      End
+      Begin XtremeSuiteControls.PushButton pbEmpresaAnt 
+         Height          =   975
+         Left            =   30
+         TabIndex        =   0
+         Top             =   120
+         Width           =   1335
+         _Version        =   786433
+         _ExtentX        =   2355
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComanda.frx":39A4
+      End
+      Begin XtremeSuiteControls.PushButton pbEmpresaSig 
+         Height          =   975
+         Left            =   8040
+         TabIndex        =   1
+         Top             =   120
+         Width           =   1335
+         _Version        =   786433
+         _ExtentX        =   2355
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComanda.frx":567E
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox gbTipoDoc 
+      Height          =   1140
+      Left            =   30
+      TabIndex        =   15
+      Top             =   1080
+      Width           =   6300
+      _Version        =   786433
+      _ExtentX        =   11112
+      _ExtentY        =   2011
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton pbDocAnt 
+         Height          =   975
+         Left            =   30
+         TabIndex        =   3
+         Top             =   120
+         Width           =   1245
+         _Version        =   786433
+         _ExtentX        =   2196
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComanda.frx":7358
+      End
+      Begin XtremeSuiteControls.PushButton pbDocSig 
+         Height          =   975
+         Left            =   5010
+         TabIndex        =   4
+         Top             =   120
+         Width           =   1245
+         _Version        =   786433
+         _ExtentX        =   2196
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Enabled         =   0   'False
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+         Picture         =   "frmFacComanda.frx":9032
+      End
+      Begin XtremeSuiteControls.PushButton pbDoc 
+         Height          =   975
+         Index           =   0
+         Left            =   2040
+         TabIndex        =   5
+         Top             =   120
+         Visible         =   0   'False
+         Width           =   1245
+         _Version        =   786433
+         _ExtentX        =   2196
+         _ExtentY        =   1720
+         _StockProps     =   79
+         Caption         =   "Documento"
+         Appearance      =   5
+         DrawFocusRect   =   0   'False
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox GroupBox3 
+      Height          =   1140
+      Left            =   6360
+      TabIndex        =   16
+      Top             =   1080
+      Width           =   3075
+      _Version        =   786433
+      _ExtentX        =   5424
+      _ExtentY        =   2011
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.CheckBox chkEdit 
+         Height          =   255
+         Left            =   600
+         TabIndex        =   6
+         Top             =   240
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "Editar Número"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
-            Size            =   8.25
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00008000&
+         Enabled         =   0   'False
+         Appearance      =   6
+      End
+      Begin XtremeSuiteControls.FlatEdit txtNro 
+         Height          =   375
+         Left            =   1200
+         TabIndex        =   7
+         Top             =   600
+         Width           =   1575
+         _Version        =   786433
+         _ExtentX        =   2778
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Enabled         =   0   'False
+         Alignment       =   2
+         MaxLength       =   10
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
+      End
+      Begin XtremeSuiteControls.Label lblSerie 
+         Height          =   375
+         Left            =   210
+         TabIndex        =   17
+         Top             =   600
+         Width           =   975
+         _Version        =   786433
+         _ExtentX        =   1720
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox GroupBox1 
+      Height          =   615
+      Left            =   30
+      TabIndex        =   18
+      Top             =   2160
+      Width           =   9405
+      _Version        =   786433
+      _ExtentX        =   16589
+      _ExtentY        =   1085
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.CheckBox chkprom 
          Height          =   255
-         Left            =   6480
-         TabIndex        =   41
+         Left            =   480
+         TabIndex        =   8
          Top             =   240
          Visible         =   0   'False
          Width           =   2295
-      End
-      Begin MSDataListLib.DataCombo DatEmpresas 
-         Height          =   315
-         Left            =   120
-         TabIndex        =   35
-         Top             =   280
-         Width           =   3615
-         _ExtentX        =   6376
-         _ExtentY        =   556
-         _Version        =   393216
-         Style           =   2
-         Text            =   ""
-      End
-      Begin VB.CheckBox chkGratuito 
-         Caption         =   "Transferencia Gratuita"
-         BeginProperty Font 
+         _Version        =   786433
+         _ExtentX        =   4048
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "Imprime Promoción"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   375
-         Left            =   6480
-         TabIndex        =   33
-         Top             =   840
-         Width           =   3015
+         Appearance      =   6
       End
-      Begin VB.CheckBox chkEdit 
-         Caption         =   "Editar Número"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
+      Begin XtremeSuiteControls.CheckBox chkConsumo 
          Height          =   255
-         Left            =   4320
-         TabIndex        =   27
-         Top             =   960
-         Width           =   2055
-      End
-      Begin MSDataListLib.DataCombo DatTiposDoctos 
-         Height          =   315
-         Left            =   120
-         TabIndex        =   26
-         Top             =   960
-         Width           =   2055
-         _ExtentX        =   3625
-         _ExtentY        =   556
-         _Version        =   393216
-         Style           =   2
-         Text            =   "TiposDoctos"
-      End
-      Begin VB.CheckBox chkConsumo 
-         Caption         =   "Facturar x Consumo"
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   255
-         Left            =   6480
-         TabIndex        =   19
-         Top             =   600
-         Visible         =   0   'False
-         Width           =   2655
-      End
-      Begin VB.TextBox txtNro 
-         Enabled         =   0   'False
-         Height          =   285
          Left            =   3120
-         TabIndex        =   2
-         Top             =   960
-         Width           =   1095
-      End
-      Begin VB.Label lblCiaA 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Documento a Emitir:"
-         BeginProperty Font 
+         TabIndex        =   9
+         Top             =   240
+         Visible         =   0   'False
+         Width           =   2415
+         _Version        =   786433
+         _ExtentX        =   4260
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "Facturar x Consumo"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
-            Size            =   8.25
+            Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   195
-         Left            =   120
-         TabIndex        =   36
-         Top             =   720
-         Width           =   1980
+         Appearance      =   6
       End
-      Begin VB.Label lblSerie 
-         Appearance      =   0  'Flat
-         BackColor       =   &H8000000C&
-         ForeColor       =   &H80000008&
-         Height          =   285
-         Left            =   2280
-         TabIndex        =   1
-         Top             =   960
-         Width           =   735
+      Begin XtremeSuiteControls.CheckBox chkGratuita 
+         Height          =   255
+         Left            =   5880
+         TabIndex        =   10
+         Top             =   240
+         Width           =   3015
+         _Version        =   786433
+         _ExtentX        =   5318
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "Transferencias Gratuita"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
       End
    End
-   Begin VB.Frame fraCliente 
-      Height          =   1815
-      Left            =   240
-      TabIndex        =   8
-      Top             =   1440
-      Width           =   9735
-      Begin VB.TextBox txtDni 
-         Height          =   285
-         Left            =   1560
-         MaxLength       =   8
-         TabIndex        =   34
-         Top             =   1320
-         Width           =   2175
-      End
-      Begin VB.CommandButton cmdSunat 
-         Caption         =   "Sunat"
-         Height          =   480
-         Left            =   9000
-         TabIndex        =   28
+   Begin XtremeSuiteControls.GroupBox gbCliente 
+      Height          =   1695
+      Left            =   30
+      TabIndex        =   19
+      Top             =   2760
+      Width           =   9405
+      _Version        =   786433
+      _ExtentX        =   16589
+      _ExtentY        =   2990
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton cmdSunat 
+         Height          =   375
+         Left            =   8400
+         TabIndex        =   26
          Top             =   240
-         Width           =   615
+         Width           =   855
+         _Version        =   786433
+         _ExtentX        =   1508
+         _ExtentY        =   661
+         _StockProps     =   79
+         Caption         =   "Sunat"
+         Appearance      =   4
       End
-      Begin VB.TextBox txtDireccion 
-         Height          =   285
-         Left            =   1560
-         TabIndex        =   14
-         Top             =   840
-         Width           =   7935
+      Begin XtremeSuiteControls.FlatEdit txtRS 
+         Height          =   375
+         Left            =   1680
+         TabIndex        =   25
+         Top             =   240
+         Width           =   4095
+         _Version        =   786433
+         _ExtentX        =   7223
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
       End
-      Begin VB.TextBox txtRuc 
-         Enabled         =   0   'False
-         Height          =   285
-         Left            =   7320
-         TabIndex        =   13
-         Top             =   360
-         Width           =   1575
-      End
-      Begin VB.TextBox txtRS 
-         Height          =   285
-         Left            =   1560
-         TabIndex        =   12
-         Top             =   360
-         Width           =   4935
-      End
-      Begin VB.Label Label10 
-         AutoSize        =   -1  'True
-         Caption         =   "DNI:"
-         Height          =   195
-         Left            =   1080
-         TabIndex        =   21
-         Top             =   1320
-         Width           =   405
-      End
-      Begin VB.Label Label7 
-         AutoSize        =   -1  'True
-         Caption         =   "DIRECCIÓN:"
-         Height          =   195
-         Left            =   360
+      Begin XtremeSuiteControls.FlatEdit txtDireccion 
+         Height          =   375
+         Left            =   1680
          TabIndex        =   11
-         Top             =   840
-         Width           =   1110
+         Top             =   720
+         Width           =   7575
+         _Version        =   786433
+         _ExtentX        =   13361
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
       End
-      Begin VB.Label Label6 
-         AutoSize        =   -1  'True
-         Caption         =   "Nº RUC"
-         Height          =   195
+      Begin XtremeSuiteControls.FlatEdit txtDni 
+         Height          =   375
+         Left            =   1680
+         TabIndex        =   12
+         Top             =   1200
+         Width           =   4095
+         _Version        =   786433
+         _ExtentX        =   7223
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
+      End
+      Begin XtremeSuiteControls.FlatEdit txtRuc 
+         Height          =   375
          Left            =   6600
-         TabIndex        =   10
-         Top             =   360
-         Width           =   645
+         TabIndex        =   13
+         Top             =   240
+         Width           =   1695
+         _Version        =   786433
+         _ExtentX        =   2990
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   6
+         UseVisualStyle  =   0   'False
       End
       Begin VB.Label Label5 
          AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
          Caption         =   "RAZÓN SOCIAL"
          Height          =   195
-         Left            =   120
-         TabIndex        =   9
-         Top             =   360
+         Left            =   240
+         TabIndex        =   23
+         Top             =   330
          Width           =   1350
       End
-   End
-   Begin VB.Frame Frame1 
-      Height          =   2520
-      Left            =   240
-      TabIndex        =   17
-      Top             =   3240
-      Width           =   9735
-      Begin MSComctlLib.ListView lvDetalle 
-         Height          =   2175
-         Left            =   240
+      Begin VB.Label Label6 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Nº RUC"
+         Height          =   195
+         Left            =   5880
+         TabIndex        =   22
+         Top             =   330
+         Width           =   645
+      End
+      Begin VB.Label Label7 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "DIRECCIÓN:"
+         Height          =   195
+         Left            =   480
+         TabIndex        =   21
+         Top             =   810
+         Width           =   1110
+      End
+      Begin VB.Label Label10 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "DNI:"
+         Height          =   195
+         Left            =   1200
          TabIndex        =   20
-         Top             =   240
-         Width           =   9375
-         _ExtentX        =   16536
-         _ExtentY        =   3836
+         Top             =   1290
+         Width           =   405
+      End
+   End
+   Begin XtremeSuiteControls.GroupBox GroDetalle 
+      Height          =   2415
+      Left            =   30
+      TabIndex        =   27
+      Top             =   4440
+      Width           =   9405
+      _Version        =   786433
+      _ExtentX        =   16589
+      _ExtentY        =   4260
+      _StockProps     =   79
+      Appearance      =   6
+      Begin MSComctlLib.ListView lvDetalle 
+         Height          =   2265
+         Left            =   30
+         TabIndex        =   28
+         Top             =   120
+         Width           =   9360
+         _ExtentX        =   16510
+         _ExtentY        =   3995
+         View            =   3
+         LabelEdit       =   1
          LabelWrap       =   -1  'True
-         HideSelection   =   -1  'True
+         HideSelection   =   0   'False
+         HideColumnHeaders=   -1  'True
          _Version        =   393217
          ForeColor       =   -2147483640
          BackColor       =   -2147483643
@@ -307,269 +529,333 @@ Begin VB.Form frmFacComanda
          NumItems        =   0
       End
    End
-   Begin VB.Frame fraImporte 
-      Height          =   2415
-      Left            =   240
-      TabIndex        =   3
-      Top             =   5760
-      Width           =   9735
-      Begin VB.TextBox txtCopias 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Left            =   1560
-         TabIndex        =   47
-         Text            =   "1"
-         Top             =   1920
-         Width           =   375
-      End
-      Begin VB.CheckBox chkServicio 
-         Height          =   255
-         Left            =   7320
-         TabIndex        =   45
-         Top             =   240
-         Visible         =   0   'False
-         Width           =   255
-      End
-      Begin VB.CommandButton cmdFormasPago 
-         Caption         =   "Forma de Pago"
+   Begin XtremeSuiteControls.GroupBox GroMontos 
+      Height          =   2655
+      Left            =   30
+      TabIndex        =   29
+      Top             =   6840
+      Width           =   9405
+      _Version        =   786433
+      _ExtentX        =   16589
+      _ExtentY        =   4683
+      _StockProps     =   79
+      Appearance      =   6
+      Begin XtremeSuiteControls.PushButton cmdFormasPago 
          Height          =   720
-         Left            =   1920
-         TabIndex        =   24
-         Top             =   480
-         Width           =   3375
+         Left            =   240
+         TabIndex        =   55
+         Top             =   840
+         Width           =   2775
+         _Version        =   786433
+         _ExtentX        =   4895
+         _ExtentY        =   1270
+         _StockProps     =   79
+         Caption         =   "Formas de Pago"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Appearance      =   4
+         Picture         =   "frmFacComanda.frx":AD0C
       End
       Begin VB.CommandButton cmdCobrar 
          Caption         =   "&Cobrar"
          Height          =   360
-         Left            =   2880
-         TabIndex        =   25
-         Top             =   480
+         Left            =   2160
+         TabIndex        =   52
+         Top             =   1080
          Visible         =   0   'False
          Width           =   990
       End
       Begin VB.CommandButton cmdDscto 
          Caption         =   "Descuento"
          Height          =   375
-         Left            =   240
-         TabIndex        =   22
-         Top             =   720
+         Left            =   480
+         TabIndex        =   48
+         Top             =   1080
          Visible         =   0   'False
          Width           =   1095
       End
-      Begin MSComCtl2.UpDown udCopias 
-         Height          =   285
-         Left            =   1936
-         TabIndex        =   48
-         Top             =   1920
-         Width           =   240
-         _ExtentX        =   423
-         _ExtentY        =   503
-         _Version        =   393216
-         Value           =   1
-         BuddyControl    =   "txtCopias"
-         BuddyDispid     =   196656
-         OrigLeft        =   3240
-         OrigTop         =   1680
-         OrigRight       =   3480
-         OrigBottom      =   2055
-         Min             =   1
-         SyncBuddy       =   -1  'True
-         BuddyProperty   =   65547
-         Enabled         =   -1  'True
-      End
-      Begin VB.Label Label8 
-         AutoSize        =   -1  'True
-         Caption         =   "Nro de Copias:"
-         Height          =   195
-         Left            =   240
-         TabIndex        =   49
-         Top             =   1920
-         Width           =   1290
-      End
-      Begin VB.Label Label4 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "SERVICIO:"
-         Height          =   195
-         Left            =   6240
-         TabIndex        =   46
-         Top             =   240
-         Visible         =   0   'False
-         Width           =   960
-      End
-      Begin VB.Label lblServicio 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   315
-         Left            =   7680
-         TabIndex        =   44
-         Top             =   200
-         Visible         =   0   'False
-         Width           =   1695
-      End
-      Begin VB.Label Label3 
-         Alignment       =   1  'Right Justify
-         Caption         =   "OPER.GRATUITAS:"
+      Begin XtremeSuiteControls.PushButton pbAumentar 
          Height          =   375
-         Left            =   5760
-         TabIndex        =   43
-         Top             =   600
-         Width           =   1815
-      End
-      Begin VB.Label lblgratuita 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   330
-         Left            =   7680
-         TabIndex        =   42
-         Top             =   570
-         Width           =   1695
-      End
-      Begin VB.Label lblporcigv 
-         Alignment       =   2  'Center
-         Caption         =   "Label3"
-         Height          =   255
-         Left            =   7200
-         TabIndex        =   40
-         Top             =   1320
+         Left            =   2400
+         TabIndex        =   46
+         Top             =   2040
          Width           =   375
+         _Version        =   786433
+         _ExtentX        =   661
+         _ExtentY        =   661
+         _StockProps     =   79
+         Caption         =   "+"
+         Appearance      =   4
+         DrawFocusRect   =   0   'False
       End
-      Begin VB.Label lblpICBPER 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Label13"
-         Height          =   195
-         Left            =   5040
-         TabIndex        =   39
-         Top             =   1320
+      Begin XtremeSuiteControls.CheckBox CheckBox3 
+         Height          =   255
+         Left            =   6120
+         TabIndex        =   36
+         Top             =   260
+         Width           =   1215
+         _Version        =   786433
+         _ExtentX        =   2143
+         _ExtentY        =   450
+         _StockProps     =   79
+         Caption         =   "SERVICIO"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TextAlignment   =   1
+         Appearance      =   6
+         RightToLeft     =   -1  'True
+      End
+      Begin XtremeSuiteControls.FlatEdit txtCopias 
+         Height          =   375
+         Left            =   1920
+         TabIndex        =   45
+         Top             =   2040
+         Width           =   495
+         _Version        =   786433
+         _ExtentX        =   873
+         _ExtentY        =   661
+         _StockProps     =   77
+         BackColor       =   -2147483643
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Text            =   "1"
+         Alignment       =   2
+         MaxLength       =   2
+      End
+      Begin XtremeSuiteControls.PushButton pbDisminuir 
+         Height          =   375
+         Left            =   1560
+         TabIndex        =   47
+         Top             =   2040
+         Width           =   375
+         _Version        =   786433
+         _ExtentX        =   661
+         _ExtentY        =   661
+         _StockProps     =   79
+         Caption         =   "-"
+         Appearance      =   4
+         DrawFocusRect   =   0   'False
+      End
+      Begin VB.Label lblVUELTO 
+         Appearance      =   0  'Flat
+         BackColor       =   &H8000000C&
+         ForeColor       =   &H80000008&
+         Height          =   285
+         Left            =   1800
+         TabIndex        =   51
+         Top             =   720
          Visible         =   0   'False
-         Width           =   660
-      End
-      Begin VB.Label Label12 
-         Alignment       =   1  'Right Justify
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "ICBPER:"
-         Height          =   195
-         Left            =   6720
-         TabIndex        =   38
-         Top             =   1680
-         Width           =   735
-      End
-      Begin VB.Label lblICBPER 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   315
-         Left            =   7680
-         TabIndex        =   37
-         Top             =   1680
          Width           =   1695
       End
-      Begin VB.Label label 
-         Alignment       =   1  'Right Justify
+      Begin VB.Label labelv 
          AutoSize        =   -1  'True
          BackStyle       =   0  'Transparent
-         Caption         =   "IGV:"
+         Caption         =   "VUELTO:"
          Height          =   195
-         Left            =   6240
-         TabIndex        =   32
-         Top             =   1320
-         Width           =   885
-      End
-      Begin VB.Label Label11 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "VALOR VENTA:"
-         Height          =   195
-         Left            =   6240
-         TabIndex        =   31
-         Top             =   960
-         Width           =   1290
-      End
-      Begin VB.Label lblvvta 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   315
-         Left            =   7680
-         TabIndex        =   30
-         Top             =   960
-         Width           =   1695
-      End
-      Begin VB.Label lblIGV 
-         Alignment       =   1  'Right Justify
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   315
-         Left            =   7680
-         TabIndex        =   29
-         Top             =   1320
-         Width           =   1695
+         Left            =   1800
+         TabIndex        =   50
+         Top             =   480
+         Visible         =   0   'False
+         Width           =   750
       End
       Begin VB.Label lblDscto 
          Appearance      =   0  'Flat
          BackColor       =   &H8000000C&
          ForeColor       =   &H80000008&
          Height          =   285
-         Left            =   360
-         TabIndex        =   23
-         Top             =   480
+         Left            =   240
+         TabIndex        =   49
+         Top             =   720
          Visible         =   0   'False
          Width           =   1455
       End
-      Begin VB.Label lblImporte 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H8000000C&
-         BeginProperty Font 
+      Begin VB.Label lblNroDe 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Nro de Copias:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   44
+         Top             =   2160
+         Width           =   1290
+      End
+      Begin VB.Label lblpICBPER 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Label13"
+         Height          =   195
+         Left            =   4920
+         TabIndex        =   43
+         Top             =   1800
+         Visible         =   0   'False
+         Width           =   660
+      End
+      Begin XtremeSuiteControls.Label Label23 
+         Height          =   240
+         Left            =   5655
+         TabIndex        =   42
+         Top             =   2267
+         Width           =   1680
+         _Version        =   786433
+         _ExtentX        =   2963
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "TOTAL A PAGAR:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label Label22 
+         Height          =   240
+         Left            =   6555
+         TabIndex        =   41
+         Top             =   1867
+         Width           =   780
+         _Version        =   786433
+         _ExtentX        =   1376
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "ICBPER:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label lblporcigv 
+         Height          =   240
+         Left            =   6900
+         TabIndex        =   40
+         Top             =   1467
+         Width           =   435
+         _Version        =   786433
+         _ExtentX        =   767
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "IGV:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label Label20 
+         Height          =   240
+         Left            =   6360
+         TabIndex        =   39
+         Top             =   1467
+         Width           =   435
+         _Version        =   786433
+         _ExtentX        =   767
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "IGV:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label Label19 
+         Height          =   240
+         Left            =   5865
+         TabIndex        =   38
+         Top             =   1067
+         Width           =   1470
+         _Version        =   786433
+         _ExtentX        =   2593
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "VALOR VENTA:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label Label18 
+         Height          =   240
+         Left            =   5445
+         TabIndex        =   37
+         Top             =   667
+         Width           =   1890
+         _Version        =   786433
+         _ExtentX        =   3334
+         _ExtentY        =   423
+         _StockProps     =   79
+         Caption         =   "OPER. GRATUITAS:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         AutoSize        =   -1  'True
+      End
+      Begin XtremeSuiteControls.Label lblImporte 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   35
+         Top             =   2200
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Verdana"
             Size            =   12
             Charset         =   0
@@ -578,51 +864,138 @@ Begin VB.Form frmFacComanda
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   285
-         Left            =   7680
-         TabIndex        =   7
-         Top             =   2040
-         Width           =   1695
+         Alignment       =   1
       End
-      Begin VB.Label lblvuelto 
-         Appearance      =   0  'Flat
-         BackColor       =   &H8000000C&
-         ForeColor       =   &H80000008&
-         Height          =   285
-         Left            =   1920
-         TabIndex        =   6
-         Top             =   480
-         Visible         =   0   'False
-         Width           =   1695
+      Begin XtremeSuiteControls.Label lblICBPER 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   34
+         Top             =   1800
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
       End
-      Begin VB.Label Label2 
-         AutoSize        =   -1  'True
-         Caption         =   "VUELTO:"
-         Height          =   195
-         Left            =   1440
-         TabIndex        =   5
-         Top             =   360
-         Visible         =   0   'False
-         Width           =   750
+      Begin XtremeSuiteControls.Label lblIGV 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   33
+         Top             =   1400
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
       End
-      Begin VB.Label Label1 
-         AutoSize        =   -1  'True
-         Caption         =   "TOTAL A PAGAR:"
-         Height          =   195
-         Left            =   6120
-         TabIndex        =   4
-         Top             =   2040
-         Width           =   1470
+      Begin XtremeSuiteControls.Label lblvvta 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   32
+         Top             =   1000
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblgratuita 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   31
+         Top             =   600
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
+      End
+      Begin XtremeSuiteControls.Label lblServicio 
+         Height          =   375
+         Left            =   7440
+         TabIndex        =   30
+         Top             =   200
+         Width           =   1815
+         _Version        =   786433
+         _ExtentX        =   3201
+         _ExtentY        =   661
+         _StockProps     =   79
+         ForeColor       =   16777215
+         BackColor       =   -2147483635
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   1
       End
    End
-   Begin VB.CommandButton cmdAceptar 
-      Caption         =   "&Aceptar"
-      Height          =   495
-      Left            =   240
-      TabIndex        =   16
-      Top             =   8280
-      Width           =   1335
+   Begin XtremeSuiteControls.PushButton cmdCancelar 
+      Height          =   855
+      Left            =   2040
+      TabIndex        =   54
+      Top             =   9600
+      Width           =   1935
+      _Version        =   786433
+      _ExtentX        =   3413
+      _ExtentY        =   1508
+      _StockProps     =   79
+      Caption         =   "&Cancelar"
+      Appearance      =   4
+      DrawFocusRect   =   0   'False
+      Picture         =   "frmFacComanda.frx":C9E6
    End
 End
 Attribute VB_Name = "frmFacComanda"
@@ -645,6 +1018,11 @@ Public xMostrador As Boolean
 Public gDESCUENTO As Double 'VARIABLE PARA ALMACENAR EL DESCUENTO PARA LAS COMANDAS
 Public gPAGO As Double 'VARIABLE PARA ALMACENAR EL PAGO PARA LAS COMANDAS
 Private ORStd As ADODB.Recordset 'VARIABLE PARA SABER SI EL TIPO DE DOCUMENTO ES EDITABLE
+Private vPagActEmp, vPagTotEmp As Integer
+Private vPagActDoc, vPagTotDoc As Integer
+Private pCodEmp As String
+Private pCodTipDoc As String
+Private pDesTipDoc As String
 
 Private Function VerificaPassPrecios(vUSUARIO As String, vClave As String, ByRef vMSN As String) As Boolean
 Dim orsPass As ADODB.Recordset
@@ -682,6 +1060,7 @@ With Me.lvDetalle
     .ColumnHeaders.Add , , "cambio", 800
     .ColumnHeaders.Add , , "ICBPER", 300
     .ColumnHeaders.Add , , "comboICBPER", 300
+    .HideColumnHeaders = False
     .View = lvwReport
     .FullRowSelect = True
     .LabelEdit = lvwManual
@@ -741,12 +1120,14 @@ With Me.ListView1
     .ColumnHeaders.Add , , "Ruc", 0
     .ColumnHeaders.Add , , "Direcion", 0
     .MultiSelect = False
+    .HideSelection = False
+    .HideColumnHeaders = False
 End With
 End Sub
 
 
 
-Private Sub cboMoneda_KeyPress(Index As Integer, KeyAscii As Integer)
+Private Sub cboMoneda_KeyPress(index As Integer, KeyAscii As Integer)
 If LK_TIPO_CAMBIO = 0 Then
     MsgBox "ingresar tipo de cambio"
 End If
@@ -762,9 +1143,11 @@ Me.txtNro.SelLength = Len(Me.txtNro.Text)
 End If
 End Sub
 
-Private Sub chkGratuito_Click()
 
-    If Me.chkGratuito.Value Then
+
+Private Sub chkGratuita_Click()
+
+    If Me.chkGratuita.Value Then
 
         frmClaveCaja.Show vbModal
     
@@ -772,29 +1155,30 @@ Private Sub chkGratuito_Click()
     
             Dim vS As String
     
-           ' If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
+            ' If VerificaPass(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
             If VerificaPassPrecios(frmClaveCaja.vUSUARIO, frmClaveCaja.vClave, vS) Then
-               'Me.lblgratuita.Caption = Me.lblImporte
-               Me.lblgratuita.Caption = Format(val(Me.lblImporte.Caption), "########0.#0")
-               Me.lblvvta.Caption = "0.00"
-               Me.lblIGV.Caption = "0.00"
-               Me.lblImporte.Caption = "0.00"
+                'Me.lblgratuita.Caption = Me.lblImporte
+                Me.lblgratuita.Caption = Format(val(Me.lblImporte.Caption), "########0.#0")
+                Me.lblvvta.Caption = "0.00"
+                Me.lblIGV.Caption = "0.00"
+                Me.lblImporte.Caption = "0.00"
                
                 Me.cmdFormasPago.Enabled = False
             Else
                 MsgBox "Clave incorrecta", vbCritical, NombreProyecto
-            End If
-        End If
-Else
-Me.cmdFormasPago.Enabled = True
-CalcularImporte
-    End If
 
+            End If
+
+        End If
+
+    Else
+        Me.cmdFormasPago.Enabled = True
+        CalcularImporte
+
+    End If
 End Sub
 
 Private Sub cmdAceptar_Click()
-'ImprimirDocumentoVenta "01", "Factura", True, "1", 27427495, "126.5", "caleta", "123", "tirado" ' Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblserie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtcli.Text
-'Exit Sub
 
 If Len(Trim(Me.txtCopias.Text)) = 0 Then
         MsgBox "Debe ingresar el nro de copias a imprimir.", vbInformation, Pub_Titulo
@@ -808,13 +1192,10 @@ If Len(Trim(Me.txtCopias.Text)) = 0 Then
      '   Exit Sub
     End If
 
-
-If Me.DatTiposDoctos.BoundText = "" Then ' .ListIndex = -1 Then
-    MsgBox "Debe elegir el Tipo de documento.", vbCritical, Pub_Titulo
-    Me.DatTiposDoctos.SetFocus
+If pCodTipDoc = "" Then
+   MsgBox "Debe elegir el Tipo de documento.", vbCritical, Pub_Titulo
 
     Exit Sub
-
 End If
 
 If Me.cmdFormasPago.Enabled And oRSfp.RecordCount = 0 Then
@@ -862,7 +1243,8 @@ End If
 On Error GoTo Graba
 
 'If Me.cboTipoDocto.ListIndex = 0 Then 'F
-If Me.DatTiposDoctos.BoundText = "01" Then 'F
+
+If pCodTipDoc = "01" Then
     If Me.lvDetalle.ListItems.count > par_llave!par_fac_lines And Me.chkConsumo.Value = 0 Then
         MsgBox "Numero Máximo de Lineas alcanzado"
 
@@ -871,7 +1253,7 @@ If Me.DatTiposDoctos.BoundText = "01" Then 'F
     End If
 
 'ElseIf Me.cboTipoDocto.ListIndex = 1 Then 'B
-ElseIf Me.DatTiposDoctos.BoundText = "03" Then 'B
+ElseIf pCodTipDoc = "03" Then 'B
 
     If Me.lvDetalle.ListItems.count > par_llave!par_BOL_lines And Me.chkConsumo.Value = 0 Then
         MsgBox "Numero Máximo de Lineas alcanzado"
@@ -892,7 +1274,7 @@ If Me.lvDetalle.ListItems.count = 0 Then
 
 End If
 
-If Me.DatTiposDoctos.BoundText = "01" Then
+If pCodTipDoc = "01" Then
     If Len(Trim(Me.txtRuc.Text)) = 0 Then
         MsgBox "Debe ingresar el Ruc para poder generar la Factura", vbInformation, "Error"
 
@@ -1026,9 +1408,9 @@ With oCmdEjec
 
         Dim RutaReporte As String
 
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODIGO", adChar, adParamInput, 2, Me.DatTiposDoctos.BoundText)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODIGO", adChar, adParamInput, 2, pCodTipDoc)
         oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@COMSUMO", adBoolean, adParamInput, , Me.chkConsumo.Value)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
+        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, pCodEmp)
     
         Set ORSd = oCmdEjec.Execute
         RutaReporte = PUB_RUTA_REPORTE & ORSd!ReportE
@@ -1053,24 +1435,23 @@ With oCmdEjec
             Else
                 xCONTINUA = True
                 xARCENCONTRADO = True
-'ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, "009", 2, 100, "33", "43", "343"
             End If
         End If
 
         If xCONTINUA Then
             LimpiaParametros oCmdEjec
             oCmdEjec.CommandText = "SpFacturarComanda"
-            .Parameters.Append .CreateParameter("@codcia", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
+            .Parameters.Append .CreateParameter("@codcia", adChar, adParamInput, 2, pCodEmp)
             .Parameters.Append .CreateParameter("@fecha", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
             .Parameters.Append .CreateParameter("@usuario", adVarChar, adParamInput, 20, LK_CODUSU)
             .Parameters.Append .CreateParameter("@SerCom", adChar, adParamInput, 3, vSerCom)
             .Parameters.Append .CreateParameter("@nroCom", adInteger, adParamInput, , vNroCom)
             .Parameters.Append .CreateParameter("@SerDoc", adChar, adParamInput, 3, Me.lblSerie.Caption)
             .Parameters.Append .CreateParameter("@NroDoc", adDouble, adParamInput, , CDbl(Me.txtNro.Text))
-            .Parameters.Append .CreateParameter("@Fbg", adChar, adParamInput, 1, Left(Me.DatTiposDoctos.Text, 1)) ' Me.cboTipoDocto.Text)
+            .Parameters.Append .CreateParameter("@Fbg", adChar, adParamInput, 1, Left(pDesTipDoc, 1)) ' Me.cboTipoDocto.Text)
             .Parameters.Append .CreateParameter("@XmlDet", adVarChar, adParamInput, 4000, Trim(vXml))
 
-            If Me.DatTiposDoctos.BoundText = "01" Then
+            If pCodTipDoc = "01" Then
                 .Parameters.Append .CreateParameter("@codcli", adVarChar, adParamInput, 10, Me.txtRuc.Tag)
             Else
                 .Parameters.Append .CreateParameter("@codcli", adVarChar, adParamInput, 10, IIf(Len(Trim(Me.txtRuc.Tag)) = 0, 1, Me.txtRuc.Tag))
@@ -1086,18 +1467,18 @@ With oCmdEjec
             .Parameters.Append .CreateParameter("@farjabas", adTinyInt, adParamInput, , IIf(Me.chkConsumo.Value = 1, 1, 0))
 '.Parameters.Append .CreateParameter("@dscto", adDouble, adParamInput, , IIf(Len(Trim(Me.lblDscto.Caption)) = 0, 0, Me.lblDscto.Caption))
             .Parameters.Append .CreateParameter("@dscto", adDouble, adParamInput, , gDESCUENTO)
-            .Parameters.Append .CreateParameter("@CODIGODOCTO", adChar, adParamInput, 2, Me.DatTiposDoctos.BoundText)
+            .Parameters.Append .CreateParameter("@CODIGODOCTO", adChar, adParamInput, 2, pCodTipDoc)
             .Parameters.Append .CreateParameter("@Xmlpag", adVarChar, adParamInput, 4000, xFP)
             .Parameters.Append .CreateParameter("@PAGACON", adDouble, adParamInput, , xPAGACON)
             .Parameters.Append .CreateParameter("@VUELTO", adDouble, adParamInput, , xVUELTO)
                 
             .Parameters.Append .CreateParameter("@VALORVTA", adDouble, adParamInput, , Me.lblvvta.Caption)
             .Parameters.Append .CreateParameter("@VIGV", adDouble, adParamInput, , Me.lblIGV.Caption)
-            .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
+            .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuita.Value)
             .Parameters.Append .CreateParameter("@CIAPEDIDO", adChar, adParamInput, 2, LK_CODCIA)
             .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption))
             .Parameters.Append .CreateParameter("@SERVICIO", adDouble, adParamInput, , Me.lblServicio.Caption)
-            .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuito.Value)
+            .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuita.Value)
             .Parameters.Append .CreateParameter("@MaxNumOper", adInteger, adParamOutput, , 0)
             .Parameters.Append .CreateParameter("@AUTONUMFAC", adInteger, adParamOutput, , 0)
         
@@ -1114,18 +1495,15 @@ With oCmdEjec
                 vAcepta = True
 'MsgBox "Datos Almacenados correctamente", vbInformation, Pub_Titulo
 
-'Imprimir Left(Me.DatTiposDoctos.Text, 1), Me.chkConsumo.Value
-                CreaCodigoQR "6", Me.DatTiposDoctos.BoundText, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
+                CreaCodigoQR "6", pCodTipDoc, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
                 If xARCENCONTRADO Then
-                    ImprimirDocumentoVenta Me.DatTiposDoctos.BoundText, Me.DatTiposDoctos.Text, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, Me.DatEmpresas.BoundText, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuito.Value, Me.txtCopias.Text
+                    ImprimirDocumentoVenta pCodTipDoc, pDesTipDoc, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, pCodEmp, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuita.Value, Me.txtCopias.Text
                 End If
-                    
-'If Me.DatTiposDoctos.BoundText = "01" Or Me.DatTiposDoctos.BoundText = "03" Then
-               ' If Me.DatTiposDoctos.BoundText = "01" Then
-                    If LK_PASA_BOLETAS = "A" And (Me.DatTiposDoctos.BoundText = "01" Or Me.DatTiposDoctos.BoundText = "03") Then
-                    CrearArchivoPlano Left(Me.DatTiposDoctos.Text, 1), Me.lblSerie.Caption, Me.txtNro.Text
-                    ElseIf Me.DatTiposDoctos.BoundText = "01" Then
-                    CrearArchivoPlano Left(Me.DatTiposDoctos.Text, 1), Me.lblSerie.Caption, Me.txtNro.Text
+
+                    If LK_PASA_BOLETAS = "A" And (pCodTipDoc = "01" Or pCodTipDoc = "03") Then
+                        CrearArchivoPlano Left(pDesTipDoc, 1), Me.lblSerie.Caption, Me.txtNro.Text
+                    ElseIf pCodTipDoc = "01" Then
+                        CrearArchivoPlano Left(pDesTipDoc, 1), Me.lblSerie.Caption, Me.txtNro.Text
                     End If
                ' End If
 
@@ -1269,7 +1647,7 @@ Private Sub cmdSunat_Click()
 
     On Error GoTo cCruc
 
-    Dim P          As Object
+    Dim p          As Object
 
     Dim TEXTO      As String, xTOk As String
 
@@ -1312,7 +1690,7 @@ Private Sub cmdSunat_Click()
 
     'sInputJson = "{items:" & Texto & "}"
 
-    Set P = JSON.parse(TEXTO)
+    Set p = JSON.parse(TEXTO)
 
     '    Me.lblRUC.Caption = p.Item("ruc")
     '    Me.lblRazonSocial.Caption = p.Item("razonSocial")
@@ -1347,15 +1725,15 @@ Private Sub cmdSunat_Click()
                 End If
 
                 If xEsRuc Then
-                    Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
-                    Me.txtRS.Text = P.Item("razonSocial")
-                    Me.txtRuc.Text = P.Item("ruc")
+                    Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
+                    Me.txtRS.Text = p.Item("razonSocial")
+                    Me.txtRuc.Text = p.Item("ruc")
                     Me.txtDni.Text = ""
                 Else
                     Me.txtRuc.Text = ""
                     Me.txtDireccion.Text = ""
-                    Me.txtDni.Text = P.Item("dni")
-                    Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
+                    Me.txtDni.Text = p.Item("dni")
+                    Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
                 End If
     
                 LimpiaParametros oCmdEjec
@@ -1407,14 +1785,14 @@ Private Sub cmdSunat_Click()
         If xEsRuc Then
             Me.txtDni.Text = ""
             'Me.txtDireccion.Text = p.Item("direccion")
-            Me.txtDireccion.Text = IIf(IsNull(P.Item("direccion")), "", P.Item("direccion"))
-            Me.txtRS.Text = P.Item("razonSocial")
-            Me.txtRuc.Text = P.Item("ruc")
+            Me.txtDireccion.Text = IIf(IsNull(p.Item("direccion")), "", p.Item("direccion"))
+            Me.txtRS.Text = p.Item("razonSocial")
+            Me.txtRuc.Text = p.Item("ruc")
         Else
             Me.txtRuc.Text = ""
             Me.txtDireccion.Text = ""
-            Me.txtDni.Text = P.Item("dni")
-            Me.txtRS.Text = P.Item("nombres") & " " & P.Item("apellidoPaterno") & " " & P.Item("apellidoMaterno")
+            Me.txtDni.Text = p.Item("dni")
+            Me.txtRS.Text = p.Item("nombres") & " " & p.Item("apellidoPaterno") & " " & p.Item("apellidoMaterno")
         End If
     
         LimpiaParametros oCmdEjec
@@ -1444,28 +1822,70 @@ cCruc:
 
 End Sub
 
-Sub CargarDocumentos()
-Me.DatTiposDoctos.BoundText = ""
+Sub CargarDocumentos(xCODCIA As String)
 
+ For i = 1 To Me.pbDoc.count - 1
+        Unload Me.pbDoc(i)
+    Next
+    
  LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SP_TIPOS_DOCTOS_LIST"
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, xCODCIA)
     Set ORStd = oCmdEjec.Execute
-    Set Me.DatTiposDoctos.RowSource = ORStd
-    Me.DatTiposDoctos.ListField = ORStd.Fields(1).Name
-    Me.DatTiposDoctos.BoundColumn = ORStd.Fields(0).Name
-    
-    
 
     
-    If ORStd.RecordCount <> 0 Then Me.DatTiposDoctos.BoundText = ORStd.Fields(0).Value
+     Dim vIniLeft, cantTotaDoc, j As Integer
+    Dim valor As Double
+    j = 1
+    vIniLeft = 30
     
-    'DatTiposDoctos_Click Area
+    If Not ORStd.EOF Then
+        cantTotaDoc = ORStd.RecordCount
+        valor = cantTotaDoc / 3
+        pos = InStr(Trim(str(valor)), ".")
+        pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
+        If pos = 0 Then
+        ent = ""
+        Else
+        ent = Left(Trim(str(valor)), pos - 1)
+        End If
+        
+        If ent = "" Then: ent = 0
+        If pos2 > 0 Then: vPagTotDoc = ent + 1
+        
+        If cantTotaDoc >= 1 Then: vPagActDoc = 1
+        If cantTotaDoc > 3 Then: Me.pbDocSig.Enabled = True
+        
+        For i = 1 To ORStd.RecordCount
+            Load pbDoc(i)
+            
+            If j = 1 Then
+                vIniLeft = vIniLeft + Me.pbDocAnt.Width
+            Else
+                vIniLeft = vIniLeft + Me.pbDoc(i - 1).Width
+            End If
+           
+            Me.pbDoc(i).Tag = ORStd!Codigo
+            Me.pbDoc(i).Left = vIniLeft
+            Me.pbDoc(i).Visible = True
+            Me.pbDoc(i).Caption = ORStd!Nombre
+            'MsgBox "2"
+             If j = 3 Then
+            j = 1
+            vIniLeft = 30
+            Else
+            j = j + 1
+            End If
+            ORStd.MoveNext
+        Next
+    End If
+    
+
 End Sub
 
-Sub cargarSeries()
+Sub cargarSeries(cTipoDocto As String)
 
-      If Me.DatEmpresas.BoundText = "" Then Exit Sub
+      If pCodEmp = "" Then Exit Sub
 
     LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SP_SERIES_CARGAR"
@@ -1475,9 +1895,9 @@ Sub cargarSeries()
 
     Dim xNro   As Double
 
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, pCodEmp)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@USUARIO", adVarChar, adParamInput, 10, LK_CODUSU)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FBG", adChar, adParamInput, 1, Left(Me.DatTiposDoctos.Text, 1)) ' Me.cboTipoDocto.Text)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FBG", adChar, adParamInput, 1, Left(cTipoDocto, 1)) ' Me.cboTipoDocto.Text)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@SERIE", adChar, adParamOutput, 3, 1)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@MAXIMO", adBigInt, adParamOutput, , 1)
     oCmdEjec.Execute
@@ -1486,9 +1906,9 @@ Sub cargarSeries()
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PASA", adBoolean, adParamOutput, , 1)
 
     Me.lblSerie.Caption = xSerie
-    Me.txtNro.Text = oCmdEjec.Parameters("@MAXIMO").Value
+    Me.txtNro.Text = CStr(oCmdEjec.Parameters("@MAXIMO").Value)
 
-    ORStd.Filter = "CODIGO='" & Me.DatTiposDoctos.BoundText & "'"
+    ORStd.Filter = "CODIGO='" & pCodTipDoc & "'"
 
     If ORStd.RecordCount <> 0 Then
         Me.chkEdit.Enabled = ORStd!Editable
@@ -1503,95 +1923,10 @@ Private Sub DatEmpresas_Change()
 sumatoria
 End Sub
 
-Private Sub DatEmpresas_Click(Area As Integer)
-
-CargarDocumentos
-
-cargarSeries
-End Sub
-
-
-Private Sub DatTiposDoctos_Click(Area As Integer)
-
-
-    cargarSeries
-End Sub
-
-Private Sub DatTiposDoctos_KeyDown(KeyCode As Integer, Shift As Integer)
-LimpiaParametros oCmdEjec
-    
-    oCmdEjec.CommandText = "SP_SERIES_CARGAR"
-    oCmdEjec.CommandType = adCmdStoredProc
-
-    Dim xSerie As String
-
-    Dim xNro   As Double
-
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@USUARIO", adVarChar, adParamInput, 10, LK_CODUSU)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FBG", adChar, adParamInput, 1, Left(Me.DatTiposDoctos.Text, 1)) ' Me.cboTipoDocto.Text)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@SERIE", adChar, adParamOutput, 3, 1)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@MAXIMO", adBigInt, adParamOutput, , 1)
-    oCmdEjec.Execute
-
-    xSerie = oCmdEjec.Parameters("@SERIE").Value
-    'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PASA", adBoolean, adParamOutput, , 1)
-
-    Me.lblSerie.Caption = xSerie
-    Me.txtNro.Text = oCmdEjec.Parameters("@MAXIMO").Value
-
-    ORStd.Filter = "CODIGO='" & Me.DatTiposDoctos.BoundText & "'"
-
-    If ORStd.RecordCount <> 0 Then
-        Me.chkEdit.Enabled = ORStd!Editable
-    End If
-
-    ORStd.Filter = ""
-    Me.txtNro.Enabled = False
-    Me.chkEdit.Value = False
-End Sub
-
-Private Sub DatTiposDoctos_KeyPress(KeyAscii As Integer)
-If KeyAscii = vbKeyReturn Then If Me.txtNro.Enabled Then Me.txtNro.SetFocus
-End Sub
-
-Private Sub DatTiposDoctos_KeyUp(KeyCode As Integer, Shift As Integer)
-LimpiaParametros oCmdEjec
-    oCmdEjec.CommandText = "SP_SERIES_CARGAR"
-    oCmdEjec.CommandType = adCmdStoredProc
-
-    Dim xSerie As String
-
-    Dim xNro   As Double
-
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@USUARIO", adVarChar, adParamInput, 10, LK_CODUSU)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FBG", adChar, adParamInput, 1, Left(Me.DatTiposDoctos.Text, 1)) ' Me.cboTipoDocto.Text)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@SERIE", adChar, adParamOutput, 3, 1)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@MAXIMO", adBigInt, adParamOutput, , 1)
-    oCmdEjec.Execute
-
-    xSerie = oCmdEjec.Parameters("@SERIE").Value
-    'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PASA", adBoolean, adParamOutput, , 1)
-
-    Me.lblSerie.Caption = xSerie
-    Me.txtNro.Text = oCmdEjec.Parameters("@MAXIMO").Value
-
-    ORStd.Filter = "CODIGO='" & Me.DatTiposDoctos.BoundText & "'"
-
-    If ORStd.RecordCount <> 0 Then
-        Me.chkEdit.Enabled = ORStd!Editable
-    End If
-
-    ORStd.Filter = ""
-    Me.txtNro.Enabled = False
-    Me.chkEdit.Value = False
-End Sub
-
-
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyEscape Then Unload Me
+'If KeyCode = vbKeyF6 Then CargarEmpresas
 End Sub
 
 Private Sub Form_Load()
@@ -1604,20 +1939,11 @@ Private Sub Form_Load()
     ConfigurarLVDetalle
 
 
-     LimpiaParametros oCmdEjec
-    oCmdEjec.CommandText = "SP_CIAS_FACTURACION"
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
-    Set ORStd = oCmdEjec.Execute
-    
-    Set Me.DatEmpresas.RowSource = ORStd
-    Me.DatEmpresas.ListField = ORStd.Fields(1).Name
-    Me.DatEmpresas.BoundColumn = ORStd.Fields(0).Name
-    
-    If ORStd.RecordCount <> 0 Then Me.DatEmpresas.BoundText = ORStd.Fields(0).Value
+    CargarEmpresas
     'DatEmpresas_Click 1
     
-    CargarDocumentos
-    cargarSeries
+    'CargarDocumentos LK_CODCIA
+    'cargarSeries
     
    
 
@@ -1651,12 +1977,12 @@ Private Sub Form_Load()
         itemX.SubItems(5) = oRsPago!CantTotal
         itemX.SubItems(6) = oRsPago!faltante
         itemX.SubItems(7) = FormatNumber(oRsPago!Importe, 2)
-        itemX.SubItems(8) = oRsPago!SEC
+        itemX.SubItems(8) = oRsPago!Sec
         itemX.SubItems(9) = oRsPago!aPRO
         itemX.SubItems(10) = oRsPago!aten
         itemX.SubItems(11) = oRsPago!uni
         itemX.SubItems(12) = oRsPago!PED_numsec
-        itemX.SubItems(14) = oRsPago!icbper
+        itemX.SubItems(14) = CStr(oRsPago!icbper)
         itemX.SubItems(15) = oRsPago!combo_icbper
                 Me.lblpICBPER.Caption = oRsPago!gen_icbper
        
@@ -1671,7 +1997,7 @@ Private Sub Form_Load()
     
 
    
-    Me.lblvuelto.Caption = "0.00"
+    Me.labelv.Caption = "0.00"
     Me.chkConsumo.Value = 0
     'Me.lblgratuita.Caption = Format("########0.#0")
     Me.lblServicio.Caption = "0.00"
@@ -1679,10 +2005,8 @@ Private Sub Form_Load()
      Me.lblICBPER.Caption = "0.00"
 
     If LK_CODUSU = "MOZOB" Then
-        Me.DatTiposDoctos.BoundText = "01"
-        Me.DatTiposDoctos.Locked = True
-        'cboTipoDocto.ListIndex = 1
-        'cboTipoDocto.Locked = True
+        pCodTipDoc = "01"
+        Me.gbTipoDoc.Enabled = False
     End If
 
     vBuscar = True
@@ -1730,8 +2054,6 @@ Private Sub Form_Load()
        
     End If
 
-Me.DatEmpresas.BoundText = LK_CODCIA
-    '    If xMostrador Then Me.DatTiposDoctos.BoundText = "01" ' Me.cboTipoDocto.ListIndex = 1
 
 End Sub
 
@@ -1749,7 +2071,7 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     End If
     
     oCmdEjec.CommandType = adCmdStoredProc
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, Me.DatEmpresas.BoundText)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, pCodEmp)
 
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@serie", adVarChar, adParamInput, 3, IIf(LK_CODTRA = 1111, PUB_NUMSER_C, cSerie))
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@numero", adDouble, adParamInput, , IIf(LK_CODTRA = 1111, PUB_NUMFAC_C, cNumero))
@@ -1781,14 +2103,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     
     Dim sRUC        As String
     
-    If Me.DatEmpresas.BoundText = "01" Then
-    sRUC = Leer_Ini(App.Path & "\config.ini", "RUC", "C:\")
-    ElseIf Me.DatEmpresas.BoundText = "02" Then
-    sRUC = Leer_Ini(App.Path & "\config2.ini", "RUC", "C:\")
-    ElseIf Me.DatEmpresas.BoundText = "03" Then
-    sRUC = Leer_Ini(App.Path & "\config3.ini", "RUC", "C:\")
+    If pCodEmp = "01" Then
+        sRUC = Leer_Ini(App.Path & "\config.ini", "RUC", "C:\")
+    ElseIf pCodEmp = "02" Then
+        sRUC = Leer_Ini(App.Path & "\config2.ini", "RUC", "C:\")
+    ElseIf pCodEmp = "03" Then
+        sRUC = Leer_Ini(App.Path & "\config3.ini", "RUC", "C:\")
     Else
-    sRUC = Leer_Ini(App.Path & "\config4.ini", "RUC", "C:\")
+        sRUC = Leer_Ini(App.Path & "\config4.ini", "RUC", "C:\")
     End If
      
     sARCHIVOcab = sRUC & "-" & oRS!Nombre + IIf(LK_CODTRA = 2412, ".not", IIf(LK_CODTRA = 1111, ".cba", ".cab"))
@@ -1808,7 +2130,7 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set obj_FSO = CreateObject("Scripting.FileSystemObject")
 
     'Creamos un archivo con el método CreateTextFile
-    If Me.DatEmpresas.BoundText = "01" Then
+    If pCodEmp = "01" Then
         Set ArchivoCab = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOcab, True)
         Set ArchivoTri = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOtri, True)
         Set ArchivoLey = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOley, True)
@@ -1816,7 +2138,7 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
         If cTipoDocto = "F" Then
             Set ArchivoPAG = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOpag, True)
         End If
-    ElseIf Me.DatEmpresas.BoundText = "02" Then
+    ElseIf pCodEmp = "02" Then
         Set ArchivoCab = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOcab, True)
         Set ArchivoTri = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOtri, True)
         Set ArchivoLey = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOley, True)
@@ -1824,7 +2146,7 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
         If cTipoDocto = "F" Then
            Set ArchivoPAG = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOpag, True)
         End If
-    ElseIf Me.DatEmpresas.BoundText = "03" Then
+    ElseIf pCodEmp = "03" Then
         Set ArchivoCab = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOcab, True)
         Set ArchivoTri = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOtri, True)
         Set ArchivoLey = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOley, True)
@@ -1832,7 +2154,7 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
         If cTipoDocto = "F" Then
            Set ArchivoPAG = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOpag, True)
         End If
-    ElseIf Me.DatEmpresas.BoundText = "04" Then
+    ElseIf pCodEmp = "04" Then
         Set ArchivoCab = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config4.ini", "CARPETA", "C:\") + sARCHIVOcab, True)
         Set ArchivoTri = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config4.ini", "CARPETA", "C:\") + sARCHIVOtri, True)
         Set ArchivoLey = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config4.ini", "CARPETA", "C:\") + sARCHIVOley, True)
@@ -1842,15 +2164,15 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
         End If
     End If
     If LK_CODTRA <> 1111 Then
-   If Me.DatEmpresas.BoundText = "01" Then
-    Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
-    ElseIf Me.DatEmpresas.BoundText = "02" Then
-    Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
-    ElseIf Me.DatEmpresas.BoundText = "03" Then
-    Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
-    Else
-    Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config4.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
-    End If
+        If pCodEmp = "01" Then
+            Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
+         ElseIf pCodEmp = "02" Then
+            Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config2.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
+         ElseIf pCodEmp = "03" Then
+            Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config3.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
+         Else
+            Set ArchivoDet = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config4.ini", "CARPETA", "C:\") + sARCHIVOdet, True)
+         End If
     End If
     
     
@@ -1906,8 +2228,8 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set oRSdet = oRS.NextRecordset
    
     sCadena = ""
-    Dim C As Integer
-    C = 1
+    Dim c As Integer
+    c = 1
 
     If LK_CODTRA = 2412 Then
 
@@ -1915,10 +2237,10 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
          
             sCadena = sCadena & oRSdet!CODUNIDADMEDIDA & "|" & oRSdet!CTDUNIDADITEM & "|" & oRSdet!CODPRODUCTO & "|" & oRSdet!CODPRODUCTOSUNAT & "|" & oRSdet!DESITEM & "|" & oRSdet!MTOVALORUNITARIO & "|" & oRSdet!MTOIGVITEM & "|" & oRSdet!CODTIPTRIBUTOIGV & "|" & oRSdet!MTOIGVITEM1 & "|" & oRSdet!NOMTRIBITEM & "|" & oRSdet!CODTIPTRIBUTOITEM & "|" & oRSdet!TIPAFEIGV & "|" & FormatNumber(oRSdet!PORCIGV, 2) & "|" & oRSdet!CODISC & "|" & oRSdet!CODOTROITEM & "|" & oRSdet!GRATUITO & "|"
             
-            If C < oRSdet.RecordCount Then
+            If c < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             C = C + 1
+             c = c + 1
             oRSdet.MoveNext
             
         Loop
@@ -1936,10 +2258,10 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
            "|" & oRSdet!MONTOTRIBOTO & "|" & oRSdet!BASEIMPONIBLEOTO & "|" & oRSdet!NOMBRETRIBOTO & "|" & oRSdet!TIPSISISC & "|" & oRSdet!PORCOTO & "|" & oRSdet!CODIGOICBPER & _
            "|" & oRSdet!IMPORTEICBPER & "|" & oRSdet!CANTIDADICBPER & "|" & oRSdet!TITULOICBPER & "|" & oRSdet!IDEICBPER & "|" & oRSdet!MONTOICBPER & "|" & _
            oRSdet!PRECIOVTAUNITARIO & "|" & oRSdet!VALORVTAXITEM & "|" & oRSdet!GRATUITO & "|"
-            If C < oRSdet.RecordCount Then
+            If c < oRSdet.RecordCount Then
                 sCadena = sCadena + vbCrLf
             End If
-             C = C + 1
+             c = c + 1
             oRSdet.MoveNext
              
         Loop
@@ -1958,14 +2280,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Set orsTri = oRS.NextRecordset
     
     sCadena = ""
-    C = 1
+    c = 1
     'ARCIVO .TRI
     Do While Not orsTri.EOF
     sCadena = sCadena & orsTri!Codigo & "|" & orsTri!Nombre & "|" & orsTri!cod & "|" & orsTri!BASEIMPONIBLE & "|" & orsTri!TRIBUTO & "|"
-    If C < orsTri.RecordCount Then
+    If c < orsTri.RecordCount Then
         sCadena = sCadena & vbCrLf
     End If
-    C = C + 1
+    c = c + 1
         orsTri.MoveNext
     Loop
     
@@ -1979,14 +2301,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
     Dim orsLey As ADODB.Recordset
     Set orsLey = oRS.NextRecordset
     
-    C = 1
+    c = 1
     sCadena = ""
     Do While Not orsLey.EOF
         sCadena = sCadena & orsLey!cod & "|" & Trim(CONVER_LETRAS(Me.lblImporte.Caption, "S")) & "|"
-        If C < orsLey.RecordCount Then
+        If c < orsLey.RecordCount Then
             sCadena = sCadena & vbCrLf
         End If
-        C = C + 1
+        c = c + 1
         orsLey.MoveNext
     Loop
     
@@ -2000,15 +2322,15 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
             Dim orsPAG As ADODB.Recordset
             Set orsPAG = oRS.NextRecordset
             
-            C = 1
+            c = 1
             sCadena = ""
             Do While Not orsPAG.EOF
                 xFormaPago = orsPAG!formapago
                 sCadena = sCadena & orsPAG!formapago & "|" & orsPAG!pendientepago & "|" & orsPAG!TIPMONEDA & "|"
-                If C < orsPAG.RecordCount Then
+                If c < orsPAG.RecordCount Then
                     sCadena = sCadena & vbCrLf
                 End If
-                C = C + 1
+                c = c + 1
                 orsPAG.MoveNext
             Loop
             
@@ -2023,14 +2345,14 @@ Private Sub CrearArchivoPlano(cTipoDocto As String, cSerie As String, cNumero As
                 Set ArchivoDPA = obj_FSO.CreateTextFile(Leer_Ini(App.Path & "\config.ini", "CARPETA", "C:\") + sARCHIVOdpa, True)
                
                 
-                C = 1
+                c = 1
                 sCadena = ""
                 Do While Not orsDPA.EOF
                     sCadena = sCadena & orsDPA!cuotapago & "|" & orsDPA!fechavcto & "|" & orsDPA!TIPMONEDA & "|"
-                    If C < orsDPA.RecordCount Then
+                    If c < orsDPA.RecordCount Then
                         sCadena = sCadena & vbCrLf
                     End If
-                    C = C + 1
+                    c = c + 1
                     orsDPA.MoveNext
                 Loop
                 
@@ -2111,7 +2433,7 @@ Me.lblICBPER.Caption = FormatNumber(icbper, 2)
 
 'If Me.txtMoney1.Text <> 0 Then
     Me.lblImporte.Caption = vp1
-    Me.lblvuelto.Caption = val(Me.lblImporte.Caption) - vp1
+    Me.labelv.Caption = val(Me.lblImporte.Caption) - vp1
 'End If
 
 End Sub
@@ -2123,7 +2445,6 @@ gPAGO = 0
 End Sub
 
 
-
 Private Sub lvDetalle_DblClick()
 frmFaccomandaOtroPlato.Show vbModal
 End Sub
@@ -2132,7 +2453,7 @@ Private Sub lvDetalle_KeyDown(KeyCode As Integer, Shift As Integer)
 
     If KeyCode = vbKeyDelete Then
         If Not Me.lvDetalle.SelectedItem Is Nothing Then
-            Me.lvDetalle.ListItems.Remove Me.lvDetalle.SelectedItem.Index
+            Me.lvDetalle.ListItems.Remove Me.lvDetalle.SelectedItem.index
             CalcularImporte
             sumatoria
       
@@ -2167,7 +2488,7 @@ Dim vIgv As Integer
  LimpiaParametros oCmdEjec
             oCmdEjec.CommandText = "USP_EMPRESA_IGV"
             Dim orsIGV As ADODB.Recordset
-            Set orsIGV = oCmdEjec.Execute(, Me.DatEmpresas.BoundText)
+            Set orsIGV = oCmdEjec.Execute(, pCodEmp)
 
             Dim Item As Object
         
@@ -2237,6 +2558,148 @@ Private Sub lvDetalle_KeyPress(KeyAscii As Integer)
 
 End Sub
 
+Private Sub pbAumentar_Click()
+If Me.txtCopias.Text = 99 Then Exit Sub
+Me.txtCopias.Text = val(Me.txtCopias.Text) + 1
+End Sub
+
+Private Sub pbDisminuir_Click()
+If Me.txtCopias.Text = 1 Then Exit Sub
+Me.txtCopias.Text = val(Me.txtCopias.Text) - 1
+End Sub
+
+Private Sub pbDoc_Click(index As Integer)
+pCodTipDoc = Me.pbDoc(index).Tag
+pDesTipDoc = Me.pbDoc(index).Caption
+cargarSeries pDesTipDoc
+
+ For i = 1 To Me.pbDoc.count - 1
+
+        If index = i Then
+            Me.pbDoc(i).Checked = True
+        Else
+            Me.pbDoc(i).Checked = False
+
+        End If
+
+    Next
+End Sub
+
+Private Sub pbDocAnt_Click()
+Dim ini, fin, f, FF As Integer
+If vPagActDoc = 2 Then
+    ini = 1
+    fin = ini * 3
+ElseIf vPagActDoc = 1 Then
+    Exit Sub
+Else
+    FF = vPagActDoc - 1
+    ini = (3 * FF) - 2
+    fin = 3 * FF
+End If
+
+For f = ini To fin
+    Me.pbDoc(f).Visible = True
+Next
+If vPagActDoc > 1 Then
+    vPagActDoc = vPagActDoc - 1
+    If vPagActDoc = 1 Then: Me.pbDocAnt.Enabled = False
+    
+    Me.pbDocSig.Enabled = True
+End If
+End Sub
+
+Private Sub pbDocSig_Click()
+Dim ini, fin, f As Integer
+If vPagActDoc = 1 Then
+    ini = 1
+    fin = ini * 3
+ElseIf vPagActDoc = vPagTotDoc Then
+    Exit Sub
+Else
+    ini = (3 * vPagActDoc) - 2
+    fin = 3 * vPagActDoc
+End If
+
+For f = ini To fin
+    Me.pbDoc(f).Visible = False
+Next
+If vPagActDoc < vPagTotDoc Then
+    vPagActDoc = vPagActDoc + 1
+    If vPagActDoc = vPagTotDoc Then: Me.pbDocSig.Enabled = False
+    
+    Me.pbDocAnt.Enabled = True
+End If
+End Sub
+
+Private Sub pbEmpresa_Click(index As Integer)
+CargarDocumentos Me.pbEmpresa(index).Tag
+pCodEmp = Me.pbEmpresa(index).Tag
+pCodTipDoc = ""
+
+ For i = 1 To Me.pbEmpresa.count - 1
+
+        If index = i Then
+            Me.pbEmpresa(i).Checked = True
+        Else
+            Me.pbEmpresa(i).Checked = False
+
+        End If
+
+    Next
+End Sub
+
+Private Sub pbEmpresaAnt_Click()
+Dim ini, fin, f, FF As Integer
+If vPagActEmp = 2 Then
+    ini = 1
+    fin = ini * 5
+ElseIf vPagActEmp = 1 Then
+    Exit Sub
+Else
+    FF = vPagActEmp - 1
+    ini = (5 * FF) - 4
+    fin = 5 * FF
+End If
+
+For f = ini To fin
+    Me.pbEmpresa(f).Visible = True
+Next
+If vPagActEmp > 1 Then
+    vPagActEmp = vPagActEmp - 1
+    If vPagActEmp = 1 Then: Me.pbEmpresaAnt.Enabled = False
+    
+    Me.pbEmpresaSig.Enabled = True
+End If
+End Sub
+
+Private Sub pbEmpresaSig_Click()
+Dim ini, fin, f As Integer
+If vPagActFam = 1 Then
+    ini = 1
+    fin = ini * 5
+ElseIf vPagActEmp = vPagTotEmp Then
+    Exit Sub
+Else
+    ini = (5 * vPagActEmp) - 4
+    fin = 5 * vPagActEmp
+End If
+
+For f = ini To fin
+    Me.pbEmpresa(f).Visible = False
+Next
+If vPagActEmp < vPagTotEmp Then
+    vPagActEmp = vPagActEmp + 1
+    If vPagActEmp = vPagTotEmp Then: Me.pbEmpresaSig.Enabled = False
+    
+    Me.pbEmpresaAnt.Enabled = True
+End If
+End Sub
+
+Private Sub txtCopias_KeyPress(KeyAscii As Integer)
+If SoloNumeros(KeyAscii) Then KeyAscii = 0
+End Sub
+
 Private Sub txtDni_KeyPress(KeyAscii As Integer)
 If SoloNumeros(KeyAscii) Then KeyAscii = 0
 End Sub
@@ -2255,36 +2718,11 @@ End Sub
 
 Private Sub txtnro_KeyPress(KeyAscii As Integer)
 If KeyAscii = vbKeyReturn Then Me.txtRS.SetFocus
-'If KeyAscii = vbKeyReturn And Me.DatTiposDoctos.BoundText = "01" Then Me.txtRS.SetFocus
-'If KeyAscii = vbKeyReturn And Me.DatTiposDoctos.BoundText = "03" Then Me.txtcli.SetFocus
-
+If SoloNumeros(KeyAscii) Then KeyAscii = 0
 End Sub
 
 Private Sub txtRS_Change()
 vBuscar = True
-'txtRuc.Tag = ""
-'If buscars Then
-'Me.ListView1.Visible = True
-'If Len(Trim(Me.txtRS.Text)) <> 0 Then
-'For i = 1 To Me.ListView1.ListItems.count
-'    If Me.txtRS.Text = Left(Me.ListView1.ListItems(i).SubItems(1), Len(Me.txtRS.Text)) Then
-'        Me.ListView1.ListItems(i).Selected = True
-'        loc_key = i
-'        Me.ListView1.ListItems(i).EnsureVisible
-'        Exit For
-'    Else
-'        Me.ListView1.ListItems(i).Selected = False
-'        loc_key = -1
-'
-'    End If
-'Next
-'Else
-'Me.ListView1.Visible = False
-'Me.txtRuc.Text = ""
-'Me.txtDireccion.Text = ""
-'Me.txtRS.Text = ""
-'End If
-'End If
 End Sub
 
 Private Sub txtRS_GotFocus()
@@ -2292,12 +2730,7 @@ buscars = True
 End Sub
 
 Private Sub txtRS_KeyDown(KeyCode As Integer, Shift As Integer)
-
     On Error GoTo SALE
-
-    Dim strFindMe As String
-
-    Dim itmFound  As Object ' ListItem    ' Variable FoundItem.
 
     If KeyCode = 40 Then  ' flecha abajo
         loc_key = loc_key + 1
@@ -2306,28 +2739,28 @@ Private Sub txtRS_KeyDown(KeyCode As Integer, Shift As Integer)
         GoTo posicion
     End If
 
-    If KeyCode = 38 Then
+    If KeyCode = 38 Then 'flecha arriba
         loc_key = loc_key - 1
 
         If loc_key < 1 Then loc_key = 1
         GoTo posicion
     End If
 
-    If KeyCode = 34 Then
+    If KeyCode = 34 Then    'avanzar pagina
         loc_key = loc_key + 17
 
         If loc_key > ListView1.ListItems.count Then loc_key = ListView1.ListItems.count
         GoTo posicion
     End If
 
-    If KeyCode = 33 Then
+    If KeyCode = 33 Then        'regresar pagina
         loc_key = loc_key - 17
 
         If loc_key < 1 Then loc_key = 1
         GoTo posicion
     End If
 
-    If KeyCode = 27 Then
+    If KeyCode = 27 Then        'tecla escape
         Me.ListView1.Visible = False
         Me.txtRS.Text = ""
         Me.txtRuc.Text = ""
@@ -2336,15 +2769,18 @@ Private Sub txtRS_KeyDown(KeyCode As Integer, Shift As Integer)
 
     GoTo fin
 posicion:
+If Me.ListView1.ListItems.count = 0 Then Exit Sub
     ListView1.ListItems.Item(loc_key).Selected = True
     ListView1.ListItems.Item(loc_key).EnsureVisible
     'txtRS.Text = Trim(ListView1.ListItems.Item(loc_key).Text) & " "
-    txtRS.SelStart = Len(txtRS.Text)
+    'txtRS.SelStart = Len(txtRS.Text)
+
 fin:
 
     Exit Sub
 
 SALE:
+MsgBox Err.Description
 End Sub
 
 Private Sub txtRS_KeyPress(KeyAscii As Integer)
@@ -2352,34 +2788,42 @@ Private Sub txtRS_KeyPress(KeyAscii As Integer)
 
     If KeyAscii = vbKeyReturn Then
         If vBuscar Then
-            Me.ListView1.ListItems.Clear
-            LimpiaParametros oCmdEjec
-            oCmdEjec.CommandText = "SpListarCliProv"
-            Set oRsPago = oCmdEjec.Execute(, Array(Me.DatEmpresas.BoundText, "C", Me.txtRS.Text))
+            If pCodEmp = "" Then
+                Me.ListView1.ListItems.Clear
+                LimpiaParametros oCmdEjec
+                oCmdEjec.CommandText = "SpListarCliProv"
+                Set oRsPago = oCmdEjec.Execute(, Array(pCodEmp, "C", Me.txtRS.Text))
 
-            Dim Item As Object
+                Dim Item As Object
         
-            If Not oRsPago.EOF Then
+                If Not oRsPago.EOF Then
 
-                Do While Not oRsPago.EOF
-                    Set Item = Me.ListView1.ListItems.Add(, , oRsPago!CodClie)
-                    Item.SubItems(1) = Trim(oRsPago!Nombre)
-                    Item.SubItems(2) = IIf(IsNull(oRsPago!RUC), "", oRsPago!RUC)
-                    Item.SubItems(3) = Trim(oRsPago!dir)
-                    Item.Tag = oRsPago!DNI
-                    oRsPago.MoveNext
-                Loop
+                    Do While Not oRsPago.EOF
+                        Set Item = Me.ListView1.ListItems.Add(, , oRsPago!CodClie)
+                        Item.SubItems(1) = Trim(oRsPago!Nombre)
+                        Item.SubItems(2) = IIf(IsNull(oRsPago!RUC), "", oRsPago!RUC)
+                        Item.SubItems(3) = Trim(oRsPago!dir)
+                        Item.Tag = oRsPago!DNI
+                        oRsPago.MoveNext
+                    Loop
 
-                Me.ListView1.Visible = True
-                Me.ListView1.ListItems(1).Selected = True
-                loc_key = 1
-                Me.ListView1.ListItems(1).EnsureVisible
-                vBuscar = False
-            Else
+                    Me.ListView1.Visible = True
+                    Me.ListView1.ListItems(1).Selected = True
+                    loc_key = 1
+                    Me.ListView1.ListItems(1).EnsureVisible
+                    vBuscar = False
+                Else
 
-                If MsgBox("Cliente no existe." + vbCrLf + "¿Desea Crearlo.?", vbQuestion + vbYesNo, "Restaurantes") = vbYes Then
-                    frmCLI.Show vbModal
+                    If MsgBox("Cliente no existe." + vbCrLf + "¿Desea Crearlo.?", vbQuestion + vbYesNo, "Restaurantes") = vbYes Then
+                        frmCLI.Show vbModal
+
+                    End If
+
                 End If
+
+            Else
+                MsgBox "Debe elegir la Empresa para continuar con la facturación.", vbInformation, Pub_Titulo
+
             End If
         
         Else
@@ -2391,7 +2835,9 @@ Private Sub txtRS_KeyPress(KeyAscii As Integer)
             Me.txtDni.Text = Me.ListView1.ListItems(loc_key).Tag
             Me.txtRuc.Tag = Me.ListView1.ListItems(loc_key)
             Me.lvDetalle.SetFocus
+
         End If
+
     End If
 
 End Sub
@@ -2423,4 +2869,55 @@ Me.txtDireccion.Text = ""
 Me.txtRS.Text = ""
 End If
 End If
+End Sub
+
+Private Sub CargarEmpresas()
+    LimpiaParametros oCmdEjec
+    oCmdEjec.CommandText = "SP_CIAS_FACTURACION"
+   ' oCmdEjec.Prepared = True
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
+    Set ORStd = oCmdEjec.Execute
+    
+    Dim vIniLeft, cantTotaEmp, j As Integer
+    Dim valor As Double
+    j = 1
+    vIniLeft = 30
+    
+    If Not ORStd.EOF Then
+        cantTotaEmp = ORStd.RecordCount
+        valor = cantTotaEmp / 5
+        pos = InStr(Trim(str(valor)), ".")
+        pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
+        ent = Left(Trim(str(valor)), pos - 1)
+        
+        If ent = "" Then: ent = 0
+        If pos2 > 0 Then: vPagTotEmp = ent + 1
+        
+        If cantTotaEmp >= 1 Then: vPagActEmp = 1
+        If cantTotaEmp > 5 Then: Me.pbEmpresaSig.Enabled = True
+        
+        For i = 1 To ORStd.RecordCount
+            Load pbEmpresa(i)
+            
+            If j = 1 Then
+                vIniLeft = vIniLeft + Me.pbEmpresaAnt.Width
+            Else
+                vIniLeft = vIniLeft + Me.pbEmpresa(i - 1).Width
+            End If
+           
+            Me.pbEmpresa(i).Tag = ORStd!CodCia
+            Me.pbEmpresa(i).Left = vIniLeft
+            Me.pbEmpresa(i).Visible = True
+            Me.pbEmpresa(i).Caption = ORStd!PAR_NOMBRE
+            'MsgBox "2"
+             If j = 5 Then
+            j = 1
+            vIniLeft = 30
+            Else
+            j = j + 1
+            End If
+            ORStd.MoveNext
+        Next
+    End If
+    
 End Sub

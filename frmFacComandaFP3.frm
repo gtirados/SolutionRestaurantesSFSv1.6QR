@@ -1,11 +1,12 @@
 VERSION 5.00
+Object = "{A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0"; "Codejock.Controls.v12.1.1.ocx"
 Begin VB.Form frmFacComandaFP3 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Importe"
    ClientHeight    =   2190
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   5175
+   ClientWidth     =   5160
    BeginProperty Font 
       Name            =   "Verdana"
       Size            =   8.25
@@ -15,67 +16,41 @@ Begin VB.Form frmFacComandaFP3
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmFacComandaFP3.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   2190
-   ScaleWidth      =   5175
+   ScaleWidth      =   5160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CommandButton cmdCancelar 
-      Caption         =   "&Cancelar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   720
-      Left            =   3480
-      TabIndex        =   5
-      Top             =   1320
-      Width           =   1575
-   End
-   Begin VB.CommandButton cmdAceptar 
-      Caption         =   "&Aceptar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   11.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   720
-      Left            =   1920
+   Begin XtremeSuiteControls.PushButton cmdAceptar 
+      Height          =   840
+      Left            =   1320
       TabIndex        =   4
-      Top             =   1320
-      Width           =   1575
+      Top             =   1200
+      Width           =   1815
+      _Version        =   786433
+      _ExtentX        =   3201
+      _ExtentY        =   1482
+      _StockProps     =   79
+      Caption         =   "&Aceptar"
+      Appearance      =   5
+      Picture         =   "frmFacComandaFP3.frx":1CCA
    End
-   Begin VB.TextBox txtReferencia 
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   12
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
+   Begin XtremeSuiteControls.FlatEdit txtReferencia 
       Height          =   390
       Left            =   2280
-      MaxLength       =   4
       TabIndex        =   3
       Top             =   720
       Width           =   2775
-   End
-   Begin VB.TextBox txtMonto 
-      BeginProperty Font 
+      _Version        =   786433
+      _ExtentX        =   4895
+      _ExtentY        =   688
+      _StockProps     =   77
+      BackColor       =   -2147483643
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
          Size            =   12
          Charset         =   0
@@ -84,11 +59,49 @@ Begin VB.Form frmFacComandaFP3
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      Alignment       =   1
+      MaxLength       =   20
+      Appearance      =   6
+      UseVisualStyle  =   0   'False
+   End
+   Begin XtremeSuiteControls.FlatEdit txtMonto 
       Height          =   390
       Left            =   2280
       TabIndex        =   2
       Top             =   240
       Width           =   2775
+      _Version        =   786433
+      _ExtentX        =   4895
+      _ExtentY        =   688
+      _StockProps     =   77
+      BackColor       =   -2147483643
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Alignment       =   1
+      MaxLength       =   10
+      Appearance      =   6
+      UseVisualStyle  =   0   'False
+   End
+   Begin XtremeSuiteControls.PushButton cmdCancelar 
+      Height          =   840
+      Left            =   3240
+      TabIndex        =   5
+      Top             =   1200
+      Width           =   1815
+      _Version        =   786433
+      _ExtentX        =   3201
+      _ExtentY        =   1482
+      _StockProps     =   79
+      Caption         =   "&Cancelar"
+      Appearance      =   5
+      Picture         =   "frmFacComandaFP3.frx":39A4
    End
    Begin VB.Label Label2 
       AutoSize        =   -1  'True
@@ -136,7 +149,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public MuestraReferencia As Boolean
 
-Public gACEPTA As Boolean
+Public gAcepta As Boolean
 Public gMONTO As Double
 Public gREF As String
 Private vPUNTO As Boolean
@@ -144,7 +157,7 @@ Private vPUNTO As Boolean
 Private Sub cmdAceptar_Click()
 
     If IsNumeric(Me.txtMonto.Text) Then
-        gACEPTA = True
+        gAcepta = True
         gMONTO = Me.txtMonto.Text
         gREF = Me.txtReferencia.Text
         Unload Me
@@ -155,7 +168,7 @@ Private Sub cmdAceptar_Click()
 End Sub
 
 Private Sub cmdCancelar_Click()
-gACEPTA = False
+gAcepta = False
 Unload Me
 End Sub
 

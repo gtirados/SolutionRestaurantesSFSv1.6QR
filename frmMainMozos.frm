@@ -16,6 +16,7 @@ Begin VB.Form frmMainMozos
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmMainMozos.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
@@ -46,7 +47,7 @@ Begin VB.Form frmMainMozos
       checkcaption    =   "Command"
       BackColor1      =   16744576
       BackColor2      =   16761024
-      Icon            =   "frmMainMozos.frx":0000
+      Icon            =   "frmMainMozos.frx":1CCA
       IconSize        =   3
       IconAlign       =   3
       IconWidth       =   52
@@ -77,7 +78,7 @@ Begin VB.Form frmMainMozos
       Caption         =   ""
       BackColor1      =   16744576
       BackColor2      =   16761024
-      Icon            =   "frmMainMozos.frx":0786
+      Icon            =   "frmMainMozos.frx":2450
       IconSize        =   3
       IconWidth       =   75
       IconHeight      =   75
@@ -107,7 +108,7 @@ Begin VB.Form frmMainMozos
       Caption         =   ""
       BackColor1      =   16744576
       BackColor2      =   16761024
-      Icon            =   "frmMainMozos.frx":12B7
+      Icon            =   "frmMainMozos.frx":2F81
       IconSize        =   3
       IconWidth       =   75
       IconHeight      =   75
@@ -125,7 +126,7 @@ Public gCodMozo As String
 Public gMozo As String
 
 
-Private Sub cmdMozo_Click(Index As Integer)
+Private Sub cmdMozo_Click(index As Integer)
 'PEDIR CLAVE
 LimpiaParametros oCmdEjec
 oCmdEjec.CommandText = "SP_REQUIERE_PASSWORD"
@@ -135,8 +136,8 @@ If Not oRSfp.EOF Then
     If oRSfp!PASSW = "A" Then
 
         frmcomandamozomesa.gModificaMozo = True
-        frmcomandamozomesa.gCodMozo = cmdMozo(Index).Tag
-        frmcomandamozomesa.gMozo = cmdMozo(Index).Caption
+        frmcomandamozomesa.gCodMozo = cmdMozo(index).Tag
+        frmcomandamozomesa.gMozo = cmdMozo(index).Caption
         frmcomandamozomesa.Show vbModal
         
         If frmcomandamozomesa.gEntro Then
@@ -145,8 +146,8 @@ If Not oRSfp.EOF Then
             frmMainMesas.Show
         End If
     Else
-        gCodMozo = Me.cmdMozo(Index).Tag
-        gMozo = Me.cmdMozo(Index).Caption
+        gCodMozo = Me.cmdMozo(index).Tag
+        gMozo = Me.cmdMozo(index).Caption
         frmMainMesas.Show
     End If
 End If
@@ -206,6 +207,10 @@ Private Sub cmdPrev_Click()
     
         Me.cmdNext.Enabled = True
     End If
+End Sub
+
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyEscape Then Unload Me
 End Sub
 
 Private Sub Form_Load()
