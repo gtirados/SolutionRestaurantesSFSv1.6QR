@@ -385,7 +385,7 @@ Dim wa As String
 Dim i, N, t As Integer
 Dim c As Integer
 Dim DU As Integer
-Dim d As Integer
+Dim D As Integer
 Dim u As Integer
 Dim cdu As Currency
 NUM(1) = "UN "
@@ -447,8 +447,8 @@ For i = 1 To 4
     cdu = val(VECTOR(i))
     c = Int(cdu / 100)
     DU = cdu - (c * 100)
-    d = Int(DU / 10)
-    u = DU - (d * 10)
+    D = Int(DU / 10)
+    u = DU - (D * 10)
     If cdu > 99 Then
         wa = Trim(CENTEN(c))
         pub_cadena = pub_cadena + wa
@@ -472,7 +472,7 @@ For i = 1 To 4
     End If
     If DU > 0 And DU <> 20 Then
         If DU > 19 Then
-            wa = Trim(DECEN(d))
+            wa = Trim(DECEN(D))
             pub_cadena = pub_cadena + wa
             If u = 0 Then
                 wa = "NTA"
@@ -711,6 +711,7 @@ If LK_EMP = "3AA" Then
   LK_CAJERO = ""
 Else
   MDIForm1.menuTit1.Caption = "&Mantenimientos"
+  MDIForm1.XpMenu1.UseSystemFont = False
 End If
 PSCOP_LLAVE.rdoParameters(0) = par_llave!PAR_CIACON
 cop_llave.Requery

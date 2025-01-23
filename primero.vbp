@@ -208,6 +208,7 @@ Form=frmFacComandaFP2credito.frm
 Form=frmEventoConsulta.frm
 Module=modMain; Modules\modMain.bas
 Object={A8E5842E-102B-4289-9D57-3B3F5B5E15D3}#12.1#0; Codejock.Controls.v12.1.1.ocx
+Object={F5E116E1-0563-11D8-AA80-000B6A0D10CB}#1.0#0; HookMenu.ocx
 IconForm="RCRYSTAL"
 Startup="Splash"
 HelpFile=""
