@@ -2644,8 +2644,9 @@ End Sub
 Private Sub pbEmpresa_Click(index As Integer)
 
 pCodTipDoc = ""
-CargarDocumentos Me.pbEmpresa(index).Tag
 pCodEmp = Me.pbEmpresa(index).Tag
+CargarDocumentos Me.pbEmpresa(index).Tag
+
 
  For i = 1 To Me.pbEmpresa.count - 1
 
@@ -2888,16 +2889,16 @@ Private Sub CargarEmpresas()
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
     
     
-    Dim orsE As ADODB.Recordset
-    Set orsE = oCmdEjec.Execute
+    Dim ORSe As ADODB.Recordset
+    Set ORSe = oCmdEjec.Execute
     
     Dim vIniLeft, cantTotaEmp, j As Integer
     Dim valor As Double
     j = 1
     vIniLeft = 30
     
-    If Not orsE.EOF Then
-        cantTotaEmp = orsE.RecordCount
+    If Not ORSe.EOF Then
+        cantTotaEmp = ORSe.RecordCount
         valor = cantTotaEmp / 5
         pos = InStr(Trim(str(valor)), ".")
         pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
@@ -2909,7 +2910,7 @@ Private Sub CargarEmpresas()
         If cantTotaEmp >= 1 Then: vPagActEmp = 1
         If cantTotaEmp > 5 Then: Me.pbEmpresaSig.Enabled = True
         
-        For i = 1 To orsE.RecordCount
+        For i = 1 To ORSe.RecordCount
             Load pbEmpresa(i)
             
             If j = 1 Then
@@ -2918,10 +2919,10 @@ Private Sub CargarEmpresas()
                 vIniLeft = vIniLeft + Me.pbEmpresa(i - 1).Width
             End If
            
-            Me.pbEmpresa(i).Tag = orsE!CodCia
+            Me.pbEmpresa(i).Tag = ORSe!CodCia
             Me.pbEmpresa(i).Left = vIniLeft
             Me.pbEmpresa(i).Visible = True
-            Me.pbEmpresa(i).Caption = orsE!PAR_NOMBRE
+            Me.pbEmpresa(i).Caption = ORSe!PAR_NOMBRE
             'MsgBox "2"
              If j = 5 Then
             j = 1
@@ -2930,10 +2931,9 @@ Private Sub CargarEmpresas()
             j = j + 1
             End If
             
-            If i = 1 Then
-                pbEmpresa_Click (i)
-            End If
-            orsE.MoveNext
+            If i = 1 Then pbEmpresa_Click (i)
+
+            ORSe.MoveNext
         Next
     End If
     
