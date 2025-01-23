@@ -5,12 +5,12 @@
 4=#P0#=mb	#P1#=Permisos	#P2#=Solution/Módulo3/Permisos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120152934	#P7#=0	#P8#=126	.
 5=#P0#=mb	#P1#=MDIForm_Load	#P2#=Solution/MDIForm1/MDIForm_Load	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120152746	#P7#=0	#P8#=211	.
 6=#P0#=mb	#P1#=Form_Load	#P2#=Solution/Splash/Form_Load	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120150835	#P7#=0	#P8#=39	.
-7=#P0#=mb	#P1#=CONEXION_GEN	#P2#=Solution/Módulo1/CONEXION_GEN	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120150808	#P7#=0	#P8#=210	.
+7=#P0#=mb	#P1#=CONEXION_GEN	#P2#=Solution/Módulo1/CONEXION_GEN	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120150808	#P7#=0	#P8#=23	.
 8=#P0#=mb	#P1#=MDIForm_Unload	#P2#=Solution/MDIForm1/MDIForm_Unload	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120144210	#P7#=0	#P8#=9	.
 9=#P0#=mb	#P1#=salir_Click	#P2#=Solution/PASSFORM/salir_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120142422	#P7#=0	#P8#=9	.
 10=#P0#=mb	#P1#=cargarUsuarios	#P2#=Solution/PASSFORM/cargarUsuarios	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120142217	#P7#=0	#P8#=59	.
-11=#P0#=mb	#P1#=LimpiaParametros	#P2#=Solution/Módulo4/LimpiaParametros	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120142144	#P7#=0	#P8#=2	.
-12=#P0#=mb	#P1#=CargarEmpresas	#P2#=Solution/frmFacComanda/CargarEmpresas	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120141512	#P7#=0	#P8#=8	.
+11=#P0#=mb	#P1#=LimpiaParametros	#P2#=Solution/Módulo4/LimpiaParametros	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120142144	#P7#=0	#P8#=11	.
+12=#P0#=mb	#P1#=CargarEmpresas	#P2#=Solution/frmFacComanda/CargarEmpresas	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250122223041	#P7#=0	#P8#=52	.
 13=#P0#=mb	#P1#=chkGratuita_Click	#P2#=Solution/frmFacComanda/chkGratuita_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250120141142	#P7#=0	#P8#=5	.
 14=#P0#=mb	#P1#=chkEdit_Click	#P2#=Solution/frmFacComanda/chkEdit_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120141125	#P7#=0	#P8#=0	.
 15=#P0#=mb	#P1#=Form_KeyUp	#P2#=Solution/Splash/Form_KeyUp	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250120140528	#P7#=0	#P8#=1	.
@@ -30,7 +30,7 @@
 29=#P0#=mb	#P1#=pbDisminuir_Click	#P2#=Solution/frmFacComandaFP2credito/pbDisminuir_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119235503	#P7#=0	#P8#=2	.
 30=#P0#=mb	#P1#=ConfiguraLV	#P2#=Solution/frmFacComandaFP2/ConfiguraLV	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119235155	#P7#=0	#P8#=2	.
 31=#P0#=mb	#P1#=pbAumentar_Click	#P2#=Solution/frmFacComandaFP2credito/pbAumentar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119234458	#P7#=0	#P8#=2	.
-32=#P0#=mb	#P1#=cmdAceptar_Click	#P2#=Solution/frmFacComanda/cmdAceptar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119233519	#P7#=0	#P8#=319	.
+32=#P0#=mb	#P1#=cmdAceptar_Click	#P2#=Solution/frmFacComanda/cmdAceptar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119233519	#P7#=0	#P8#=14	.
 33=#P0#=mb	#P1#=cmdFP_Click	#P2#=Solution/frmFacComandaFP2/cmdFP_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119232631	#P7#=0	#P8#=32	.
 34=#P0#=mb	#P1#=Form_Unload	#P2#=Solution/frmFacComanda/Form_Unload	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119223511	#P7#=0	#P8#=5	.
 35=#P0#=mb	#P1#=pbFacturar_Click	#P2#=Solution/frmComanda/pbFacturar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119202715	#P7#=0	#P8#=5	.
@@ -44,7 +44,7 @@
 43=#P0#=mb	#P1#=txtnro_KeyPress	#P2#=Solution/frmFacComanda/txtnro_KeyPress	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119194229	#P7#=0	#P8#=2	.
 44=#P0#=mb	#P1#=SoloNumeros	#P2#=Solution/Módulo1/SoloNumeros	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119194215	#P7#=0	#P8#=1	.
 45=#P0#=mb	#P1#=txtRS_Change	#P2#=Solution/frmFacComanda/txtRS_Change	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119192049	#P7#=0	#P8#=1	.
-46=#P0#=mb	#P1#=CargarDocumentos	#P2#=Solution/frmFacComanda/CargarDocumentos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119112000	#P7#=0	#P8#=10	.
+46=#P0#=mb	#P1#=CargarDocumentos	#P2#=Solution/frmFacComanda/CargarDocumentos	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250122223236	#P7#=0	#P8#=61	.
 47=#P0#=mb	#P1#=VerificaPassPrecios	#P2#=Solution/frmFacComanda/VerificaPassPrecios	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119111901	#P7#=0	#P8#=-2	.
 48=#P0#=mb	#P1#=CreaCodigoQR	#P2#=Solution/modQR/CreaCodigoQR	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119111345	#P7#=0	#P8#=8	.
 49=#P0#=mb	#P1#=CrearArchivoPlano	#P2#=Solution/frmFacComanda/CrearArchivoPlano	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119110431	#P7#=0	#P8#=111	.
@@ -52,9 +52,9 @@
 51=#P0#=mb	#P1#=Form_KeyDown	#P2#=Solution/frmFacComanda/Form_KeyDown	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119110149	#P7#=0	#P8#=1	.
 52=#P0#=mb	#P1#=DatEmpresas_Change	#P2#=Solution/frmFacComanda/DatEmpresas_Change	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119110147	#P7#=0	#P8#=5	.
 53=#P0#=mb	#P1#=cargarSeries	#P2#=Solution/frmFacComanda/cargarSeries	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119110118	#P7#=0	#P8#=25	.
-54=#P0#=mb	#P1#=pbDoc_Click	#P2#=Solution/frmFacComanda/pbDoc_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119105922	#P7#=0	#P8#=3	.
-55=#P0#=mb	#P1#=pbEmpresa_Click	#P2#=Solution/frmFacComanda/pbEmpresa_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119105721	#P7#=0	#P8#=3	.
-56=#P0#=mb	#P1#=pbDocSig_Click	#P2#=Solution/frmFacComanda/pbDocSig_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119103558	#P7#=0	#P8#=-1	.
+54=#P0#=mb	#P1#=pbDoc_Click	#P2#=Solution/frmFacComanda/pbDoc_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119105922	#P7#=0	#P8#=1	.
+55=#P0#=mb	#P1#=pbEmpresa_Click	#P2#=Solution/frmFacComanda/pbEmpresa_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250122223949	#P7#=0	#P8#=0	.
+56=#P0#=mb	#P1#=pbDocSig_Click	#P2#=Solution/frmFacComanda/pbDocSig_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119103558	#P7#=0	#P8#=14	.
 57=#P0#=mb	#P1#=pbFam_Click	#P2#=Solution/frmComanda/pbFam_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119102936	#P7#=0	#P8#=16	.
 58=#P0#=mb	#P1#=pbDocAnt_Click	#P2#=Solution/frmFacComanda/pbDocAnt_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250119102051	#P7#=0	#P8#=15	.
 59=#P0#=mb	#P1#=pbEmpresaAnt_Click	#P2#=Solution/frmFacComanda/pbEmpresaAnt_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250119095004	#P7#=0	#P8#=1	.
@@ -71,7 +71,7 @@
 70=#P0#=mb	#P1#=cmdReservar_Click	#P2#=Solution/frmComanda/cmdReservar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250115235732	#P7#=0	#P8#=1	.
 71=#P0#=mb	#P1#=pbCerrar_Click	#P2#=Solution/frmComanda/pbCerrar_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250115234139	#P7#=0	#P8#=11	.
 72=#P0#=mb	#P1#=cmdPreCuenta_Click	#P2#=Solution/frmComanda/cmdPreCuenta_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250115234007	#P7#=0	#P8#=1	.
-73=#P0#=mb	#P1#=pbPrint_Click	#P2#=Solution/frmComanda/pbPrint_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250115233814	#P7#=0	#P8#=421	.
+73=#P0#=mb	#P1#=pbPrint_Click	#P2#=Solution/frmComanda/pbPrint_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250122222044	#P7#=0	#P8#=24	.
 74=#P0#=mb	#P1#=pbReservar_Click	#P2#=Solution/frmComanda/pbReservar_Click	#P3#=	#P4#=	#P5#=MembMethodPublic	#P6#=20250115233511	#P7#=0	#P8#=18	.
 75=#P0#=mb	#P1#=cmdMozo_Click	#P2#=Solution/frmComanda/cmdMozo_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250115233349	#P7#=0	#P8#=1	.
 76=#P0#=mb	#P1#=cmdLimpiar_Click	#P2#=Solution/frmComanda/cmdLimpiar_Click	#P3#=	#P4#=	#P5#=MembEventProcPrivate	#P6#=20250115233336	#P7#=0	#P8#=1	.
