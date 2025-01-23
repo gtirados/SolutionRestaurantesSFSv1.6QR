@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDatLst.Ocx"
 Begin VB.Form frmdespachados 
    Caption         =   "Items Despachados"
    ClientHeight    =   7155
@@ -137,7 +137,7 @@ Begin VB.Form frmdespachados
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   79626241
+         Format          =   205651969
          CurrentDate     =   41400
       End
       Begin MSComCtl2.DTPicker dtpHasta 
@@ -149,7 +149,7 @@ Begin VB.Form frmdespachados
          _ExtentX        =   2566
          _ExtentY        =   556
          _Version        =   393216
-         Format          =   79626241
+         Format          =   205651969
          CurrentDate     =   41400
       End
       Begin VB.Label Label3 
@@ -255,7 +255,7 @@ xTiempo = ""
         ITEMd.SubItems(5) = ORSDatos!tiempo
         ITEMd.SubItems(6) = ORSDatos!DETALLE
         ITEMd.SubItems(7) = ORSDatos!NUMERO
-        ITEMd.SubItems(8) = ORSDatos!SEC
+        ITEMd.SubItems(8) = ORSDatos!Sec
         ITEMd.SubItems(9) = ORSDatos!serie
         ITEMd.SubItems(10) = ORSDatos!CodArt
         ITEMd.SubItems(11) = ORSDatos!tiempo2
@@ -294,7 +294,7 @@ Private Sub cmdActualizar_Click()
     RealizarBusqueda
 End Sub
 
-Private Sub cmdprint_Click()
+Private Sub cmdPrint_Click()
 Dim rsd As ADODB.Recordset
 
     LimpiaParametros oCmdEjec
@@ -331,7 +331,7 @@ Dim rsd As ADODB.Recordset
  
  
 
-    VReporte.DataBase.SetDataSource rsd, , 1
+    VReporte.Database.SetDataSource rsd, , 1
 
  
     frmVisor.cr.ReportSource = VReporte

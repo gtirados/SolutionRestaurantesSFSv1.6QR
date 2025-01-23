@@ -12,7 +12,7 @@ Public ODBCRUTA As String
 Public PSX As rdoQuery
 'CONEXION ADO
 Public Pub_ConnAdo As New ADODB.Connection
-
+Public wdsn As String
 Public PSVEN As rdoQuery
 '************************
 'CREADO

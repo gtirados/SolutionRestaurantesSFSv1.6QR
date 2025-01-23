@@ -84,7 +84,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Caption         =   "PushButton3"
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
       End
       Begin XtremeSuiteControls.PushButton pbEmpresaAnt 
@@ -98,7 +98,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Enabled         =   0   'False
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
          Picture         =   "frmFacComanda.frx":39A4
       End
@@ -113,7 +113,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Enabled         =   0   'False
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
          Picture         =   "frmFacComanda.frx":567E
       End
@@ -140,7 +140,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Enabled         =   0   'False
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
          Picture         =   "frmFacComanda.frx":7358
       End
@@ -155,7 +155,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Enabled         =   0   'False
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
          Picture         =   "frmFacComanda.frx":9032
       End
@@ -172,7 +172,7 @@ Begin VB.Form frmFacComanda
          _ExtentY        =   1720
          _StockProps     =   79
          Caption         =   "Documento"
-         Appearance      =   5
+         Appearance      =   6
          DrawFocusRect   =   0   'False
       End
    End
@@ -1160,10 +1160,10 @@ Private Sub chkGratuita_Click()
                 'Me.lblgratuita.Caption = Me.lblImporte
                 Me.lblgratuita.Caption = Format(val(Me.lblImporte.Caption), "########0.#0")
                 Me.lblvvta.Caption = "0.00"
-                Me.lblIGV.Caption = "0.00"
+                Me.lblIgv.Caption = "0.00"
                 Me.lblImporte.Caption = "0.00"
                
-                Me.cmdFormasPago.Enabled = False
+                Me.cmdformaspago.Enabled = False
             Else
                 MsgBox "Clave incorrecta", vbCritical, NombreProyecto
 
@@ -1172,7 +1172,7 @@ Private Sub chkGratuita_Click()
         End If
 
     Else
-        Me.cmdFormasPago.Enabled = True
+        Me.cmdformaspago.Enabled = True
         CalcularImporte
 
     End If
@@ -1180,13 +1180,13 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 
-If Len(Trim(Me.txtCopias.Text)) = 0 Then
+If Len(Trim(Me.txtcopias.Text)) = 0 Then
         MsgBox "Debe ingresar el nro de copias a imprimir.", vbInformation, Pub_Titulo
-        Me.txtCopias.SetFocus
+        Me.txtcopias.SetFocus
         Exit Sub
     End If
     
-    If val(Me.txtCopias.Text) <= 0 Then
+    If val(Me.txtcopias.Text) <= 0 Then
     ' MsgBox "Nro de copias incorrecto.", vbInformation, Pub_Titulo
      '   Me.txtcopias.SetFocus
      '   Exit Sub
@@ -1198,7 +1198,7 @@ If pCodTipDoc = "" Then
     Exit Sub
 End If
 
-If Me.cmdFormasPago.Enabled And oRSfp.RecordCount = 0 Then
+If Me.cmdformaspago.Enabled And oRSfp.RecordCount = 0 Then
     MsgBox "Debe ingresar pagos", vbCritical, Pub_Titulo
 
     Exit Sub
@@ -1233,7 +1233,7 @@ Do While Not oRSfp.EOF
     oRSfp.MoveNext
 Loop
     
-If Me.cmdFormasPago.Enabled And xPAGOS < val(Me.lblImporte.Caption) Then
+If Me.cmdformaspago.Enabled And xPAGOS < val(Me.lblImporte.Caption) Then
     MsgBox "Falta importe por pagar", vbCritical, Pub_Titulo
 
     Exit Sub
@@ -1473,10 +1473,10 @@ With oCmdEjec
             .Parameters.Append .CreateParameter("@VUELTO", adDouble, adParamInput, , xVUELTO)
                 
             .Parameters.Append .CreateParameter("@VALORVTA", adDouble, adParamInput, , Me.lblvvta.Caption)
-            .Parameters.Append .CreateParameter("@VIGV", adDouble, adParamInput, , Me.lblIGV.Caption)
+            .Parameters.Append .CreateParameter("@VIGV", adDouble, adParamInput, , Me.lblIgv.Caption)
             .Parameters.Append .CreateParameter("@GRATUITO", adBoolean, adParamInput, , Me.chkGratuita.Value)
             .Parameters.Append .CreateParameter("@CIAPEDIDO", adChar, adParamInput, 2, LK_CODCIA)
-            .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption))
+            .Parameters.Append .CreateParameter("@ALL_ICBPER", adDouble, adParamInput, , IIf(Len(Trim(Me.lblicbper.Caption)) = 0, 0, Me.lblicbper.Caption))
             .Parameters.Append .CreateParameter("@SERVICIO", adDouble, adParamInput, , Me.lblServicio.Caption)
             .Parameters.Append .CreateParameter("@ALL_GRATUITO", adBoolean, adParamInput, , Me.chkGratuita.Value)
             .Parameters.Append .CreateParameter("@MaxNumOper", adInteger, adParamOutput, , 0)
@@ -1495,9 +1495,9 @@ With oCmdEjec
                 vAcepta = True
 'MsgBox "Datos Almacenados correctamente", vbInformation, Pub_Titulo
 
-                CreaCodigoQR "6", pCodTipDoc, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIGV.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
+                CreaCodigoQR "6", pCodTipDoc, Me.lblSerie.Caption, Me.txtNro.Text, LK_FECHA_DIA, CStr(Me.lblIgv.Caption), Me.lblImporte.Caption, Me.txtRuc.Text, Me.txtDni.Text
                 If xARCENCONTRADO Then
-                    ImprimirDocumentoVenta pCodTipDoc, pDesTipDoc, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIGV.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, pCodEmp, IIf(Len(Trim(Me.lblICBPER.Caption)) = 0, 0, Me.lblICBPER.Caption), Me.chkprom.Value, Me.chkGratuita.Value, Me.txtCopias.Text
+                    ImprimirDocumentoVenta pCodTipDoc, pDesTipDoc, Me.chkConsumo.Value, Me.lblSerie.Caption, Me.txtNro.Text, Me.lblImporte.Caption, Me.lblvvta.Caption, Me.lblIgv.Caption, Me.txtDireccion.Text, Me.txtRuc.Text, Me.txtRS.Text, Me.txtDni.Text, pCodEmp, IIf(Len(Trim(Me.lblicbper.Caption)) = 0, 0, Me.lblicbper.Caption), Me.chkprom.Value, Me.chkGratuita.Value, Me.txtcopias.Text
                 End If
 
                     If LK_PASA_BOLETAS = "A" And (pCodTipDoc = "01" Or pCodTipDoc = "03") Then
@@ -1824,18 +1824,19 @@ End Sub
 
 Sub CargarDocumentos(xCODCIA As String)
 
- For i = 1 To Me.pbDoc.count - 1
+    For i = 1 To Me.pbDoc.count - 1
         Unload Me.pbDoc(i)
     Next
     
- LimpiaParametros oCmdEjec
+    LimpiaParametros oCmdEjec
     oCmdEjec.CommandText = "SP_TIPOS_DOCTOS_LIST"
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, xCODCIA)
     Set ORStd = oCmdEjec.Execute
-
     
-     Dim vIniLeft, cantTotaDoc, j As Integer
+    Dim vIniLeft, cantTotaDoc, j As Integer
+
     Dim valor As Double
+
     j = 1
     vIniLeft = 30
     
@@ -1844,10 +1845,12 @@ Sub CargarDocumentos(xCODCIA As String)
         valor = cantTotaDoc / 3
         pos = InStr(Trim(str(valor)), ".")
         pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
+
         If pos = 0 Then
-        ent = ""
+            ent = ""
         Else
-        ent = Left(Trim(str(valor)), pos - 1)
+            ent = Left(Trim(str(valor)), pos - 1)
+
         End If
         
         If ent = "" Then: ent = 0
@@ -1863,23 +1866,29 @@ Sub CargarDocumentos(xCODCIA As String)
                 vIniLeft = vIniLeft + Me.pbDocAnt.Width
             Else
                 vIniLeft = vIniLeft + Me.pbDoc(i - 1).Width
+
             End If
            
             Me.pbDoc(i).Tag = ORStd!Codigo
             Me.pbDoc(i).Left = vIniLeft
             Me.pbDoc(i).Visible = True
             Me.pbDoc(i).Caption = ORStd!Nombre
+
             'MsgBox "2"
-             If j = 3 Then
-            j = 1
-            vIniLeft = 30
+            If j = 3 Then
+                j = 1
+                vIniLeft = 30
             Else
-            j = j + 1
+                j = j + 1
+
             End If
+            
+            If i = 1 Then pbDoc_Click (i)
+
             ORStd.MoveNext
         Next
+
     End If
-    
 
 End Sub
 
@@ -2002,7 +2011,7 @@ Private Sub Form_Load()
     'Me.lblgratuita.Caption = Format("########0.#0")
     Me.lblServicio.Caption = "0.00"
      Me.lblgratuita.Caption = "0.00"
-     Me.lblICBPER.Caption = "0.00"
+     Me.lblicbper.Caption = "0.00"
 
     If LK_CODUSU = "MOZOB" Then
         pCodTipDoc = "01"
@@ -2429,7 +2438,7 @@ If LK_MONEDA = "D" Then
 End If
 
 vp1 = vp1 - val(Me.lblDscto.Caption)
-Me.lblICBPER.Caption = FormatNumber(icbper, 2)
+Me.lblicbper.Caption = FormatNumber(icbper, 2)
 
 'If Me.txtMoney1.Text <> 0 Then
     Me.lblImporte.Caption = vp1
@@ -2508,8 +2517,8 @@ Dim vIgv As Integer
      Me.lblServicio.Caption = "0.00"
      Me.lblgratuita.Caption = "0.00"
      Me.lblvvta.Caption = Round(vimp / ((vIgv / 100) + 1), 2)
-     Me.lblIGV.Caption = vimp - Me.lblvvta.Caption
-     Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblICBPER.Caption), "########0.#0")
+     Me.lblIgv.Caption = vimp - Me.lblvvta.Caption
+     Me.lblImporte.Caption = Format(val(vimp) + val(Me.lblicbper.Caption), "########0.#0")
         
 
     
@@ -2559,13 +2568,13 @@ Private Sub lvDetalle_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub pbAumentar_Click()
-If Me.txtCopias.Text = 99 Then Exit Sub
-Me.txtCopias.Text = val(Me.txtCopias.Text) + 1
+If Me.txtcopias.Text = 99 Then Exit Sub
+Me.txtcopias.Text = val(Me.txtcopias.Text) + 1
 End Sub
 
 Private Sub pbDisminuir_Click()
-If Me.txtCopias.Text = 1 Then Exit Sub
-Me.txtCopias.Text = val(Me.txtCopias.Text) - 1
+If Me.txtcopias.Text = 1 Then Exit Sub
+Me.txtcopias.Text = val(Me.txtcopias.Text) - 1
 End Sub
 
 Private Sub pbDoc_Click(index As Integer)
@@ -2633,9 +2642,10 @@ End If
 End Sub
 
 Private Sub pbEmpresa_Click(index As Integer)
+
+pCodTipDoc = ""
 CargarDocumentos Me.pbEmpresa(index).Tag
 pCodEmp = Me.pbEmpresa(index).Tag
-pCodTipDoc = ""
 
  For i = 1 To Me.pbEmpresa.count - 1
 
@@ -2876,15 +2886,18 @@ Private Sub CargarEmpresas()
     oCmdEjec.CommandText = "SP_CIAS_FACTURACION"
    ' oCmdEjec.Prepared = True
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
-    Set ORStd = oCmdEjec.Execute
+    
+    
+    Dim orsE As ADODB.Recordset
+    Set orsE = oCmdEjec.Execute
     
     Dim vIniLeft, cantTotaEmp, j As Integer
     Dim valor As Double
     j = 1
     vIniLeft = 30
     
-    If Not ORStd.EOF Then
-        cantTotaEmp = ORStd.RecordCount
+    If Not orsE.EOF Then
+        cantTotaEmp = orsE.RecordCount
         valor = cantTotaEmp / 5
         pos = InStr(Trim(str(valor)), ".")
         pos2 = Right(Trim(str(valor)), Len(Trim(str(valor))) - pos)
@@ -2896,7 +2909,7 @@ Private Sub CargarEmpresas()
         If cantTotaEmp >= 1 Then: vPagActEmp = 1
         If cantTotaEmp > 5 Then: Me.pbEmpresaSig.Enabled = True
         
-        For i = 1 To ORStd.RecordCount
+        For i = 1 To orsE.RecordCount
             Load pbEmpresa(i)
             
             If j = 1 Then
@@ -2905,10 +2918,10 @@ Private Sub CargarEmpresas()
                 vIniLeft = vIniLeft + Me.pbEmpresa(i - 1).Width
             End If
            
-            Me.pbEmpresa(i).Tag = ORStd!CodCia
+            Me.pbEmpresa(i).Tag = orsE!CodCia
             Me.pbEmpresa(i).Left = vIniLeft
             Me.pbEmpresa(i).Visible = True
-            Me.pbEmpresa(i).Caption = ORStd!PAR_NOMBRE
+            Me.pbEmpresa(i).Caption = orsE!PAR_NOMBRE
             'MsgBox "2"
              If j = 5 Then
             j = 1
@@ -2916,7 +2929,11 @@ Private Sub CargarEmpresas()
             Else
             j = j + 1
             End If
-            ORStd.MoveNext
+            
+            If i = 1 Then
+                pbEmpresa_Click (i)
+            End If
+            orsE.MoveNext
         Next
     End If
     

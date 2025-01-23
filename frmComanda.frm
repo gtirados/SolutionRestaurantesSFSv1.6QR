@@ -3991,7 +3991,7 @@ Private Sub pbPreCuenta_Click()
 
             vEstado = "E"
 
-            VReporte.DataBase.SetDataSource rsd, 3, 1
+            VReporte.Database.SetDataSource rsd, 3, 1
             'frmprint.CRViewer1.ReportSource = VReporte
             'frmprint.CRViewer1.ViewReport
             VReporte.PrintOut False, 1, , 1, 1
@@ -4048,7 +4048,7 @@ Private Sub pbPrint_Click()
 
         Dim ss       As Integer
         
-        cmdPrint.Enabled = False
+        Me.pbPrint.Enabled = False
         
         For cat = 1 To Me.lvPlatos.ListItems.count
 
@@ -4198,7 +4198,7 @@ Private Sub pbPrint_Click()
             rsd.Filter = sFILTRO
         
             If Not rsd.EOF Then
-                VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+                VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
                 
                 VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA, Printer.Port
                 
@@ -4222,7 +4222,7 @@ Private Sub pbPrint_Click()
 
                 Next
             If ORSf!IMPRESORA2 <> "" Then
-                    VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+                    VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
                 
                     VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA2, Printer.Port
                 

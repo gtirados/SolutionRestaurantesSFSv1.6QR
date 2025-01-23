@@ -1,18 +1,96 @@
 VERSION 5.00
 Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F5E116E1-0563-11D8-AA80-000B6A0D10CB}#1.0#0"; "HookMenu.ocx"
 Begin VB.MDIForm MDIForm1 
    BackColor       =   &H00E0E0E0&
    Caption         =   "Solution-Software de Gestión para Restaurantes"
-   ClientHeight    =   6510
+   ClientHeight    =   10695
    ClientLeft      =   -210
    ClientTop       =   735
-   ClientWidth     =   9480
+   ClientWidth     =   16605
    Icon            =   "MDIGeneral.frx":0000
    LinkTopic       =   "MDIForm1"
    Moveable        =   0   'False
    Picture         =   "MDIGeneral.frx":0442
    WindowState     =   2  'Maximized
+   Begin HookMenu.XpMenu XpMenu1 
+      Left            =   6360
+      Top             =   3960
+      _ExtentX        =   900
+      _ExtentY        =   900
+      BitmapSize      =   32
+      BmpCount        =   19
+      CheckBorderColor=   7021576
+      SelMenuBorder   =   -2147483635
+      SelMenuBackColor=   14073525
+      SelMenuForeColor=   -2147483635
+      SelCheckBackColor=   14791828
+      MenuBorderColor =   -2147483635
+      SeparatorColor  =   -2147483632
+      MenuBackColor   =   14609903
+      MenuForeColor   =   0
+      CheckBackColor  =   15326939
+      CheckForeColor  =   10027263
+      DisabledMenuBorderColor=   -2147483632
+      DisabledMenuBackColor=   15660791
+      DisabledMenuForeColor=   -2147483631
+      MenuBarBackColor=   15790320
+      MenuPopupBackColor=   16777215
+      ShortCutNormalColor=   0
+      ShortCutSelectColor=   -2147483635
+      ArrowNormalColor=   -2147483635
+      ArrowSelectColor=   12484864
+      ShadowColor     =   0
+      Bmp:1           =   "MDIGeneral.frx":E944
+      Key:1           =   "#SubmenuTit1:0"
+      Bmp:2           =   "MDIGeneral.frx":F6AC
+      Key:2           =   "#SubmenuTit1:1"
+      Bmp:3           =   "MDIGeneral.frx":10414
+      Key:3           =   "#SubmenuTit1:3"
+      Bmp:4           =   "MDIGeneral.frx":1117C
+      Key:4           =   "#SubmenuTit1:6"
+      Bmp:5           =   "MDIGeneral.frx":11EE4
+      Key:5           =   "#SubmenuTit1:7"
+      Bmp:6           =   "MDIGeneral.frx":12C4C
+      Key:6           =   "#SubmenuTit1:9"
+      Bmp:7           =   "MDIGeneral.frx":139B4
+      Key:7           =   "#SubmenuTit1:12"
+      Bmp:8           =   "MDIGeneral.frx":1471C
+      Key:8           =   "#SubmenuTit1:4"
+      Bmp:9           =   "MDIGeneral.frx":15484
+      Key:9           =   "#SubmenuTit1:5"
+      Bmp:10          =   "MDIGeneral.frx":161EC
+      Key:10          =   "#SubmenuTit1:2"
+      Bmp:11          =   "MDIGeneral.frx":16F54
+      Key:11          =   "#SubmenuTit1:8"
+      Bmp:12          =   "MDIGeneral.frx":17CBC
+      Key:12          =   "#SubmenuTit1:10"
+      Bmp:13          =   "MDIGeneral.frx":18A24
+      Key:13          =   "#SubmenuTit1:11"
+      Bmp:14          =   "MDIGeneral.frx":1978C
+      Key:14          =   "#SubmenuTit2:0"
+      Bmp:15          =   "MDIGeneral.frx":1A4F4
+      Key:15          =   "#SubmenuTit2:2"
+      Bmp:16          =   "MDIGeneral.frx":1B25C
+      Key:16          =   "#SubmenuTit2:5"
+      Bmp:17          =   "MDIGeneral.frx":1BFC4
+      Key:17          =   "#SubmenuTit2:6"
+      Bmp:18          =   "MDIGeneral.frx":1CD2C
+      Key:18          =   "#submenutit3:1"
+      Bmp:19          =   "MDIGeneral.frx":1DA94
+      Key:19          =   "#submenutit3:0"
+      UseSystemFont   =   0   'False
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
    Begin MSComctlLib.ImageList ImageList2 
       Left            =   3555
       Top             =   1335
@@ -26,7 +104,7 @@ Begin VB.MDIForm MDIForm1
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   1
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":E944
+            Picture         =   "MDIGeneral.frx":1E7FC
             Key             =   ""
          EndProperty
       EndProperty
@@ -44,75 +122,75 @@ Begin VB.MDIForm MDIForm1
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   18
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":ED98
+            Picture         =   "MDIGeneral.frx":1EC50
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":F1EC
+            Picture         =   "MDIGeneral.frx":1F0A4
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":F640
+            Picture         =   "MDIGeneral.frx":1F4F8
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":FA94
+            Picture         =   "MDIGeneral.frx":1F94C
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":FEE8
+            Picture         =   "MDIGeneral.frx":1FDA0
             Key             =   ""
          EndProperty
          BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":1033C
+            Picture         =   "MDIGeneral.frx":201F4
             Key             =   ""
          EndProperty
          BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":10790
+            Picture         =   "MDIGeneral.frx":20648
             Key             =   ""
          EndProperty
          BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":10BE4
+            Picture         =   "MDIGeneral.frx":20A9C
             Key             =   ""
          EndProperty
          BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":11038
+            Picture         =   "MDIGeneral.frx":20EF0
             Key             =   ""
          EndProperty
          BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":11354
+            Picture         =   "MDIGeneral.frx":2120C
             Key             =   ""
          EndProperty
          BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":117A8
+            Picture         =   "MDIGeneral.frx":21660
             Key             =   ""
          EndProperty
          BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":11BFC
+            Picture         =   "MDIGeneral.frx":21AB4
             Key             =   ""
          EndProperty
          BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":12050
+            Picture         =   "MDIGeneral.frx":21F08
             Key             =   ""
          EndProperty
          BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":124A4
+            Picture         =   "MDIGeneral.frx":2235C
             Key             =   ""
          EndProperty
          BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":128F8
+            Picture         =   "MDIGeneral.frx":227B0
             Key             =   ""
          EndProperty
          BeginProperty ListImage16 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":12D4C
+            Picture         =   "MDIGeneral.frx":22C04
             Key             =   ""
          EndProperty
          BeginProperty ListImage17 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":131A0
+            Picture         =   "MDIGeneral.frx":23058
             Key             =   ""
          EndProperty
          BeginProperty ListImage18 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "MDIGeneral.frx":135F4
+            Picture         =   "MDIGeneral.frx":234AC
             Key             =   ""
          EndProperty
       EndProperty
@@ -124,8 +202,8 @@ Begin VB.MDIForm MDIForm1
       TabIndex        =   0
       Top             =   0
       Visible         =   0   'False
-      Width           =   9480
-      _ExtentX        =   16722
+      Width           =   16605
+      _ExtentX        =   29289
       _ExtentY        =   688
       ButtonWidth     =   661
       ButtonHeight    =   635
@@ -316,9 +394,9 @@ Begin VB.MDIForm MDIForm1
       Height          =   330
       Left            =   0
       TabIndex        =   3
-      Top             =   6180
-      Width           =   9480
-      _ExtentX        =   16722
+      Top             =   10365
+      Width           =   16605
+      _ExtentX        =   29289
       _ExtentY        =   582
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
@@ -334,27 +412,27 @@ Begin VB.MDIForm MDIForm1
             Bevel           =   2
             Object.Width           =   8819
             MinWidth        =   8819
-            Picture         =   "MDIGeneral.frx":13A48
+            Picture         =   "MDIGeneral.frx":23900
             Key             =   "cia"
             Object.ToolTipText     =   "LOCAL ACTIVO"
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Object.Width           =   2646
             MinWidth        =   2646
-            Picture         =   "MDIGeneral.frx":13D9A
+            Picture         =   "MDIGeneral.frx":23C52
             Key             =   "date"
             Object.ToolTipText     =   "Fecha del sistema"
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Object.Width           =   3528
             MinWidth        =   3528
-            Picture         =   "MDIGeneral.frx":140EC
+            Picture         =   "MDIGeneral.frx":23FA4
             Key             =   "user"
             Object.ToolTipText     =   "USUARIO"
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   3528
+            Object.Width           =   11915
             MinWidth        =   3528
          EndProperty
       EndProperty
@@ -1142,7 +1220,7 @@ Private Sub MDIForm_Load()
 Dim ciades As String * 80
 Dim WUSU_CIAS As String
 Dim WUSU_OTROS As String
-Dim h, a, b, c, d, E As Integer
+Dim h, a, b, c, D, E As Integer
 Dim wBAN As Integer
 Dim WNUM, wPosF, WPosV, cuenta, cade
 Dim WFLAG As String * 1
@@ -1354,7 +1432,7 @@ ProBar.Value = ProBar.Value + 1
 a = 0
 b = 0
 c = 0
-d = 0
+D = 0
 E = 0
 f = 0
 g = 0
@@ -1383,11 +1461,11 @@ Do Until tra_menu.EOF
     MDIForm1.menuAlm(c).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
     c = c + 1
  ElseIf tra_menu(0) >= 8700 And tra_menu(0) < 8899 Then
-    If d > 0 Then
-        Load MDIForm1.menuMoli(d)
+    If D > 0 Then
+        Load MDIForm1.menuMoli(D)
     End If
-    MDIForm1.menuMoli(d).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
-    d = d + 1
+    MDIForm1.menuMoli(D).Caption = Trim(CStr(tra_menu(0))) & " - &" & Trim(tra_menu(1))
+    D = D + 1
  ElseIf tra_menu(0) >= 8900 And tra_menu(0) < 9099 Then
     If E > 0 Then
         Load MDIForm1.MenuContab(E)
