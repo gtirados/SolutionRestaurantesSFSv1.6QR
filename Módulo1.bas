@@ -375,7 +375,7 @@ Public Sub CONEXION_GEN()
   wdsn = "dsn_datos"
   
   PUB_DSN = UCase(wdsn)
-  wAcceso = "accesodenegado$1"
+  wAcceso = "anteromariano"
  
   ws_color = 3
   Srutas = ""

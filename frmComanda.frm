@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmComanda 
    BackColor       =   &H8000000C&
    BorderStyle     =   0  'None
@@ -1275,7 +1275,7 @@ Public Sub CargarComanda(vCodCia As String, vCodMesa As String)
                 .SubItems(3) = Format(oRsComanda!Cantidad, "#####0.#0")
                 .SubItems(4) = Format(oRsComanda!PRECIO, "#####0.#0")
                 .SubItems(5) = Format(oRsComanda!Importe, "#####0.#0")
-                .SubItems(6) = oRsComanda!SEC
+                .SubItems(6) = oRsComanda!Sec
                 .SubItems(7) = oRsComanda!aten
                 '.SubItems(7) = oRsComanda!NumFac
                 .SubItems(8) = oRsComanda.Fields!PED_NUMFAC
@@ -1589,8 +1589,8 @@ Dim fila As ListItem
 Dim vTot As Currency
 vTot = 0
 
-For C = 1 To Me.lvPlatos.ListItems.count
-    vTot = vTot + val(Me.lvPlatos.ListItems(C).SubItems(5))
+For c = 1 To Me.lvPlatos.ListItems.count
+    vTot = vTot + val(Me.lvPlatos.ListItems(c).SubItems(5))
 Next
 
 'For Each fila In Me.lvPlatos.ListItems
@@ -1616,9 +1616,9 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
 
     'Dim vPri As Boolean
     'vPri = True
-    Dim f, C As Integer
+    Dim f, c As Integer
 
-    C = 1
+    c = 1
 
     Dim valor As Double
 
@@ -1669,8 +1669,8 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
     For i = 1 To vPlato
         Load Me.cmdPlato(i)
 
-        If C <= 4 Then '1 fila
-            If C = 1 Then
+        If c <= 4 Then '1 fila
+            If c = 1 Then
                 vIniLeft = vIniLeft + Me.cmdPlatoAnt.Width
             Else
                 vIniLeft = vIniLeft + Me.cmdPlato(i - i).Width
@@ -1678,18 +1678,18 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
 
             '        Else: viniLeft = viniLeft + 970
             '        End If
-        ElseIf C <= 9 Then '2º Fila
+        ElseIf c <= 9 Then '2º Fila
 
             'viniLeft = 30
-            If C = 5 Then
+            If c = 5 Then
                 vIniLeft = 30
                 vIniTop = vIniTop + Me.cmdPlatoAnt.Height
                 Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
             End If
 
-        ElseIf C <= 14 Then '3º Fila
+        ElseIf c <= 14 Then '3º Fila
 
-            If C = 10 Then
+            If c = 10 Then
                 vIniTop = vIniTop + Me.cmdPlato(4).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
@@ -1697,7 +1697,7 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
 
         Else '4º y ultima fila
 
-            If C = 15 Then
+            If c = 15 Then
                 vIniTop = vIniTop + Me.cmdPlato(11).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + Me.cmdPlato(i - 1).Width
@@ -1752,14 +1752,14 @@ Private Sub FiltrarPlatos(cant As Integer, oRS As ADODB.Recordset)
         '    End If
         oRS.MoveNext
 
-        If C = 18 Then
+        If c = 18 Then
             '        vPri = False
-            C = 1
+            c = 1
             'vuelve a empezar
             vIniLeft = 30
             vIniTop = 120
         Else
-            C = C + 1
+            c = c + 1
         End If
    
     Next
@@ -1771,10 +1771,10 @@ Private Sub FiltarSubFamilias(cant As Integer, oRS As ADODB.Recordset)
 vSubFamilia = cant
 'Dim vPri As Boolean
 'vPri = True
-Dim f, C As Integer
+Dim f, c As Integer
 
 
-C = 1
+c = 1
 
 Dim valor As Double
 valor = vSubFamilia / 14
@@ -1800,28 +1800,28 @@ vIniTop = 120
 For i = 1 To vSubFamilia
     Load Me.cmdSubFam(i)
     
-    If C <= 3 Then '1 fila
+    If c <= 3 Then '1 fila
     
         vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         Me.cmdSubFam(i).Left = vIniLeft
         Me.cmdSubFam(i).Top = vIniTop
         Me.cmdSubFam(i).Visible = True
         
-    ElseIf C <= 7 Then '2º Fila
+    ElseIf c <= 7 Then '2º Fila
         'viniLeft = 30
-        If C = 4 Then
+        If c = 4 Then
             vIniLeft = 30
             vIniTop = vIniTop + Me.cmdSubFamAnt.Height
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         End If
-    ElseIf C <= 11 Then '3º Fila
-        If C = 8 Then
+    ElseIf c <= 11 Then '3º Fila
+        If c = 8 Then
             vIniTop = vIniTop + Me.cmdSubFam(4).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
         End If
     Else '4º y ultima fila
-        If C = 12 Then
+        If c = 12 Then
             vIniTop = vIniTop + Me.cmdSubFam(11).Height
             vIniLeft = 30
         Else: vIniLeft = vIniLeft + Me.cmdSubFamAnt.Width
@@ -1841,14 +1841,14 @@ For i = 1 To vSubFamilia
 '        Me.cmdFam(i).Visible = False
 '    End If
 oRS.MoveNext
-    If C = 14 Then
+    If c = 14 Then
 '        vPri = False
-        C = 1
+        c = 1
         'vuelve a empezar
         vIniLeft = 30
         vIniTop = 120
         Else
-        C = C + 1
+        c = c + 1
    End If
    
 Next
@@ -1869,9 +1869,9 @@ Private Sub CargarFamilias()
 
     'Dim vPri As Boolean
     'vPri = True
-    Dim f, C As Integer
+    Dim f, c As Integer
 
-    C = 1
+    c = 1
 
     Dim valor As Double
 
@@ -1890,22 +1890,22 @@ Private Sub CargarFamilias()
     For i = 1 To vfamilia
         Load Me.cmdFam(i)
     
-        If C <= 3 Then '1 fila
+        If c <= 3 Then '1 fila
             vIniLeft = vIniLeft + 970
             Me.cmdFam(i).Left = vIniLeft
             Me.cmdFam(i).Top = vIniTop
-        ElseIf C <= 7 Then '2º Fila
+        ElseIf c <= 7 Then '2º Fila
 
             'viniLeft = 30
-            If C = 4 Then
+            If c = 4 Then
                 vIniLeft = 30
                 vIniTop = vIniTop + cmdFamAnt.Height
                 Else: vIniLeft = vIniLeft + 970
             End If
 
-        ElseIf C <= 11 Then '3º Fila
+        ElseIf c <= 11 Then '3º Fila
 
-            If C = 8 Then
+            If c = 8 Then
                 vIniTop = vIniTop + Me.cmdFam(4).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + 970
@@ -1913,7 +1913,7 @@ Private Sub CargarFamilias()
 
         Else '4º y ultima fila
 
-            If C = 12 Then
+            If c = 12 Then
                 vIniTop = vIniTop + Me.cmdFam(11).Height
                 vIniLeft = 30
                 Else: vIniLeft = vIniLeft + 970
@@ -1934,14 +1934,14 @@ Private Sub CargarFamilias()
         '    End If
         oRsFam.MoveNext
 
-        If C = 14 Then
+        If c = 14 Then
             '        vPri = False
-            C = 1
+            c = 1
             'vuelve a empezar
             vIniLeft = 30
             vIniTop = 120
         Else
-            C = C + 1
+            c = c + 1
         End If
    
     Next
@@ -2003,10 +2003,10 @@ Private Sub cmdCantidad_Click()
 
                 Set ORSd = oCmdEjec.Execute
 
-                Dim xDato As Boolean
+                Dim xdato As Boolean
         
                 If Not ORSd.EOF Then
-                    xDato = ORSd!Dato
+                    xdato = ORSd!Dato
                 End If
          End If
          
@@ -2014,7 +2014,7 @@ Private Sub cmdCantidad_Click()
 
     End If
         
-        If Me.lvPlatos.SelectedItem.SubItems(9) = 1 Or Me.lvPlatos.SelectedItem.SubItems(7) <> 0 Or vEstado = "E" Or Me.lvPlatos.SelectedItem.SubItems(11) = 1 Or xDato = False Then
+        If Me.lvPlatos.SelectedItem.SubItems(9) = 1 Or Me.lvPlatos.SelectedItem.SubItems(7) <> 0 Or vEstado = "E" Or Me.lvPlatos.SelectedItem.SubItems(11) = 1 Or xdato = False Then
         
        
             MsgBox ("no se puede MODIFICAR el plato, ya fue despachado ó está en preparación")
@@ -2316,13 +2316,13 @@ Private Sub cmdEliminar_Click()
 
                 Set ORSd = oCmdEjec.Execute
 
-                Dim xDato As Boolean
+                Dim xdato As Boolean
         
                 If Not ORSd.EOF Then
-                    xDato = ORSd!Dato
+                    xdato = ORSd!Dato
                 End If
             
-                If xITEM.SubItems(9) = 1 Or xITEM.SubItems(7) <> 0 Or vEstado = "E" Or val(xITEM.SubItems(11)) = 1 Or xDato = False Then
+                If xITEM.SubItems(9) = 1 Or xITEM.SubItems(7) <> 0 Or vEstado = "E" Or val(xITEM.SubItems(11)) = 1 Or xdato = False Then
                     xRP = True
 
                     Exit For
@@ -2384,7 +2384,7 @@ Private Sub cmdEliminar_Click()
         For i = Me.lvPlatos.ListItems.count To 1 Step -1
 
             If Me.lvPlatos.ListItems(i).Selected Then
-                Me.lvPlatos.ListItems.Remove Me.lvPlatos.ListItems(i).Index
+                Me.lvPlatos.ListItems.Remove Me.lvPlatos.ListItems(i).index
             End If
  
         Next
@@ -2449,12 +2449,12 @@ End If
 End If
 End Sub
 
-Private Sub cmdFam_Click(Index As Integer)
+Private Sub cmdFam_Click(index As Integer)
 Me.cmdSubFamAnt.Enabled = False
 Me.cmdSubFamSig.Enabled = False
-vValorActFam = Index
-oRsSubFam.Filter = "CodFam='" & cmdFam(Index).Tag & "'"
-vCodFam = Me.cmdFam(Index).Tag 'Linea Nueva
+vValorActFam = index
+oRsSubFam.Filter = "CodFam='" & cmdFam(index).Tag & "'"
+vCodFam = Me.cmdFam(index).Tag 'Linea Nueva
 If oRsSubFam.RecordCount <> 0 Then
     FiltarSubFamilias oRsSubFam.RecordCount, oRsSubFam
 End If
@@ -2884,11 +2884,11 @@ mozo:
 
 End Sub
 
-Private Sub cmdNum_Click(Index As Integer)
-Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdnum(Index).Caption
+Private Sub cmdNum_Click(index As Integer)
+Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdNum(index).Caption
 End Sub
 
-Private Sub cmdPlato_Click(Index As Integer)
+Private Sub cmdPlato_Click(index As Integer)
 
     If Not VNuevo Then
         If VerificaMesa Then
@@ -2905,10 +2905,10 @@ Private Sub cmdPlato_Click(Index As Integer)
         Exit Sub
     End If
 
-    Dim C As Integer
+    Dim c As Integer
 
-    For C = 1 To Me.lvPlatos.ListItems.count
-        Me.lvPlatos.ListItems(C).Selected = False
+    For c = 1 To Me.lvPlatos.ListItems.count
+        Me.lvPlatos.ListItems(c).Selected = False
     Next
 
     Dim oRStemp As ADODB.Recordset
@@ -2920,7 +2920,7 @@ Private Sub cmdPlato_Click(Index As Integer)
     oCmdEjec.CommandText = "SpDevuelveInsumosxPlato"
     oCmdEjec.CommandType = adCmdStoredProc
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodPlato", adDouble, adParamInput, , CDbl(Me.cmdPlato(Index).Tag))
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodPlato", adDouble, adParamInput, , CDbl(Me.cmdPlato(index).Tag))
     'oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@mensaje", adVarChar, adParamOutput, 300, msn)
 
     Dim vstrmin  As String 'variable para capturar los insumos
@@ -2993,12 +2993,12 @@ Private Sub cmdPlato_Click(Index As Integer)
     If VNuevo Then
         If Me.lvPlatos.ListItems.count = 0 Then
             'obteniendo precio
-            oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
+            oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
        
-            If AgregaPlato(Me.cmdPlato(Index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", "", 0, Me.lblCliente.Caption, IIf(Len(Trim(Me.lblComensales.Caption)) = 0, 0, Me.lblComensales.Caption)) Then
+            If AgregaPlato(Me.cmdPlato(index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", "", 0, Me.lblCliente.Caption, IIf(Len(Trim(Me.lblComensales.Caption)) = 0, 0, Me.lblComensales.Caption)) Then
         
-                With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(Index).Caption, Me.ilComanda.ListImages.Item(1).key, Me.ilComanda.ListImages.Item(1).key)
-                    .Tag = Me.cmdPlato(Index).Tag
+                With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(index).Caption, Me.ilComanda.ListImages.Item(1).key, Me.ilComanda.ListImages.Item(1).key)
+                    .Tag = Me.cmdPlato(index).Tag
                     .Checked = True
                     .SubItems(2) = " "
                     .SubItems(3) = FormatNumber(1, 2)
@@ -3026,9 +3026,9 @@ Private Sub cmdPlato_Click(Index As Integer)
 
                 CargarComanda LK_CODCIA, vMesa
                 
-                For C = 1 To Me.lvPlatos.ListItems.count
+                For c = 1 To Me.lvPlatos.ListItems.count
                 'If Me.lvPlatos.ListItems(c).Checked Then
-                    Me.lvPlatos.ListItems(C).Selected = False
+                    Me.lvPlatos.ListItems(c).Selected = False
                 'End If
                 Next
 
@@ -3041,16 +3041,16 @@ Private Sub cmdPlato_Click(Index As Integer)
 
         Dim DD As Integer
 
-        oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
+        oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
 
-        If AgregaPlato(Me.cmdPlato(Index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", Me.lblSerie.Caption, Me.lblNumero.Caption, Me.lblCliente.Caption, IIf(Len(Trim(Me.lblComensales.Caption)) = 0, 0, frmComanda.lblComensales.Caption), DD) Then
+        If AgregaPlato(Me.cmdPlato(index).Tag, 1, FormatNumber(oRsPlatos!PRECIO, 2), oRsPlatos!PRECIO, "", Me.lblSerie.Caption, Me.lblNumero.Caption, Me.lblCliente.Caption, IIf(Len(Trim(Me.lblComensales.Caption)) = 0, 0, frmComanda.lblComensales.Caption), DD) Then
     
-            With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(Index).Caption, Me.ilComanda.ListImages.Item(1).key, Me.ilComanda.ListImages.Item(1).key)
-                .Tag = Me.cmdPlato(Index).Tag
+            With Me.lvPlatos.ListItems.Add(, , Me.cmdPlato(index).Caption, Me.ilComanda.ListImages.Item(1).key, Me.ilComanda.ListImages.Item(1).key)
+                .Tag = Me.cmdPlato(index).Tag
                 .Checked = True
                 .SubItems(3) = FormatNumber(1, 2)
                 'obteniendo precio
-                oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(Index).Tag & "'"
+                oRsPlatos.Filter = "Codigo = '" & Me.cmdPlato(index).Tag & "'"
 
                 If Not oRsPlatos.EOF Then: .SubItems(4) = FormatNumber(oRsPlatos!PRECIO, 2)
                 .SubItems(5) = FormatNumber(val(.SubItems(3)) * val(.SubItems(4)), 2)
@@ -3071,8 +3071,8 @@ Private Sub cmdPlato_Click(Index As Integer)
 
             CargarComanda LK_CODCIA, vMesa
         
-            For C = 1 To Me.lvPlatos.ListItems.count
-                Me.lvPlatos.ListItems(C).Selected = False
+            For c = 1 To Me.lvPlatos.ListItems.count
+                Me.lvPlatos.ListItems(c).Selected = False
             Next
 
             Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
@@ -3160,7 +3160,7 @@ End Sub
 
 Private Sub cmdPorcion_Click()
 
-    Dim i, C As Integer
+    Dim i, c As Integer
 
     Dim xPRODselecccionados As String
 
@@ -3175,17 +3175,17 @@ Private Sub cmdPorcion_Click()
     xPROD1 = 0
     xPROD2 = 0
 
-    C = 0
+    c = 0
 
     For i = 1 To Me.lvPlatos.ListItems.count
 
         If Me.lvPlatos.ListItems(i).Selected Then
-            C = C + 1
+            c = c + 1
         End If
 
     Next
 
-    If C = 2 Then
+    If c = 2 Then
 
         For i = 1 To Me.lvPlatos.ListItems.count
 
@@ -3395,12 +3395,12 @@ Private Sub cmdPreCuenta_Click()
 
             vdata = ""
 
-            Dim C As Integer
+            Dim c As Integer
 
-            For C = 1 To Me.lvPlatos.ListItems.count
+            For c = 1 To Me.lvPlatos.ListItems.count
                 'If Me.lvPlatos.ListItems(c).Checked Then
-                vdata = vdata & Me.lvPlatos.ListItems(C).Tag & ","
-                vnumsec = vnumsec & Me.lvPlatos.ListItems(C).SubItems(6) & ","
+                vdata = vdata & Me.lvPlatos.ListItems(c).Tag & ","
+                vnumsec = vnumsec & Me.lvPlatos.ListItems(c).SubItems(6) & ","
                 'End If
             Next
 
@@ -3468,180 +3468,234 @@ Private Sub cmdPrint_Click()
 
     If Len(Trim(Me.lblNumero.Caption)) = 0 And Len(Trim(Me.lblNumero.Caption)) = 0 Then
         MsgBox "No hay nada que imprimir", vbCritical, NombreProyecto
-    Else
+        Exit Sub
+    
+    End If
 
-        Dim crParamDefs As CRAXDRT.ParameterFieldDefinitions
+    'VALIDAMOS QUE LOS PRODUCTOS POSEAN CARACTERISTICA MARCADA
+    Dim xProcede As Boolean
+    xProcede = False
+    LimpiaParametros oCmdEjec
+    oCmdEjec.CommandText = "[dbo].[USP_COMANDA_VALIDA_CARACTERISTICA]"
+    oCmdEjec.CommandType = adCmdStoredProc
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PROCEDE", adChar, adParamOutput, 2, xProcede)
+    oCmdEjec.Execute
+    xProcede = oCmdEjec.Parameters("@PROCEDE").Value
+    
+    If Not xProcede Then
+        MsgBox "Existen items que no ha marcado su caracteristica.", vbInformation, Pub_Titulo
+        Exit Sub
+    End If
 
-        Dim crParamDef  As CRAXDRT.ParameterFieldDefinition
+    Dim crParamDefs As CRAXDRT.ParameterFieldDefinitions
 
-        Dim objCrystal  As New CRAXDRT.APPLICATION
+    Dim crParamDef  As CRAXDRT.ParameterFieldDefinition
 
-        Dim RutaReporte As String
+    Dim objCrystal  As New CRAXDRT.APPLICATION
 
-        RutaReporte = "C:\Admin\Nordi\Comanda1.rpt"
+    Dim RutaReporte As String
 
-        'Verificar platos enviados para mensaje
-        Dim cat      As Integer
+    RutaReporte = "C:\Admin\Nordi\Comanda1.rpt"
 
-        Dim Mensaje  As String
+    'Verificar platos enviados para mensaje
+    Dim cat      As Integer
 
-        Dim mATRIZ() As Integer
+    Dim Mensaje  As String
 
-        Dim ss       As Integer
+    Dim mATRIZ() As Integer
+
+    Dim ss       As Integer
         
-        cmdPrint.Enabled = False
+    cmdPrint.Enabled = False
         
-        For cat = 1 To Me.lvPlatos.ListItems.count
+    For cat = 1 To Me.lvPlatos.ListItems.count
 
-            If Me.lvPlatos.ListItems(cat).Checked Then
-                ReDim Preserve mATRIZ(ss)
-                mATRIZ(ss) = cat
-                ss = ss + 1
+        If Me.lvPlatos.ListItems(cat).Checked Then
+            ReDim Preserve mATRIZ(ss)
+            mATRIZ(ss) = cat
+            ss = ss + 1
+
+        End If
+
+    Next
+
+    Dim OVARIAN As Variant
+
+    If ss > 0 Then
+
+        For Each OVARIAN In mATRIZ
+
+            If Me.lvPlatos.ListItems(OVARIAN).SubItems(9) = "1" Then
+                Mensaje = "DUPLICADO"
+            Else
+                Mensaje = ""
+
+                Exit For
+
             End If
 
         Next
 
-        Dim OVARIAN As Variant
-
-        If ss > 0 Then
-
-            For Each OVARIAN In mATRIZ
-
-                If Me.lvPlatos.ListItems(OVARIAN).SubItems(9) = "1" Then
-                    Mensaje = "DUPLICADO"
-                Else
-                    Mensaje = ""
-
-                    Exit For
-
-                End If
-
-            Next
-
-        End If
+    End If
     
-        Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        Set crParamDefs = VReporte.ParameterFields
+    Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    Set crParamDefs = VReporte.ParameterFields
 
-        For Each crParamDef In crParamDefs
+    For Each crParamDef In crParamDefs
 
-            Select Case crParamDef.ParameterFieldName
+        Select Case crParamDef.ParameterFieldName
 
-                Case "mesa"
-                    crParamDef.AddCurrentValue str(vPlato)
+            Case "mesa"
+                crParamDef.AddCurrentValue str(vPlato)
 
-                Case "Mensaje"
-                    crParamDef.AddCurrentValue Mensaje
-            End Select
+            Case "Mensaje"
+                crParamDef.AddCurrentValue Mensaje
+
+        End Select
+
+    Next
+
+    On Error GoTo printe
+
+    LimpiaParametros oCmdEjec
+    oCmdEjec.CommandType = adCmdStoredProc
+    oCmdEjec.CommandText = "SpPrintComanda2"
+    'oCmdEjec.CommandText = "SpPrintComanda"
+
+    Dim rsd     As ADODB.Recordset
+
+    Dim vdata   As String
+
+    Dim vnumsec As String
+
+    vdata = ""
+
+    Dim c As Integer
+
+    If Me.lvPlatos.CheckBoxes Then
+
+        For c = 1 To Me.lvPlatos.ListItems.count
+
+            If Me.lvPlatos.ListItems(c).Checked Then
+                vdata = vdata & Me.lvPlatos.ListItems(c).Tag & "," 'IDEPLATO
+                vnumsec = vnumsec & Me.lvPlatos.ListItems(c).SubItems(6) & "," 'NROSEC
+
+            End If
 
         Next
 
-        On Error GoTo printe
+    Else
 
-        LimpiaParametros oCmdEjec
-        oCmdEjec.CommandType = adCmdStoredProc
-        oCmdEjec.CommandText = "SpPrintComanda2"
-        'oCmdEjec.CommandText = "SpPrintComanda"
-
-        Dim rsd     As ADODB.Recordset
-
-        Dim vdata   As String
-
-        Dim vnumsec As String
-        vdata = ""
-        Dim C As Integer
-
-        If Me.lvPlatos.CheckBoxes Then
-
-            For C = 1 To Me.lvPlatos.ListItems.count
-
-                If Me.lvPlatos.ListItems(C).Checked Then
-                    vdata = vdata & Me.lvPlatos.ListItems(C).Tag & "," 'IDEPLATO
-                    vnumsec = vnumsec & Me.lvPlatos.ListItems(C).SubItems(6) & "," 'NROSEC
-                End If
-
-            Next
-
-        Else
-
-            For C = 1 To Me.lvPlatos.ListItems.count
+        For c = 1 To Me.lvPlatos.ListItems.count
   
-                vdata = vdata & Me.lvPlatos.ListItems(C).Tag & "," 'IDEPLATO
-                vnumsec = vnumsec & Me.lvPlatos.ListItems(C).SubItems(6) & ","  'NROSEC
+            vdata = vdata & Me.lvPlatos.ListItems(c).Tag & "," 'IDEPLATO
+            vnumsec = vnumsec & Me.lvPlatos.ListItems(c).SubItems(6) & ","  'NROSEC
     
+        Next
+
+    End If
+
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblSerie.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xdet", adVarChar, adParamInput, 4000, vdata)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xnumsec", adVarChar, adParamInput, 4000, vnumsec)
+
+    Set rsd = oCmdEjec.Execute
+
+    'OBTENER LAS FAMILIAS DE LA TABLA TABLAS
+
+    Dim ORSf As ADODB.Recordset
+
+    LimpiaParametros oCmdEjec
+    oCmdEjec.CommandText = "SP_FAMILIAS_LISTPRINT"
+    Set ORSf = oCmdEjec.Execute(, LK_CODCIA)
+        
+    Dim sFILTRO As String
+
+    Dim oRStmp  As ADODB.Recordset
+
+    Set oRStmp = New ADODB.Recordset
+    oRStmp.CursorType = adOpenDynamic ' setting cursor type
+    oRStmp.Fields.Append "FAMILIA", adVarChar, 100
+    'oRSfp.Fields.Append "formapago", adVarChar, 120
+    
+    oRStmp.Fields.Refresh
+    oRStmp.Open
+        
+    Dim MyMatriz() As String
+
+    Do While Not ORSf.EOF
+        MyMatriz = Split(ORSf!Familia, "|")
+
+        For i = LBound(MyMatriz) To UBound(MyMatriz)
+
+            'Le asignamos unos elementos de prueba
+            If MyMatriz(i) <> "" Then
+                oRStmp.AddNew
+                oRStmp!Familia = MyMatriz(i)
+                oRStmp.Update
+
+            End If
+
+        Next
+
+        sFILTRO = ""
+
+        Dim IC As Integer
+
+        If oRStmp.RecordCount <> 0 Then oRStmp.MoveFirst
+        IC = 1
+
+        Do While Not oRStmp.EOF
+
+            If IC = oRStmp.RecordCount Then
+                sFILTRO = sFILTRO & "PED_FAMILIA=" & oRStmp!Familia
+            Else
+                sFILTRO = sFILTRO & "PED_FAMILIA=" & oRStmp!Familia & " OR "
+
+            End If
+
+            IC = IC + 1
+            oRStmp.MoveNext
+        Loop
+
+        rsd.Filter = sFILTRO
+        
+        If Not rsd.EOF Then
+            VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+                
+            VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA, Printer.Port
+                
+            VReporte.PrintOut False, 1, , 1, 1
+
+            Set VReporte = Nothing
+            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+
+            Set crParamDefs = VReporte.ParameterFields
+
+            For Each crParamDef In crParamDefs
+
+                Select Case crParamDef.ParameterFieldName
+
+                    Case "mesa"
+                        crParamDef.AddCurrentValue str(vPlato)
+
+                    Case "Mensaje"
+                        crParamDef.AddCurrentValue Mensaje
+
+                End Select
+
             Next
 
-        End If
-
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumSer", adChar, adParamInput, 3, Me.lblSerie.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NumFac", adDouble, adParamInput, , Me.lblNumero.Caption)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xdet", adVarChar, adParamInput, 4000, vdata)
-        oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@xnumsec", adVarChar, adParamInput, 4000, vnumsec)
-
-        Set rsd = oCmdEjec.Execute
-
-        'OBTENER LAS FAMILIAS DE LA TABLA TABLAS
-
-        Dim ORSf As ADODB.Recordset
-
-        LimpiaParametros oCmdEjec
-        oCmdEjec.CommandText = "SP_FAMILIAS_LISTPRINT"
-        Set ORSf = oCmdEjec.Execute(, LK_CODCIA)
-        
-        Dim sFILTRO As String
-
-        Dim oRStmp  As ADODB.Recordset
-
-        Set oRStmp = New ADODB.Recordset
-        oRStmp.CursorType = adOpenDynamic ' setting cursor type
-        oRStmp.Fields.Append "FAMILIA", adVarChar, 100
-        'oRSfp.Fields.Append "formapago", adVarChar, 120
-    
-        oRStmp.Fields.Refresh
-        oRStmp.Open
-        
-        Dim MyMatriz() As String
-
-        Do While Not ORSf.EOF
-            MyMatriz = Split(ORSf!Familia, "|")
-
-            For i = LBound(MyMatriz) To UBound(MyMatriz)
-
-                'Le asignamos unos elementos de prueba
-                If MyMatriz(i) <> "" Then
-                    oRStmp.AddNew
-                    oRStmp!Familia = MyMatriz(i)
-                    oRStmp.Update
-                End If
-
-            Next
-
-            sFILTRO = ""
-
-            Dim IC As Integer
-
-            If oRStmp.RecordCount <> 0 Then oRStmp.MoveFirst
-            IC = 1
-
-            Do While Not oRStmp.EOF
-
-                If IC = oRStmp.RecordCount Then
-                    sFILTRO = sFILTRO & "PED_FAMILIA=" & oRStmp!Familia
-                Else
-                    sFILTRO = sFILTRO & "PED_FAMILIA=" & oRStmp!Familia & " OR "
-                End If
-
-                IC = IC + 1
-                oRStmp.MoveNext
-            Loop
-
-            rsd.Filter = sFILTRO
-        
-            If Not rsd.EOF Then
+            If ORSf!IMPRESORA2 <> "" Then
                 VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
                 
-                VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA, Printer.Port
+                VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA2, Printer.Port
                 
                 VReporte.PrintOut False, 1, , 1, 1
 
@@ -3659,258 +3713,239 @@ Private Sub cmdPrint_Click()
 
                         Case "Mensaje"
                             crParamDef.AddCurrentValue Mensaje
+
                     End Select
 
                 Next
-            If ORSf!IMPRESORA2 <> "" Then
-                    VReporte.DataBase.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-                
-                    VReporte.SelectPrinter Printer.DriverName, ORSf!IMPRESORA2, Printer.Port
-                
-                    VReporte.PrintOut False, 1, , 1, 1
-
-                    Set VReporte = Nothing
-                    Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-
-                    Set crParamDefs = VReporte.ParameterFields
-
-                    For Each crParamDef In crParamDefs
-
-                        Select Case crParamDef.ParameterFieldName
-
-                            Case "mesa"
-                                crParamDef.AddCurrentValue str(vPlato)
-
-                            Case "Mensaje"
-                                crParamDef.AddCurrentValue Mensaje
-                        End Select
-
-                    Next
 
             End If
             
+        End If
+
+        If Not oRStmp Is Nothing Then
+
+            'If Not oRSfp.EOF Then oRSfp.Delete
+            If oRStmp.RecordCount <> 0 Then
+                oRStmp.MoveFirst
+
+                Do While Not oRStmp.EOF
+                    oRStmp.Delete adAffectCurrent
+                    oRStmp.MoveNext
+                Loop
+
             End If
 
-            If Not oRStmp Is Nothing Then
-
-                'If Not oRSfp.EOF Then oRSfp.Delete
-                If oRStmp.RecordCount <> 0 Then
-                    oRStmp.MoveFirst
-
-                    Do While Not oRStmp.EOF
-                        oRStmp.Delete adAffectCurrent
-                        oRStmp.MoveNext
-                    Loop
-
-                End If
-            End If
+        End If
     
-            ORSf.MoveNext
-        Loop
+        ORSf.MoveNext
+    Loop
 
-        'Exit Sub
+    'Exit Sub
 
-        '        'COCINA
-        '        rsd.Filter = "PED_FAMILIA = 1 OR PED_FAMILIA = 2"
-        '
-        '        Dim dd As ADODB.Recordset
-        '
-        '        If Not rsd.EOF Then
-        '
-        '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\Cocina", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "Cocina", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\Mozos\Cocina", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\Caja2\Cocina1", Printer.Port
-        '            VReporte.SelectPrinter Printer.DriverName, "\\Cocina\Cocina", Printer.Port
-        '            'VReporte.SelectPrinter Printer.DriverName, "Cocina", Printer.Port
-        '            VReporte.PrintOut False, 1, , 1, 1
-        '
-        '            Set VReporte = Nothing
-        '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        '
-        '            Set crParamDefs = VReporte.ParameterFields
-        '
-        '            For Each crParamDef In crParamDefs
-        '
-        '                Select Case crParamDef.ParameterFieldName
-        '
-        '                    Case "mesa"
-        '                        crParamDef.AddCurrentValue str(vPlato)
-        '
-        '                    Case "Mensaje"
-        '                        crParamDef.AddCurrentValue Mensaje
-        '                End Select
-        '
-        '            Next
-        '
-        '        End If
-        '
-        '        rsd.Filter = "PED_FAMILIA=3"
-        '
-        '        If Not rsd.EOF Then
-        '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
-        '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
-        '            VReporte.SelectPrinter Printer.DriverName, "\\Punto2\Bar", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\VENTAS1\Bar", Printer.Port
-        '            '   VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
-        '            VReporte.PrintOut False, 1, , 1, 1
-        '
-        '            Set VReporte = Nothing
-        '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        '
-        '            Set crParamDefs = VReporte.ParameterFields
-        '
-        '            For Each crParamDef In crParamDefs
-        '
-        '                Select Case crParamDef.ParameterFieldName
-        '
-        '                    Case "mesa"
-        '                        crParamDef.AddCurrentValue str(vPlato)
-        '
-        '                    Case "Mensaje"
-        '                        crParamDef.AddCurrentValue Mensaje
-        '                End Select
-        '
-        '            Next
-        '
-        '        End If
-        '
-        '        'rsd.Filter = "PED_FAMILIA=3"
-        '        'If Not rsd.EOF Then
-        '        '    VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '        '    'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\Digitacion\Bar", Printer.Port 'doPDF v6
-        '        '    VReporte.SelectPrinter Printer.DriverName, "Bar01", Printer.Port
-        '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\Caja\Bar01", Printer.Port   'SR BEFE
-        '        '    VReporte.PrintOut ' , 1, , 1, 1
-        '        'End If
-        '
-        '        'Set VReporte = Nothing
-        '        'Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        '
-        '        'Set crParamDefs = VReporte.ParameterFields
-        '        'For Each crParamDef In crParamDefs
-        '        '    Select Case crParamDef.ParameterFieldName
-        '        '        Case "mesa"
-        '        '            crParamDef.AddCurrentValue str(vPlato)
-        '        '            Case "Mensaje"
-        '        '            crParamDef.AddCurrentValue Mensaje
-        '        '    End Select
-        '        'Next
-        '
-        '        'rsd.Filter = "PED_FAMILIA=4"
-        '        'If Not rsd.EOF Then
-        '        '    VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '        '    'VReporte.SelectPrinter Printer.DriverName, "\\CAJA\Star SP542 Line Mode Printer with Status Monitor", Printer.Port 'doPDF v6
-        '        '    VReporte.SelectPrinter Printer.DriverName, "\\MOZOS2\Bar02", Printer.Port
-        '        '   ' VReporte.SelectPrinter Printer.DriverName, "Bar02", Printer.Port     'SR BEFE
-        '        '    VReporte.PrintOut 'false, 1, , 1, 1
-        '        'End If
-        '        'Set VReporte = Nothing
-        '        'Set VReporte = objCrystal.OpenReport(RutaReporte, 1)'
-        '
-        '        'Set crParamDefs = VReporte.ParameterFields
-        '        'For Each crParamDef In crParamDefs
-        '        '    Select Case crParamDef.ParameterFieldName
-        '        '        Case "mesa"
-        '        '            crParamDef.AddCurrentValue str(vPlato)
-        '        '            Case "Mensaje"
-        '        '            crParamDef.AddCurrentValue Mensaje
-        '        '    End Select
-        '        'Next
-        '
-        '        rsd.Filter = "PED_FAMILIA=6"
-        '
-        '        If Not rsd.EOF Then
-        '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
-        '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\Cafetin-pc\cafetin", Printer.Port   'SR BEFE
-        '            VReporte.SelectPrinter Printer.DriverName, "\\digitacion\Cocina", Printer.Port   'mochica
-        '            ' VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
-        '            VReporte.PrintOut False, 1, , 1, 1
-        '
-        '            Set VReporte = Nothing
-        '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        '
-        '            Set crParamDefs = VReporte.ParameterFields
-        '
-        '            For Each crParamDef In crParamDefs
-        '
-        '                Select Case crParamDef.ParameterFieldName
-        '
-        '                    Case "mesa"
-        '                        crParamDef.AddCurrentValue str(vPlato)
-        '
-        '                    Case "Mensaje"
-        '                        crParamDef.AddCurrentValue Mensaje
-        '                End Select
-        '
-        '            Next
-        '
-        '        End If
-        '
-        '        rsd.Filter = "PED_FAMILIA=7"
-        '
-        '        If Not rsd.EOF Then
-        '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
-        '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
-        '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
-        '            'VReporte.SelectPrinter Printer.DriverName, "\\Cafetin-pc\cafetin", Printer.Port   'SR BEFE
-        '            VReporte.SelectPrinter Printer.DriverName, "\\caja\Bar", Printer.Port   'mochica
-        '            ' VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
-        '            VReporte.PrintOut False, 1, , 1, 1
-        '
-        '            Set VReporte = Nothing
-        '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
-        '
-        '            Set crParamDefs = VReporte.ParameterFields
-        '
-        '            For Each crParamDef In crParamDefs
-        '
-        '                Select Case crParamDef.ParameterFieldName
-        '
-        '                    Case "mesa"
-        '                        crParamDef.AddCurrentValue str(vPlato)
-        '
-        '                    Case "Mensaje"
-        '                        crParamDef.AddCurrentValue Mensaje
-        '                End Select
-        '
-        '            Next
-        '
-        '        End If
+    '        'COCINA
+    '        rsd.Filter = "PED_FAMILIA = 1 OR PED_FAMILIA = 2"
+    '
+    '        Dim dd As ADODB.Recordset
+    '
+    '        If Not rsd.EOF Then
+    '
+    '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\Cocina", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "Cocina", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\Mozos\Cocina", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\Caja2\Cocina1", Printer.Port
+    '            VReporte.SelectPrinter Printer.DriverName, "\\Cocina\Cocina", Printer.Port
+    '            'VReporte.SelectPrinter Printer.DriverName, "Cocina", Printer.Port
+    '            VReporte.PrintOut False, 1, , 1, 1
+    '
+    '            Set VReporte = Nothing
+    '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    '
+    '            Set crParamDefs = VReporte.ParameterFields
+    '
+    '            For Each crParamDef In crParamDefs
+    '
+    '                Select Case crParamDef.ParameterFieldName
+    '
+    '                    Case "mesa"
+    '                        crParamDef.AddCurrentValue str(vPlato)
+    '
+    '                    Case "Mensaje"
+    '                        crParamDef.AddCurrentValue Mensaje
+    '                End Select
+    '
+    '            Next
+    '
+    '        End If
+    '
+    '        rsd.Filter = "PED_FAMILIA=3"
+    '
+    '        If Not rsd.EOF Then
+    '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
+    '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
+    '            VReporte.SelectPrinter Printer.DriverName, "\\Punto2\Bar", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\VENTAS1\Bar", Printer.Port
+    '            '   VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
+    '            VReporte.PrintOut False, 1, , 1, 1
+    '
+    '            Set VReporte = Nothing
+    '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    '
+    '            Set crParamDefs = VReporte.ParameterFields
+    '
+    '            For Each crParamDef In crParamDefs
+    '
+    '                Select Case crParamDef.ParameterFieldName
+    '
+    '                    Case "mesa"
+    '                        crParamDef.AddCurrentValue str(vPlato)
+    '
+    '                    Case "Mensaje"
+    '                        crParamDef.AddCurrentValue Mensaje
+    '                End Select
+    '
+    '            Next
+    '
+    '        End If
+    '
+    '        'rsd.Filter = "PED_FAMILIA=3"
+    '        'If Not rsd.EOF Then
+    '        '    VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '        '    'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
+    '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\Digitacion\Bar", Printer.Port 'doPDF v6
+    '        '    VReporte.SelectPrinter Printer.DriverName, "Bar01", Printer.Port
+    '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\Caja\Bar01", Printer.Port   'SR BEFE
+    '        '    VReporte.PrintOut ' , 1, , 1, 1
+    '        'End If
+    '
+    '        'Set VReporte = Nothing
+    '        'Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    '
+    '        'Set crParamDefs = VReporte.ParameterFields
+    '        'For Each crParamDef In crParamDefs
+    '        '    Select Case crParamDef.ParameterFieldName
+    '        '        Case "mesa"
+    '        '            crParamDef.AddCurrentValue str(vPlato)
+    '        '            Case "Mensaje"
+    '        '            crParamDef.AddCurrentValue Mensaje
+    '        '    End Select
+    '        'Next
+    '
+    '        'rsd.Filter = "PED_FAMILIA=4"
+    '        'If Not rsd.EOF Then
+    '        '    VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '        '   ' VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
+    '        '    'VReporte.SelectPrinter Printer.DriverName, "\\CAJA\Star SP542 Line Mode Printer with Status Monitor", Printer.Port 'doPDF v6
+    '        '    VReporte.SelectPrinter Printer.DriverName, "\\MOZOS2\Bar02", Printer.Port
+    '        '   ' VReporte.SelectPrinter Printer.DriverName, "Bar02", Printer.Port     'SR BEFE
+    '        '    VReporte.PrintOut 'false, 1, , 1, 1
+    '        'End If
+    '        'Set VReporte = Nothing
+    '        'Set VReporte = objCrystal.OpenReport(RutaReporte, 1)'
+    '
+    '        'Set crParamDefs = VReporte.ParameterFields
+    '        'For Each crParamDef In crParamDefs
+    '        '    Select Case crParamDef.ParameterFieldName
+    '        '        Case "mesa"
+    '        '            crParamDef.AddCurrentValue str(vPlato)
+    '        '            Case "Mensaje"
+    '        '            crParamDef.AddCurrentValue Mensaje
+    '        '    End Select
+    '        'Next
+    '
+    '        rsd.Filter = "PED_FAMILIA=6"
+    '
+    '        If Not rsd.EOF Then
+    '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
+    '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\Cafetin-pc\cafetin", Printer.Port   'SR BEFE
+    '            VReporte.SelectPrinter Printer.DriverName, "\\digitacion\Cocina", Printer.Port   'mochica
+    '            ' VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
+    '            VReporte.PrintOut False, 1, , 1, 1
+    '
+    '            Set VReporte = Nothing
+    '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    '
+    '            Set crParamDefs = VReporte.ParameterFields
+    '
+    '            For Each crParamDef In crParamDefs
+    '
+    '                Select Case crParamDef.ParameterFieldName
+    '
+    '                    Case "mesa"
+    '                        crParamDef.AddCurrentValue str(vPlato)
+    '
+    '                    Case "Mensaje"
+    '                        crParamDef.AddCurrentValue Mensaje
+    '                End Select
+    '
+    '            Next
+    '
+    '        End If
+    '
+    '        rsd.Filter = "PED_FAMILIA=7"
+    '
+    '        If Not rsd.EOF Then
+    '            VReporte.Database.SetDataSource rsd, 3, 1 'lleno el objeto reporte
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\laptop\doPDF v6", Printer.Port
+    '            ' VReporte.SelectPrinter Printer.DriverName, "\\CAJA01\jugos", Printer.Port 'doPDF v6
+    '            'VReporte.SelectPrinter Printer.DriverName, "jugos", Printer.Port
+    '            'VReporte.SelectPrinter Printer.DriverName, "\\Cafetin-pc\cafetin", Printer.Port   'SR BEFE
+    '            VReporte.SelectPrinter Printer.DriverName, "\\caja\Bar", Printer.Port   'mochica
+    '            ' VReporte.SelectPrinter Printer.DriverName, "Bar", Printer.Port
+    '            VReporte.PrintOut False, 1, , 1, 1
+    '
+    '            Set VReporte = Nothing
+    '            Set VReporte = objCrystal.OpenReport(RutaReporte, 1)
+    '
+    '            Set crParamDefs = VReporte.ParameterFields
+    '
+    '            For Each crParamDef In crParamDefs
+    '
+    '                Select Case crParamDef.ParameterFieldName
+    '
+    '                    Case "mesa"
+    '                        crParamDef.AddCurrentValue str(vPlato)
+    '
+    '                    Case "Mensaje"
+    '                        crParamDef.AddCurrentValue Mensaje
+    '                End Select
+    '
+    '            Next
+    '
+    '        End If
 
-        Set objCrystal = Nothing
-        Set VReporte = Nothing
+    Set objCrystal = Nothing
+    Set VReporte = Nothing
 
-        Dim ct As Integer
+    Dim ct As Integer
 
-        For ct = 1 To Me.lvPlatos.ListItems.count
+    For ct = 1 To Me.lvPlatos.ListItems.count
 
-            If Me.lvPlatos.ListItems(ct).Checked Then
-                Me.lvPlatos.ListItems(ct).SubItems(9) = "1"
-                Me.lvPlatos.ListItems(ct).Checked = False
-            End If
+        If Me.lvPlatos.ListItems(ct).Checked Then
+            Me.lvPlatos.ListItems(ct).SubItems(9) = "1"
+            Me.lvPlatos.ListItems(ct).Checked = False
 
-        Next
+        End If
 
-        Me.lvPlatos.CheckBoxes = True
-        Unload Me    'gts cierra comanda despues de imprimir
-         If gDefecto Then
-            Unload frmMainMesas
-         End If
-        Exit Sub
+    Next
+
+    Me.lvPlatos.CheckBoxes = True
+    Unload Me    'gts cierra comanda despues de imprimir
+
+    If gDefecto Then
+        Unload frmMainMesas
+
+    End If
+
+    Exit Sub
 
 printe:
-        MostrarErrores Err
-    End If
+    MostrarErrores Err
 
 End Sub
 
@@ -3945,12 +3980,12 @@ Else
 End If
 End Sub
 
-Private Sub cmdSubFam_Click(Index As Integer)
+Private Sub cmdSubFam_Click(index As Integer)
     Me.cmdPlatoAnt.Enabled = False
     Me.cmdPlatoSig.Enabled = False
-    vColor = Index
+    vColor = index
     Me.cmdPlatoAnt.Enabled = False
-    oRsPlatos.Filter = "CodFam='" & vCodFam & "' and CodSubFam = '" & Me.cmdSubFam(Index).Tag & "'"
+    oRsPlatos.Filter = "CodFam='" & vCodFam & "' and CodSubFam = '" & Me.cmdSubFam(index).Tag & "'"
 
     For i = 1 To Me.cmdPlato.count - 1
         Unload Me.cmdPlato(i)
@@ -4277,10 +4312,10 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
 
     End If
 
-    Dim C As Integer
+    Dim c As Integer
 
-    For C = 1 To Me.lvPlatos.ListItems.count
-        Me.lvPlatos.ListItems(C).Selected = False
+    For c = 1 To Me.lvPlatos.ListItems.count
+        Me.lvPlatos.ListItems(c).Selected = False
     Next
 
     Dim oRStemp As ADODB.Recordset
@@ -4370,7 +4405,7 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
             If AgregaPlato(xIDproducto, 1, xPrecio, xPrecio, "", "", 0, Me.lblCliente.Caption, IIf(Len(Trim(Me.lblComensales.Caption)) = 0, 0, Me.lblComensales.Caption)) Then
         
                 With Me.lvPlatos.ListItems.Add(, , xProducto, Me.ilComanda.ListImages.Item(1).key, Me.ilComanda.ListImages.Item(1).key)
-                    .Tag = Me.cmdPlato(Index).Tag
+                    .Tag = Me.cmdPlato(index).Tag
                     .Checked = True
                     .SubItems(2) = " "
                     .SubItems(3) = FormatNumber(1, 2)
@@ -4435,9 +4470,9 @@ Public Sub AgregarDesdeBuscador(xIDproducto As Double, _
     'aqui
 
     'Dim C As Integer
-    For C = 1 To Me.lvPlatos.ListItems.count
+    For c = 1 To Me.lvPlatos.ListItems.count
         'If Me.lvPlatos.ListItems(c).Checked Then
-        Me.lvPlatos.ListItems(C).Selected = False
+        Me.lvPlatos.ListItems(c).Selected = False
         'End If
     Next
 
