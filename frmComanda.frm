@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
 Begin VB.Form frmComanda 
    BackColor       =   &H8000000C&
    BorderStyle     =   0  'None
@@ -1275,7 +1275,7 @@ Public Sub CargarComanda(vCodCia As String, vCodMesa As String)
                 .SubItems(3) = Format(oRsComanda!Cantidad, "#####0.#0")
                 .SubItems(4) = Format(oRsComanda!PRECIO, "#####0.#0")
                 .SubItems(5) = Format(oRsComanda!Importe, "#####0.#0")
-                .SubItems(6) = oRsComanda!Sec
+                .SubItems(6) = oRsComanda!SEC
                 .SubItems(7) = oRsComanda!aten
                 '.SubItems(7) = oRsComanda!NumFac
                 .SubItems(8) = oRsComanda.Fields!PED_NUMFAC
@@ -2885,7 +2885,7 @@ mozo:
 End Sub
 
 Private Sub cmdNum_Click(index As Integer)
-Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdNum(index).Caption
+Me.lblTexto.Caption = Me.lblTexto.Caption & Me.cmdnum(index).Caption
 End Sub
 
 Private Sub cmdPlato_Click(index As Integer)
@@ -3472,24 +3472,24 @@ Private Sub cmdPrint_Click()
     
     End If
 
-    'VALIDAMOS QUE LOS PRODUCTOS POSEAN CARACTERISTICA MARCADA
-    Dim xProcede As Boolean
-    xProcede = False
-    LimpiaParametros oCmdEjec
-    oCmdEjec.CommandText = "[dbo].[USP_COMANDA_VALIDA_CARACTERISTICA]"
-    oCmdEjec.CommandType = adCmdStoredProc
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PROCEDE", adChar, adParamOutput, 2, xProcede)
-    oCmdEjec.Execute
-    xProcede = oCmdEjec.Parameters("@PROCEDE").Value
-    
-    If Not xProcede Then
-        MsgBox "Existen items que no ha marcado su caracteristica.", vbInformation, Pub_Titulo
-        Exit Sub
-    End If
+'''    'VALIDAMOS QUE LOS PRODUCTOS POSEAN CARACTERISTICA MARCADA
+'''    Dim xProcede As Boolean
+'''    xProcede = False
+'''    LimpiaParametros oCmdEjec
+'''    oCmdEjec.CommandText = "[dbo].[USP_COMANDA_VALIDA_CARACTERISTICA]"
+'''    oCmdEjec.CommandType = adCmdStoredProc
+'''    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CodCia", adChar, adParamInput, 2, LK_CODCIA)
+'''    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@FECHA", adDBTimeStamp, adParamInput, , LK_FECHA_DIA)
+'''    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, Me.lblSerie.Caption)
+'''    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , Me.lblNumero.Caption)
+'''    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@PROCEDE", adChar, adParamOutput, 2, xProcede)
+'''    oCmdEjec.Execute
+'''    xProcede = oCmdEjec.Parameters("@PROCEDE").Value
+'''
+'''    If Not xProcede Then
+'''        MsgBox "Existen items que no ha marcado su caracteristica.", vbInformation, Pub_Titulo
+'''        Exit Sub
+'''    End If
 
     Dim crParamDefs As CRAXDRT.ParameterFieldDefinitions
 
@@ -4242,6 +4242,9 @@ If Me.lvPlatos.ListItems.count = 0 Then Exit Sub
     Set oRSdet = oCmdEjec.Execute
     
     If Not oRSdet.EOF Then
+        frmDetCombo.lblNumSer.Caption = Me.lblSerie.Caption
+        frmDetCombo.lblNumFac.Caption = Me.lblNumero.Caption
+        frmDetCombo.lblNumSec.Caption = Me.lvPlatos.SelectedItem.SubItems(6)
         frmDetCombo.lvListado.ColumnHeaders.Add , , "Producto", 4500
         frmDetCombo.lvListado.ColumnHeaders.Add , , "Prom"
         frmDetCombo.lvListado.ColumnHeaders.Add , , "Total"
@@ -4256,6 +4259,7 @@ If Me.lvPlatos.ListItems.count = 0 Then Exit Sub
             With frmDetCombo.lvListado.ListItems.Add(, , Trim(oRSdet!Prod))
                 .SubItems(1) = Format(oRSdet!prom, "##.#0")
                 .SubItems(2) = Format(oRSdet!Total, "##.#0")
+                .Tag = oRSdet!Codigo
             End With
 
             oRSdet.MoveNext
