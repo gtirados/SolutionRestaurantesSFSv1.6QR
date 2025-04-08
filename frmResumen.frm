@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmResumen 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Resumen"
@@ -56,7 +56,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub ConfigurarLv()
+Private Sub ConfigurarLV()
 With Me.lvResumen
     .ColumnHeaders.Add , , "Plato", 6000
     .ColumnHeaders.Add , , "Cant.", 1000, 1
@@ -71,34 +71,82 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
 If KeyCode = vbKeyEscape Then Unload Me
 End Sub
 
-Private Sub Form_Load()
-ConfigurarLv
-Dim fila As Integer
-Dim Filab As Integer
-Dim ve As Boolean
-v = False
-For fila = 1 To frmComanda.lvPlatos.ListItems.count
-ve = False
-    If Me.lvResumen.ListItems.count = 0 Then
-        With Me.lvResumen.ListItems.Add(, , frmComanda.lvPlatos.ListItems(fila).Text)
-        .SubItems(1) = frmComanda.lvPlatos.ListItems(fila).SubItems(3)
-        .Tag = frmComanda.lvPlatos.ListItems(fila).Tag
-        End With
-    Else
-        For Filab = 1 To Me.lvResumen.ListItems.count
-            If CStr(Me.lvResumen.ListItems(Filab).Tag) = frmComanda.lvPlatos.ListItems(fila).Tag Then
-                ve = True
-                Exit For
-            End If
-        Next
-        If ve Then
-            Me.lvResumen.ListItems(Filab).SubItems(1) = FormatNumber(CDec(Me.lvResumen.ListItems(Filab).SubItems(1)) + CDec(frmComanda.lvPlatos.ListItems(fila).SubItems(3)), 2) 'linea nueva 04-08-2011
-        Else
-         With Me.lvResumen.ListItems.Add(, , frmComanda.lvPlatos.ListItems(fila).Text)
-        .SubItems(1) = frmComanda.lvPlatos.ListItems(fila).SubItems(3)
-        .Tag = frmComanda.lvPlatos.ListItems(fila).Tag
-        End With
-        End If
+Private Sub AgregaItemsCombo(cItem As Integer)
+    LimpiaParametros oCmdEjec
+    oCmdEjec.CommandText = "[dbo].[USP_COMANDA_ITEMS_COMBO]"
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODCIA", adChar, adParamInput, 2, LK_CODCIA)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CODART", adBigInt, adParamInput, , cItem)
+
+    Dim ORsPlatos As ADODb.Recordset
+
+    Set ORsPlatos = oCmdEjec.Execute
+
+    If Not ORsPlatos.EOF Then
+
+        Do While Not ORsPlatos.EOF
+
+            With Me.lvResumen.ListItems.Add(, , ORsPlatos!descripcion)
+                .SubItems(1) = "-" 'ORsPlatos!Cantidad
+                .Tag = 0
+
+            End With
+
+            ORsPlatos.MoveNext
+        Loop
+
     End If
-Next
+
+End Sub
+
+Private Sub Form_Load()
+    ConfigurarLV
+
+    Dim fila  As Integer
+
+    Dim Filab As Integer
+
+    Dim ve    As Boolean
+
+    v = False
+
+    For fila = 1 To frmComanda.lvPlatos.ListItems.count
+        ve = False
+
+        If Me.lvResumen.ListItems.count = 0 Then
+
+            With Me.lvResumen.ListItems.Add(, , frmComanda.lvPlatos.ListItems(fila).Text)
+                .SubItems(1) = frmComanda.lvPlatos.ListItems(fila).SubItems(3)
+                .Tag = frmComanda.lvPlatos.ListItems(fila).Tag
+
+            End With
+            AgregaItemsCombo frmComanda.lvPlatos.ListItems(fila).Tag
+
+        Else
+
+            For Filab = 1 To Me.lvResumen.ListItems.count
+
+                If CStr(Me.lvResumen.ListItems(Filab).Tag) = frmComanda.lvPlatos.ListItems(fila).Tag Then
+                    ve = True
+                    Exit For
+
+                End If
+
+            Next
+
+            If ve Then
+                Me.lvResumen.ListItems(Filab).SubItems(1) = FormatNumber(CDec(Me.lvResumen.ListItems(Filab).SubItems(1)) + CDec(frmComanda.lvPlatos.ListItems(fila).SubItems(3)), 2) 'linea nueva 04-08-2011
+            Else
+
+                With Me.lvResumen.ListItems.Add(, , frmComanda.lvPlatos.ListItems(fila).Text)
+                    .SubItems(1) = frmComanda.lvPlatos.ListItems(fila).SubItems(3)
+                    .Tag = frmComanda.lvPlatos.ListItems(fila).Tag
+
+                End With
+ AgregaItemsCombo frmComanda.lvPlatos.ListItems(fila).Tag
+            End If
+
+        End If
+
+    Next
+
 End Sub

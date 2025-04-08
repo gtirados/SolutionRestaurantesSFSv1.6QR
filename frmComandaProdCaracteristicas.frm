@@ -40,23 +40,6 @@ Begin VB.Form frmComandaProdCaracteristicas
       Top             =   5640
       Width           =   1710
    End
-   Begin VB.CommandButton cmdGrabar 
-      Caption         =   "&Aceptar"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   12
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   840
-      Left            =   4200
-      TabIndex        =   0
-      Top             =   5640
-      Width           =   1710
-   End
    Begin MSComctlLib.ListView lvCaracteristicas 
       Height          =   5535
       Left            =   0
@@ -86,6 +69,23 @@ Begin VB.Form frmComandaProdCaracteristicas
       EndProperty
       NumItems        =   0
    End
+   Begin VB.CommandButton cmdGrabar 
+      Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   840
+      Left            =   4200
+      TabIndex        =   0
+      Top             =   5640
+      Width           =   1710
+   End
 End
 Attribute VB_Name = "frmComandaProdCaracteristicas"
 Attribute VB_GlobalNameSpace = False
@@ -95,7 +95,7 @@ Attribute VB_Exposed = False
 Public gNUMFAC As Double
 Public gNUMSER As String
 Public gNUMSEC As Integer
-Public gIDPRODUCTO As Double
+Public gIDproducto As Double
 
 Private Sub cmdCerrar_Click()
 Unload Me
@@ -103,6 +103,21 @@ End Sub
 
 Private Sub cmdGrabar_Click()
 If Me.lvCaracteristicas.ListItems.count = 0 Then Exit Sub
+'VALIDA SOLO MARQUE 1 CARACTERISTICA
+  Dim itemM As Object
+  Dim cantItemM As Integer
+  cantItemM = 0
+  
+  For Each itemX In Me.lvCaracteristicas.ListItems
+    If itemX.Checked Then
+        cantItemM = cantItemM + 1
+    End If
+  Next
+  
+  If cantItemM > 1 Then
+    MsgBox "Debe marcar solo 1 caracteristica.", vbCritical, Pub_Titulo
+    Exit Sub
+  End If
 
     On Error GoTo xGraba
               
@@ -116,11 +131,11 @@ If Me.lvCaracteristicas.ListItems.count = 0 Then Exit Sub
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , gNUMFAC)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, gNUMSER)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSEC", adInteger, adParamInput, , gNUMSEC)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDPRODUCTO)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDproducto)
     
     oCmdEjec.Execute
     
-    Dim itemM As Object
+  
 
     For Each itemM In Me.lvCaracteristicas.ListItems
 
@@ -132,7 +147,7 @@ If Me.lvCaracteristicas.ListItems.count = 0 Then Exit Sub
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , gNUMFAC)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, gNUMSER)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSEC", adInteger, adParamInput, , gNUMSEC)
-            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDPRODUCTO)
+            oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDproducto)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDCARACTERISTICA", adInteger, adParamInput, , itemM.Tag)
             oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@CARACTERISTICA", adVarChar, adParamInput, 30, itemM.Text)
             oCmdEjec.Execute
@@ -164,7 +179,7 @@ Private Sub Form_Load()
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMFAC", adBigInt, adParamInput, , gNUMFAC)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSER", adVarChar, adParamInput, 3, gNUMSER)
     oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@NUMSEC", adInteger, adParamInput, , gNUMSEC)
-    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDPRODUCTO)
+    oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDPRODUCTO", adBigInt, adParamInput, , gIDproducto)
     
     Dim orsC As ADODB.Recordset
 
@@ -176,7 +191,7 @@ Private Sub Form_Load()
 
     Do While Not orsC.EOF
         Set itemO = Me.lvCaracteristicas.ListItems.Add(, , orsC!CARAC)
-        itemO.Tag = orsC!ide
+        itemO.Tag = orsC!IDE
         orsC.MoveNext
     Loop
 
@@ -187,7 +202,7 @@ Private Sub Form_Load()
 
         For Each itemO In Me.lvCaracteristicas.ListItems
 
-            If CStr(itemO.Tag) = CStr(orsM!ide) Then
+            If CStr(itemO.Tag) = CStr(orsM!IDE) Then
                 itemO.Checked = True
 
                 Exit For
