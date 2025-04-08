@@ -46,7 +46,7 @@ FROM
                AND p.PED_CODART = a.ART_KEY
         INNER JOIN dbo.SUBFAMILIA_CARACTERISTICA sc WITH (NOLOCK)
             ON p.PED_CODCIA = sc.CODCIA
-               AND a.ART_SUBFAM = sc.IDSUBFAMILIA
+               AND a.ART_SUBFAM = sc.IDSUBFAMILIA and sc.activo = 1
     WHERE p.PED_ESTADO = 'N'
           AND p.PED_CODCIA = @CODCIA
           AND p.PED_NUMSER = @NUMSER

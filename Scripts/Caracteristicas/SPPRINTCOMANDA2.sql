@@ -1,5 +1,8 @@
 /*
-exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
+exec SpPrintComanda2 '01','100',11,'157,111,','0,1,'
+exec SpPrintComanda2 '01','100',12,'7,157,','0,1,'
+exec SpPrintComanda2 '01','100',13,'157,','0,'
+exec SpPrintComanda2 '01','100',17,'33,157,112,','0,1,2,'
 */
 IF EXISTS
 (
@@ -55,6 +58,7 @@ DECLARE @tbldata TABLE
     flag CHAR(1),
     actual DATETIME,
     FAMILIA VARCHAR(100),
+    PED_SEC tinyint,
     CARACTERISTICAS VARCHAR(4000)
 );
 
@@ -109,6 +113,7 @@ BEGIN
                          AND t.TAB_CODCIA = @CodCia
                          AND t.TAB_NUMTAB = PEDIDOS.PED_FAMILIA2
                ),
+               pedidos.ped_numsec,
                dbo.FnDevuelveCaracteristica(
                                                PEDIDOS.PED_CODCIA,
                                                PEDIDOS.PED_FECHA,
@@ -160,6 +165,7 @@ BEGIN
                          AND t.TAB_CODCIA = @CodCia
                          AND t.TAB_NUMTAB = PEDIDOS.PED_FAMILIA2
                ),
+               pedidos.PED_numsec,
                dbo.FnDevuelveCaracteristica(
                                                PEDIDOS.PED_CODCIA,
                                                PEDIDOS.PED_FECHA,
@@ -192,7 +198,6 @@ BEGIN
         ORDER BY PEDIDOS.PED_FECHAREG;
 
         --SELECT * FROM @tbldata
-
 
         --obtengo datos para impresion
         SELECT @fecha = PEDIDOS.PED_FECHA,
@@ -245,21 +250,20 @@ BEGIN
     (
         codcombo BIGINT,
         cant BIGINT,
-        sec TINYINT IDENTITY(1, 1),
+        sec TINYINT ,
         hora VARCHAR(15)
     );
 
     INSERT INTO @tblcombos
     SELECT codprod,
            PED_CANTIDAD,
+           ped_sec,
            PED_HORA
     FROM @tbldata
     WHERE flag = 'C';
+    
 
-
-	/*
-exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
-*/
+    
 
     --SELECT * FROM @tblcombos
     DECLARE @hora VARCHAR(15);
@@ -313,13 +317,14 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
         FROM @tbldata
         WHERE flag = 'C';
 
+
+
         DELETE FROM @tbldata
         WHERE flag = 'C';
 
-/*
-exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
-*/
-        --SpPrintComanda2 '01','100',680,'74185,74185,','0,1,'
+
+
+
 
         DECLARE @codcombo BIGINT,
                 @cant BIGINT,
@@ -364,6 +369,7 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
                    flag,
                    GETDATE(),
                    FAMILIA,
+                   @num,
                    CARACTERISTICA
             FROM @tbltmpCombos
             WHERE codprod = @codcombo
@@ -396,7 +402,8 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
                              AND t.TAB_CODCIA = @CodCia
                              AND t.TAB_NUMTAB = ar.ART_FAMILIA
                    ),
-                   ''
+                   @num, --validar
+                   dbo.FnDevuelveCaracteristica(@CodCia,@fecha,@NumFac,@NumSer,@num,pa.PA_CODART)
             FROM PAQUETES pa
                 INNER JOIN ARTI ar
                     ON pa.PA_CODCIA = ar.ART_CODCIA
@@ -416,6 +423,8 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
 
 
     END;
+    
+
 
 
     --PARCHE PARA AGREGAR FAMILIA AL COMBO FALTANTE
@@ -438,6 +447,17 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
     FROM @TBLFAMILIA t;
     SELECT @MAX = MAX(t.INDICE)
     FROM @TBLFAMILIA t;
+    
+    --        select * from @tblcombos
+    --select * from @tbldata
+    --select * from @tbltmpCombos
+    --select * from @TBLFAMILIA
+
+
+/*
+exec SpPrintComanda2 '01','100',13,'157,','0,'
+*/
+
 
     WHILE @MIN <= @MAX
     BEGIN
@@ -453,10 +473,9 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
                   AND flag = 'C'
         )
         BEGIN
-            --SELECT 'noexiste'
 
             INSERT INTO @tbldata
-            SELECT PED_FECHA,
+            SELECT top 1  PED_FECHA,
                    NROCOMANDA,
                    PED_CANTIDAD,
                    PED_PRECIO,
@@ -475,7 +494,8 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
                    ),
                    codprod,
                    'C',
-                   actual,
+                   --actual,
+                   getdate(),
                    (
                        SELECT TOP 1
                               t.TAB_NOMLARGO
@@ -486,13 +506,15 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
                                  SELECT TOP 1 t.IDFAMILIA FROM @TBLFAMILIA t WHERE t.INDICE = @MIN
                              )
                    ),
-                   CARACTERISTICAS
-            FROM @tbldata
-            WHERE ped_familia =
-            (
-                SELECT TOP 1 t.ped_familia FROM @tbldata t WHERE t.flag = 'C'
-            )
-                  AND flag = 'C';
+                   1, --validar
+                   ''
+            FROM @tbltmpCombos
+            --WHERE ped_familia =
+            --(
+            --    --SELECT TOP 1 t.ped_familia FROM @tbldata t WHERE t.flag = 'C'
+            --     SELECT TOP 1 t.ped_familia2 FROM @tbltmpCombos t WHERE t.flag = 'C'
+            --)
+            --      AND flag = 'C';
 
 
         END;
@@ -502,11 +524,31 @@ exec SpPrintComanda2 '01','100',11,'157,110,111,111,53,53,','0,1,2,3,4,6,'
     END;
 
 
-    SELECT *
+
+    SELECT  PED_FECHA ,
+    NROCOMANDA,
+    PED_CANTIDAD ,
+    PED_PRECIO ,
+    PED_IGV ,
+    PED_BRUTO ,
+    PED_HORA ,
+    PED_MONEDA ,
+    PED_SUBTOTAL ,
+    ART_NOMBRE ,
+    CLI_NOMBRE ,
+    VEM_NOMBRE ,
+    PED_OFERTA ,
+    PED_CLIENTE ,
+    ped_familia ,
+    codprod ,
+    flag ,
+    actual ,
+    FAMILIA ,
+    CARACTERISTICAS,ped_sec
     FROM @tbldata
     ORDER BY ped_familia,
              flag,
-             PED_HORA;
+             ART_NOMBRE;
 
 END;
 ELSE
