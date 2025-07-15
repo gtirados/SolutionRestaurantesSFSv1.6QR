@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
 Begin VB.Form frmComandaProdCaracteristicas 
    BorderStyle     =   4  'Fixed ToolWindow
    ClientHeight    =   6570
@@ -113,10 +113,10 @@ If Me.lvCaracteristicas.ListItems.count = 0 Then Exit Sub
         cantItemM = cantItemM + 1
     End If
   Next
-  
+  'VALIDA SOLO 1 CARACTERISTICA
   If cantItemM > 1 Then
-    MsgBox "Debe marcar solo 1 caracteristica.", vbCritical, Pub_Titulo
-    Exit Sub
+   ' MsgBox "Debe marcar solo 1 caracteristica.", vbCritical, Pub_Titulo
+   ' Exit Sub
   End If
 
     On Error GoTo xGraba
