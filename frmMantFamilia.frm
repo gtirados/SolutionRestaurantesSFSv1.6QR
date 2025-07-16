@@ -1,6 +1,6 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMantFamilia 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Mantenimiento de Familia"
@@ -17,6 +17,8 @@ Begin VB.Form frmMantFamilia
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmMantFamilia.frx":0000
+   KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
@@ -36,7 +38,7 @@ Begin VB.Form frmMantFamilia
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Familia"
-      TabPicture(0)   =   "frmMantFamilia.frx":0000
+      TabPicture(0)   =   "frmMantFamilia.frx":0CCA
       Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label1"
       Tab(0).Control(0).Enabled=   0   'False
@@ -68,14 +70,11 @@ Begin VB.Form frmMantFamilia
       Tab(0).Control(13).Enabled=   0   'False
       Tab(0).ControlCount=   14
       TabCaption(1)   =   "Listado"
-      TabPicture(1)   =   "frmMantFamilia.frx":001C
+      TabPicture(1)   =   "frmMantFamilia.frx":0CE6
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label6"
-      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(0)=   "lvFamilias"
       Tab(1).Control(1)=   "txtSearch"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "lvFamilias"
-      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(2)=   "Label6"
       Tab(1).ControlCount=   3
       Begin VB.TextBox txtImpresora2 
          Height          =   285
@@ -86,9 +85,9 @@ Begin VB.Form frmMantFamilia
       End
       Begin VB.ComboBox ComVisible 
          Height          =   315
-         ItemData        =   "frmMantFamilia.frx":0038
+         ItemData        =   "frmMantFamilia.frx":0D02
          Left            =   2760
-         List            =   "frmMantFamilia.frx":0042
+         List            =   "frmMantFamilia.frx":0D0C
          Style           =   2  'Dropdown List
          TabIndex        =   14
          Top             =   3600
@@ -260,23 +259,23 @@ Begin VB.Form frmMantFamilia
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantFamilia.frx":004E
+            Picture         =   "frmMantFamilia.frx":0D18
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantFamilia.frx":03E8
+            Picture         =   "frmMantFamilia.frx":10B2
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantFamilia.frx":0782
+            Picture         =   "frmMantFamilia.frx":144C
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantFamilia.frx":0B1C
+            Picture         =   "frmMantFamilia.frx":17E6
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantFamilia.frx":0EB6
+            Picture         =   "frmMantFamilia.frx":1B80
             Key             =   ""
          EndProperty
       EndProperty
@@ -290,7 +289,7 @@ Begin VB.Form frmMantFamilia
       Width           =   8430
       _ExtentX        =   14870
       _ExtentY        =   635
-      ButtonWidth     =   1826
+      ButtonWidth     =   1931
       ButtonHeight    =   582
       AllowCustomize  =   0   'False
       Appearance      =   1
@@ -378,6 +377,10 @@ End With
 End Sub
 
 
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyEscape Then Unload Me
+End Sub
+
 Private Sub Form_Load()
 ConfigurarLV
 DesactivarControles Me
@@ -461,7 +464,7 @@ Private Sub tbFamilia_ButtonClick(ByVal Button As MSComctlLib.Button)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IMPRESORA", adVarChar, adParamInput, 50, Trim(Me.txtImpresora.Text))
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IMPRESORA2", adVarChar, adParamInput, 50, Trim(Me.txtImpresora2.Text))
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@GRUPO", adChar, adParamInput, 1, Me.txtGrupo.Text)
-                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DSCTO", adDouble, adParamInput, , Me.txtDscto.Text)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DSCTO", adDouble, adParamInput, , Me.txtdscto.Text)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@VISIBLE", adBoolean, adParamInput, , Me.ComVisible.ListIndex)
 
                 If VNuevo Then
@@ -492,7 +495,7 @@ Private Sub tbFamilia_ButtonClick(ByVal Button As MSComctlLib.Button)
                     Me.lvFamilias.SelectedItem.Text = Trim(Me.txtDenominacion.Text)
                     Me.lvFamilias.SelectedItem.SubItems(1) = Me.txtImpresora.Text
                     Me.lvFamilias.SelectedItem.SubItems(2) = Me.txtGrupo.Text
-                    Me.lvFamilias.SelectedItem.SubItems(3) = Me.txtDscto.Text
+                    Me.lvFamilias.SelectedItem.SubItems(3) = Me.txtdscto.Text
 
                     If Me.ComVisible.ListIndex = 0 Then
                         Me.lvFamilias.SelectedItem.SubItems(4) = "NO"
@@ -569,7 +572,7 @@ Sub Mandar_Datos()
         'Me.txtZona.Text = Trim(.SelectedItem.SubItems(2))
         Me.txtImpresora.Text = .SelectedItem.SubItems(1)
         Me.txtGrupo.Text = .SelectedItem.SubItems(2)
-        Me.txtDscto.Text = .SelectedItem.SubItems(3)
+        Me.txtdscto.Text = .SelectedItem.SubItems(3)
         If .SelectedItem.SubItems(4) = "SI" Then
             Me.ComVisible.ListIndex = 1
         Else

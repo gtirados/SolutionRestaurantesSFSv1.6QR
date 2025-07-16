@@ -1,4 +1,48 @@
-
-*.log
-
+# Archivos binarios compilados
 *.exe
+*.tlb
+*.olb
+
+# Archivos intermedios y temporales
+*.obj
+*.pdb
+*.idb
+*.pch
+*.res
+*.exp
+*.aps
+*.ncb
+*.opt
+*.plg
+*.vbw
+*.log
+*.suo
+*.user
+*.bak
+*.tmp
+
+# Archivos creados por el sistema
+Thumbs.db
+Desktop.ini
+
+# Carpetas comunes
+/bin/
+/obj/
+/Debug/
+/Release/
+
+# Archivos de instalación y empaquetado
+*.cab
+*.msi
+*.bat
+*.log
+*.iss
+
+# Archivos específicos de VB6
+*.vbw  # Contiene información del entorno, no necesaria
+*.csi
+*.lvw
+
+# Configuraciones del IDE (opcionales)
+*.scc
+*.vbg

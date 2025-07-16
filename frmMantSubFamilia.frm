@@ -1,7 +1,7 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
-Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TabCtl32.Ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDatLst.Ocx"
 Begin VB.Form frmMantSubFamilia 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Mantenimiento de Sub Familias"
@@ -18,6 +18,7 @@ Begin VB.Form frmMantSubFamilia
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmMantSubFamilia.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
@@ -38,7 +39,7 @@ Begin VB.Form frmMantSubFamilia
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Sub Familia"
-      TabPicture(0)   =   "frmMantSubFamilia.frx":0000
+      TabPicture(0)   =   "frmMantSubFamilia.frx":0CCA
       Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "lblCodigo"
       Tab(0).Control(0).Enabled=   0   'False
@@ -50,15 +51,19 @@ Begin VB.Form frmMantSubFamilia
       Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "Label7"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "txtDenominacion"
+      Tab(0).Control(5)=   "Label8"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "DatFamilia"
+      Tab(0).Control(6)=   "txtDenominacion"
       Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "txtdscto"
+      Tab(0).Control(7)=   "DatFamilia"
       Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).ControlCount=   8
+      Tab(0).Control(8)=   "txtdscto"
+      Tab(0).Control(8).Enabled=   0   'False
+      Tab(0).Control(9)=   "ComAgregado"
+      Tab(0).Control(9).Enabled=   0   'False
+      Tab(0).ControlCount=   10
       TabCaption(1)   =   "Listado"
-      TabPicture(1)   =   "frmMantSubFamilia.frx":001C
+      TabPicture(1)   =   "frmMantSubFamilia.frx":0CE6
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "datFamiliasearch"
       Tab(1).Control(1)=   "txtSearch"
@@ -66,17 +71,28 @@ Begin VB.Form frmMantSubFamilia
       Tab(1).Control(3)=   "Label5"
       Tab(1).Control(4)=   "Label4"
       Tab(1).ControlCount=   5
+      Begin VB.ComboBox ComAgregado 
+         Height          =   315
+         ItemData        =   "frmMantSubFamilia.frx":0D02
+         Left            =   2760
+         List            =   "frmMantSubFamilia.frx":0D0C
+         Style           =   2  'Dropdown List
+         TabIndex        =   3
+         Top             =   2880
+         Width           =   3255
+      End
       Begin VB.TextBox txtdscto 
          Height          =   285
          Left            =   2760
-         TabIndex        =   14
-         Top             =   2880
+         TabIndex        =   4
+         Tag             =   "X"
+         Top             =   3480
          Width           =   855
       End
       Begin MSDataListLib.DataCombo datFamiliasearch 
          Height          =   315
          Left            =   -73560
-         TabIndex        =   13
+         TabIndex        =   7
          Top             =   720
          Width           =   3255
          _ExtentX        =   5741
@@ -88,14 +104,14 @@ Begin VB.Form frmMantSubFamilia
       Begin VB.TextBox txtSearch 
          Height          =   285
          Left            =   -73560
-         TabIndex        =   10
+         TabIndex        =   6
          Top             =   360
          Width           =   6615
       End
       Begin MSDataListLib.DataCombo DatFamilia 
          Height          =   315
          Left            =   2760
-         TabIndex        =   8
+         TabIndex        =   2
          Top             =   2280
          Width           =   3375
          _ExtentX        =   5953
@@ -115,7 +131,7 @@ Begin VB.Form frmMantSubFamilia
       Begin MSComctlLib.ListView lvSubFamilia 
          Height          =   3135
          Left            =   -74880
-         TabIndex        =   9
+         TabIndex        =   5
          Top             =   1080
          Width           =   7935
          _ExtentX        =   13996
@@ -131,13 +147,23 @@ Begin VB.Form frmMantSubFamilia
          Appearance      =   1
          NumItems        =   0
       End
+      Begin VB.Label Label8 
+         AutoSize        =   -1  'True
+         BackStyle       =   0  'Transparent
+         Caption         =   "Es Agregado:"
+         Height          =   195
+         Left            =   1455
+         TabIndex        =   17
+         Top             =   2940
+         Width           =   1155
+      End
       Begin VB.Label Label7 
          Alignment       =   1  'Right Justify
          Caption         =   "Descuento %:"
          Height          =   255
-         Left            =   1200
-         TabIndex        =   15
-         Top             =   2880
+         Left            =   1275
+         TabIndex        =   16
+         Top             =   3480
          Width           =   1335
       End
       Begin VB.Label Label5 
@@ -146,7 +172,7 @@ Begin VB.Form frmMantSubFamilia
          Caption         =   "Familia:"
          Height          =   195
          Left            =   -74400
-         TabIndex        =   12
+         TabIndex        =   15
          Top             =   720
          Width           =   675
       End
@@ -156,7 +182,7 @@ Begin VB.Form frmMantSubFamilia
          Caption         =   "SubFamilia:"
          Height          =   195
          Left            =   -74760
-         TabIndex        =   11
+         TabIndex        =   14
          Top             =   360
          Width           =   1005
       End
@@ -166,7 +192,7 @@ Begin VB.Form frmMantSubFamilia
          Caption         =   "Código:"
          Height          =   195
          Left            =   1935
-         TabIndex        =   6
+         TabIndex        =   12
          Top             =   1080
          Width           =   675
       End
@@ -175,8 +201,8 @@ Begin VB.Form frmMantSubFamilia
          BackStyle       =   0  'Transparent
          Caption         =   "Familia:"
          Height          =   195
-         Left            =   2040
-         TabIndex        =   5
+         Left            =   1935
+         TabIndex        =   11
          Top             =   2280
          Width           =   675
       End
@@ -186,7 +212,7 @@ Begin VB.Form frmMantSubFamilia
          Caption         =   "Denominación:"
          Height          =   195
          Left            =   1320
-         TabIndex        =   4
+         TabIndex        =   10
          Top             =   1680
          Width           =   1290
       End
@@ -198,7 +224,7 @@ Begin VB.Form frmMantSubFamilia
          ForeColor       =   &H80000008&
          Height          =   285
          Left            =   2760
-         TabIndex        =   3
+         TabIndex        =   9
          Tag             =   "X"
          Top             =   1080
          Width           =   1095
@@ -209,7 +235,7 @@ Begin VB.Form frmMantSubFamilia
          Caption         =   "Familia:"
          Height          =   195
          Left            =   -74760
-         TabIndex        =   2
+         TabIndex        =   8
          Top             =   480
          Width           =   675
       End
@@ -227,23 +253,23 @@ Begin VB.Form frmMantSubFamilia
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   5
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantSubFamilia.frx":0038
+            Picture         =   "frmMantSubFamilia.frx":0D18
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantSubFamilia.frx":03D2
+            Picture         =   "frmMantSubFamilia.frx":10B2
             Key             =   ""
          EndProperty
          BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantSubFamilia.frx":076C
+            Picture         =   "frmMantSubFamilia.frx":144C
             Key             =   ""
          EndProperty
          BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantSubFamilia.frx":0B06
+            Picture         =   "frmMantSubFamilia.frx":17E6
             Key             =   ""
          EndProperty
          BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "frmMantSubFamilia.frx":0EA0
+            Picture         =   "frmMantSubFamilia.frx":1B80
             Key             =   ""
          EndProperty
       EndProperty
@@ -252,12 +278,12 @@ Begin VB.Form frmMantSubFamilia
       Align           =   1  'Align Top
       Height          =   360
       Left            =   0
-      TabIndex        =   7
+      TabIndex        =   13
       Top             =   0
       Width           =   8430
       _ExtentX        =   14870
       _ExtentY        =   635
-      ButtonWidth     =   1826
+      ButtonWidth     =   1931
       ButtonHeight    =   582
       AllowCustomize  =   0   'False
       Appearance      =   1
@@ -301,6 +327,10 @@ Private Sub datFamiliasearch_Change()
 RealizarBusqueda
 End Sub
 
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+If KeyCode = vbKeyEscape Then Unload Me
+End Sub
+
 Private Sub Form_Load()
 ConfigurarLV
 DesactivarControles Me
@@ -334,7 +364,7 @@ With Me.lvSubFamilia
     .ColumnHeaders.Add , , "Sub Familia", 3000
     .ColumnHeaders.Add , , "IDEFamilia", 0
     .ColumnHeaders.Add , , "Descuento", 100
-    
+    .ColumnHeaders.Add , , "Agregado", 0
     
 End With
 End Sub
@@ -399,6 +429,7 @@ Private Sub RealizarBusqueda(Optional vSearch As String = "")
             .SubItems(1) = Trim(ORSf!Familia)
             .SubItems(2) = ORSf!IDEFAMILIA
             .SubItems(3) = ORSf!descuento
+            .SubItems(4) = ORSf!AGREGADO
         
         End With
    
@@ -446,6 +477,7 @@ Private Sub tbFamilia_ButtonClick(ByVal Button As MSComctlLib.Button)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DENOMINACION", adVarChar, adParamInput, 50, Trim(Me.txtDenominacion.Text))
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@IDFAMILIA", adBigInt, adParamInput, , Me.DatFamilia.BoundText)
                 oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@DSCTO", adDouble, adParamInput, , Me.txtdscto.Text)
+                oCmdEjec.Parameters.Append oCmdEjec.CreateParameter("@AGREGADO", adBoolean, adParamInput, , Me.ComAgregado.ListIndex)
 
                 If VNuevo Then
                     oCmdEjec.CommandText = "SP_SUBFAMILIA_REGISTRAR"
@@ -468,12 +500,16 @@ Private Sub tbFamilia_ButtonClick(ByVal Button As MSComctlLib.Button)
                         .Tag = Trim(Me.lblCodigo.Caption)
                         .SubItems(1) = Me.DatFamilia.Text
                         .SubItems(2) = Me.DatFamilia.BoundText
+                        .SubItems(3) = Me.txtdscto.Text
+                        .SubItems(4) = Me.ComAgregado.ListIndex
                     End With
             
                 Else
                     Me.lvSubFamilia.SelectedItem.Text = Trim(Me.txtDenominacion.Text)
                     Me.lvSubFamilia.SelectedItem.SubItems(1) = Me.DatFamilia.Text
                     Me.lvSubFamilia.SelectedItem.SubItems(2) = Me.DatFamilia.BoundText
+                    Me.lvSubFamilia.SelectedItem.SubItems(3) = Me.txtdscto.Text
+                    Me.lvSubFamilia.SelectedItem.SubItems(4) = Me.ComAgregado.ListIndex
                 End If
         
                 'set itemg=me.lvMesas.ListItems.Add(,,
@@ -543,6 +579,7 @@ Sub Mandar_Datos()
         Me.DatFamilia.BoundText = .SelectedItem.SubItems(2)
         Me.txtdscto.Text = .SelectedItem.SubItems(3)
         Me.tbFamilia.Buttons(5).Enabled = False
+        Me.ComAgregado.ListIndex = .SelectedItem.SubItems(4)
         Estado_Botones AntesDeActualizar
     End With
 
