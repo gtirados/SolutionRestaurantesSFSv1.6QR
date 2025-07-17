@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{00025600-0000-0000-C000-000000000046}#5.2#0"; "Crystl32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "Mscomctl.ocx"
 Begin VB.Form frmComanda 
    BackColor       =   &H8000000C&
    BorderStyle     =   0  'None
@@ -27,6 +27,7 @@ Begin VB.Form frmComanda
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdAgregados 
+      BackColor       =   &H000080FF&
       Caption         =   "Agregados"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -37,14 +38,16 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   675
-      Left            =   8730
-      MaskColor       =   &H00808080&
+      Height          =   690
+      Left            =   8520
+      MaskColor       =   &H00FFFFFF&
+      Style           =   1  'Graphical
       TabIndex        =   55
-      Top             =   3050
-      Width           =   975
+      Top             =   1920
+      Width           =   1200
    End
    Begin VB.CommandButton cmdDescuentos 
+      BackColor       =   &H00FFFF80&
       Caption         =   "Descuentos"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -55,11 +58,12 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   680
-      Left            =   8730
+      Height          =   690
+      Left            =   8520
+      Style           =   1  'Graphical
       TabIndex        =   54
-      Top             =   4400
-      Width           =   975
+      Top             =   4080
+      Width           =   1200
    End
    Begin VB.Frame fraSubFam 
       BackColor       =   &H8000000C&
@@ -139,7 +143,8 @@ Begin VB.Form frmComanda
       End
    End
    Begin VB.CommandButton cmdCaracteristicas 
-      Caption         =   "Caracteristicas"
+      BackColor       =   &H00FFFF00&
+      Caption         =   "Caracte risticas"
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   8.25
@@ -149,12 +154,13 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   680
-      Left            =   8730
-      MaskColor       =   &H00808080&
+      Height          =   690
+      Left            =   8520
+      MaskColor       =   &H00FFFF00&
+      Style           =   1  'Graphical
       TabIndex        =   53
-      Top             =   2360
-      Width           =   975
+      Top             =   2640
+      Width           =   1200
    End
    Begin VB.CommandButton cmdEnviarEn 
       Caption         =   "Tiempo Envio"
@@ -176,6 +182,7 @@ Begin VB.Form frmComanda
       Width           =   975
    End
    Begin VB.CommandButton cmdCta 
+      BackColor       =   &H0000FFFF&
       Caption         =   "Separar Cuentas"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -186,12 +193,13 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   680
-      Left            =   8730
+      Height          =   690
+      Left            =   8520
       MaskColor       =   &H00808080&
+      Style           =   1  'Graphical
       TabIndex        =   44
-      Top             =   1150
-      Width           =   975
+      Top             =   1200
+      Width           =   1200
    End
    Begin Crystal.CrystalReport crReporte 
       Left            =   1920
@@ -486,6 +494,7 @@ Begin VB.Form frmComanda
       Width           =   975
    End
    Begin VB.CommandButton cmdDetalle 
+      BackColor       =   &H0080FF80&
       Caption         =   "Detalle"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -496,15 +505,17 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   555
-      Left            =   8730
+      Height          =   690
+      Left            =   8520
       MaskColor       =   &H00808080&
       Picture         =   "frmComanda.frx":1D8A
+      Style           =   1  'Graphical
       TabIndex        =   38
-      Top             =   1800
-      Width           =   975
+      Top             =   3360
+      Width           =   1200
    End
    Begin VB.CommandButton cmdEliminar 
+      BackColor       =   &H00FFFFC0&
       Caption         =   "Eliminar Plato"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -515,22 +526,23 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   680
-      Left            =   8730
+      Height          =   690
+      Left            =   8520
       MaskColor       =   &H00808080&
       Picture         =   "frmComanda.frx":2534
+      Style           =   1  'Graphical
       TabIndex        =   2
       Top             =   480
-      Width           =   970
+      Width           =   1200
    End
    Begin MSComctlLib.ListView lvPlatos 
-      Height          =   4150
+      Height          =   4215
       Left            =   90
       TabIndex        =   0
       Top             =   480
-      Width           =   8625
-      _ExtentX        =   15214
-      _ExtentY        =   7329
+      Width           =   8400
+      _ExtentX        =   14817
+      _ExtentY        =   7435
       LabelWrap       =   -1  'True
       HideSelection   =   -1  'True
       Checkboxes      =   -1  'True
@@ -866,11 +878,12 @@ Begin VB.Form frmComanda
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   680
+      Height          =   195
       Left            =   8730
       MaskColor       =   &H00808080&
       TabIndex        =   52
-      Top             =   3720
+      Top             =   4200
+      Visible         =   0   'False
       Width           =   975
    End
    Begin VB.Label lblF3Busqueda 
@@ -890,7 +903,7 @@ Begin VB.Form frmComanda
       Height          =   210
       Left            =   1200
       TabIndex        =   51
-      Top             =   4680
+      Top             =   4800
       Width           =   1545
    End
    Begin VB.Label lblF5Busqueda 
@@ -910,7 +923,7 @@ Begin VB.Form frmComanda
       Height          =   210
       Left            =   2850
       TabIndex        =   50
-      Top             =   4680
+      Top             =   4800
       Width           =   1620
    End
    Begin VB.Label lblComensales 
@@ -949,10 +962,10 @@ Begin VB.Form frmComanda
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000E&
-      Height          =   210
-      Left            =   6000
+      Height          =   255
+      Left            =   5520
       TabIndex        =   46
-      Top             =   4755
+      Top             =   4830
       Width           =   660
    End
    Begin VB.Label lblTot 
@@ -969,8 +982,8 @@ Begin VB.Form frmComanda
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00FFFFFF&
-      Height          =   360
-      Left            =   6645
+      Height          =   480
+      Left            =   6405
       TabIndex        =   45
       Top             =   4680
       Width           =   2070
@@ -1288,7 +1301,7 @@ Public Sub CargarComanda(vCodCia As String, vCodMesa As String)
                 .SubItems(3) = Format(oRsComanda!Cantidad, "#####0.#0")
                 .SubItems(4) = Format(oRsComanda!PRECIO, "#####0.#0")
                 .SubItems(5) = Format(oRsComanda!Importe, "#####0.#0")
-                .SubItems(6) = oRsComanda!Sec
+                .SubItems(6) = oRsComanda!SEC
                 .SubItems(7) = oRsComanda!aten
                 '.SubItems(7) = oRsComanda!NumFac
                 .SubItems(8) = oRsComanda.Fields!PED_NUMFAC
@@ -2035,7 +2048,7 @@ With Me.lvPlatos
 End With
 End Sub
 
-Private Sub cmdAgregados_Click()
+Private Sub cmdagregados_Click()
 
     If Me.lvPlatos.ListItems.count = 0 Then Exit Sub
     If Me.lvPlatos.SelectedItem.ForeColor = vbRed Then
@@ -2053,6 +2066,7 @@ Private Sub cmdAgregados_Click()
     frmComandaProdAgregados.lblProducto.Caption = Me.lvPlatos.SelectedItem.Text
     frmComandaProdAgregados.gMozo = gMozo
     frmComandaProdAgregados.gMesa = vMesa
+    frmComandaProdAgregados.gDesdeMostrador = False
     frmComandaProdAgregados.Show vbModal
 
 End Sub

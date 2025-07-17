@@ -102,6 +102,7 @@ Public gComensales As Integer
 Public gMozo As Integer
 Public gMesa As String
 Private vMaxFac As Double
+Public gDesdeMostrador As Boolean
 
 Public Function adicionarAgregado(vcp As Double, _
                                   vc As Double, _
@@ -401,7 +402,11 @@ Private Sub cmdAgregado_Click(Index As Integer)
 '            Me.lvPlatos.ListItems(Me.lvPlatos.ListItems.count).Selected = True
 '        End If
 
+If gDesdeMostrador Then
+    frmComanda2.CargarComanda LK_CODCIA, "0"
+Else
        frmComanda.CargarComanda LK_CODCIA, frmComanda.vMesa
+       End If
         
 '        For c = 1 To Me.lvPlatos.ListItems.count
 '            Me.lvPlatos.ListItems(c).Selected = False
@@ -484,3 +489,4 @@ Me.cmdAgregadoAnt.Enabled = False
 Me.cmdAgregadoSig.Enabled = False
 cargarAgregados
 End Sub
+
